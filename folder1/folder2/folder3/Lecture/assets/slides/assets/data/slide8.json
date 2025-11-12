@@ -1,0 +1,70 @@
+﻿{
+    "surala": {
+        "images": [
+            { "name": "aar2", "src": "assets/slides/assets/images/slide8/aar2.png" },
+            { "name": "arr1", "src": "assets/slides/assets/images/slide8/arr1.png" },
+            { "name": "arr3", "src": "assets/slides/assets/images/slide8/arr3.png" },
+            { "name": "button", "src": "assets/slides/assets/images/slide8/button.png" },
+            { "name": "waterflow", "src": "assets/slides/assets/images/slide8/waterflow.png" },
+            { "name": "waterflow1", "src": "assets/slides/assets/images/slide8/waterflow1.png" },
+            { "name": "waterflow2", "src": "assets/slides/assets/images/slide8/waterflow2.png" },
+            { "name": "waterflow3", "src": "assets/slides/assets/images/slide8/waterflow3.png" }
+        ],
+        "sounds": [
+            { "name": "correct", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/correct" },
+            { "name": "wrong", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/wrong" },
+            { "name": "MG_benar_01", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_benar_01" },
+            { "name": "MG_salah_01", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_01" },
+            { "name": "MG_benar_07", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_benar_07" },
+            { "name": "MG_salah_08", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_08" },
+            { "name": "MG_salah_09", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_09" },
+            { "name": "IPM_S10L04u09_100", "src": "vo/IPM_S10L04u09_100" },
+            { "name": "IPM_S10L04u09_041+", "src": "vo/IPM_S10L04u09_041+" },
+            { "name": "IPM_S10L04u09_102", "src": "vo/IPM_S10L04u09_102" },
+            { "name": "IPM_S10L04u09_103", "src": "vo/IPM_S10L04u09_103" },
+            { "name": "IPM_S10L04u09_104", "src": "vo/IPM_S10L04u09_104" },
+            { "name": "IPM_S10L04u09_105", "src": "vo/IPM_S10L04u09_105" },
+            { "name": "IPM_S10L04u09_106", "src": "vo/IPM_S10L04u09_106" },
+            { "name": "IPM_S10L04u09_107", "src": "vo/IPM_S10L04u09_107" },
+            { "name": "IPM_S10L04u09_108", "src": "vo/IPM_S10L04u09_108" },
+            { "name": "IPM_S10L04u09_109", "src": "vo/IPM_S10L04u09_109" },
+            { "name": "IPM_S10L04u09_110", "src": "vo/IPM_S10L04u09_110" },
+            { "name": "IPM_S10L04u09_111", "src": "vo/IPM_S10L04u09_111" },
+            { "name": "IPM_S10L01u02_042", "src": "vo/IPM_S10L01u02_042" }
+
+        ],
+        "slideDuration": [
+            { "audio": "IPM_S10L04u09_100", "dur": "11.0" },
+            { "audio": "IPM_S10L04u09_041+", "dur": "10.6" },
+            { "audio": "IPM_S10L04u09_102", "dur": "4.0" },
+            { "audio": "IPM_S10L04u09_103", "dur": "2.9" },
+            { "audio": "IPM_S10L04u09_104", "dur": "6.5" },
+            { "audio": "IPM_S10L04u09_105", "dur": "5.7" },
+            { "audio": "IPM_S10L04u09_106", "dur": "4.9" },
+            { "audio": "IPM_S10L04u09_107", "dur": "7.4" },
+            { "audio": "IPM_S10L04u09_108", "dur": "6.0" },
+            { "audio": "IPM_S10L04u09_109", "dur": "11.3" },
+            { "audio": "IPM_S10L04u09_110", "dur": "4.9" },
+            { "audio": "IPM_S10L04u09_111", "dur": "6.6" },
+            { "audio": "IPM_S10L01u02_042", "dur": "7.6" }
+
+        ],
+        "content": {
+            "question1": {
+                "audio": {
+                    "correct": "MG_benar_01",
+                    "incorrect": "MG_salah_01"
+                },
+                "correctAnswer": "option_1,option_4"
+            },
+            "question2": {
+                "audio": {
+                    "correct": "MG_benar_07",
+                    "incorrect": "MG_salah_08",
+                    "incorrect_2": "MG_salah_09"
+                },
+                "correctAnswer": "25,12"
+            }
+        }
+    }
+}

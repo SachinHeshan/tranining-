@@ -1,0 +1,176 @@
+/* -------------------------------------------------
+   BASIC HIDE / SHOW
+   ------------------------------------------------- */
+.display1 { visibility: hidden; }
+
+/* -------------------------------------------------
+   PAGE LAYOUT
+   ------------------------------------------------- */
+html, body { width:100%; height:100%; margin:0; background:transparent; }
+.slideContent { position:relative; width:750px; height:560px; margin:0 auto; overflow:hidden; }
+
+/* -------------------------------------------------
+   TITLE & SLIDE NUMBER
+   ------------------------------------------------- */
+.title {
+    position: absolute;
+    left: 64px; top: 20px;
+    font-family: 'Times NR MT Pro Medium';
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+/* -------------------------------------------------
+   CIRCLED NUMBERS
+   ------------------------------------------------- */
+.circle-num {
+    position: absolute;
+    width: 40px; height: 30px;
+    line-height: 30px;
+    left: 20px;
+    color: #fe0000;
+    border-radius: 20%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 23px;
+    z-index: 10;
+}
+
+
+
+
+
+/* -------------------------------------------------
+   SECTION ① – QUESTION
+   ------------------------------------------------- */
+.section1 { position: relative; margin-top: 60px; }
+.section1 .circle-num { left: 20px; top: 0; }
+
+.question-text {
+    position: absolute;
+    left: 60px; top: 0;
+    width: 650px;
+    font-family: 'Times NR MT Pro Medium';
+    font-size: 25px;
+    line-height: 1.4;
+}
+
+
+
+.answer-input {
+    position: absolute;
+    left: 70px; top: 39px;
+    width: 70px; height: 45px;
+    font-family: 'DFPHSGothic-W5';
+    font-size: 28px;
+    text-align: center;
+    border: 2px solid #000;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.degree {
+    position: absolute;
+    left: 150px; 
+    top: 39px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #000;
+}
+.judgement_btn{
+    position: absolute;
+    left: 180px; top: 39px;
+}
+
+.judgement_btn:hover {
+    cursor: pointer !important;
+}
+
+.judgement_btn:active {
+    cursor: pointer !important;
+}
+
+/* Correct answer display under the input box */
+#correctAnswerDisplay {
+    font-size: 30px;
+    position: absolute;
+    top: 100px;
+    left: 61%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    color: #cc0000;
+    width: 100%;
+    height: 100px;
+}
+
+/* -------------------------------------------------
+   SECTION ② – YELLOW BOX
+   ------------------------------------------------- */
+.section2 { position: relative; margin-top: 30px; }
+.section2 .circle-num { left: 20px; top: 10px; }
+
+.yellow-box {
+    top: 140px;
+      background: #fff9c4;          /* light yellow background */
+      border: 2px solid #ffeb3b;    /* yellow border */
+      border-radius: 20px;          /* rounded corners */
+      padding: 20px 25px;
+      max-width: 590px;
+      height: 130px;
+      margin: 10px auto;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      position: relative;
+     
+    }
+
+
+.box-title {
+    font-family: 'Times NR MT Pro Medium';
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.box-text {
+   
+    font-family: 'Times NR MT Pro Medium';
+    font-size: 20px;
+    margin: 8px 0;
+}
+
+.triangle-in-box {
+
+    left: 20%;
+    margin: 15px auto;
+    width: 120px;
+    height: auto;
+    margin-top: -10px;
+}
+
+.formula {
+    color: #fe0000;
+    
+    font-family: 'Times NR MT Pro Medium';
+    font-size: 24px;
+    margin-top: -70px;
+    text-align: center;
+    width: 100%;
+}
+
+
+
+/* -------------------------------------------------
+   SECTION ③ – BOTTOM TRIANGLE (NO CALL-OUTS)
+   ------------------------------------------------- */
+.section3 { position: relative; margin-top: 40px; text-align: center; }
+.section3 .circle-num { left: 20px; top: 0; }
+
+.big-triangle {
+ margin-top: -65px;
+ margin-bottom: 20px;
+    width: 500px;
+    height: 510px;
+}
+
+

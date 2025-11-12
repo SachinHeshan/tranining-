@@ -1,0 +1,143 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Slide 4</title>
+    <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/css/slides.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/slide4.css" rel="stylesheet" type="text/css" />
+    <!-- Style of handwriting popup -->
+    <link href="../../../../../../../../tegaki_v2/css/char.recog.css" rel="stylesheet" />
+</head>
+
+<body ontouchstart="">
+    <div id="preload">
+        <canvas id="loadBarCanvas" width="120" height="120"></canvas>
+        <p>Loading...</p>
+    </div>
+    <section is="gwd-pagedeck" class="gwd-page-container slideContent" id="pagedeck" ondragstart="return false;">
+
+        <input class="gwd-rect-g7cr display3" type="text" id="text_1" autocomplete="off">
+        <div class="correctAnswer display3" id="crt1"></div>
+        <div class="feedback display3" id="fb1"></div>
+        <div class="judgement_btn gwd-img-1v3r display3" id="judgement_btn1"></div>
+
+
+        <p class="gwd-p-8tmq display8">Latihan</p>
+        <div class="gwd-div-1min display1">
+            <div class="gwd-div-15el">
+                <p class="gwd-p-1t6k">Mana sajakah rumus luas yang harus kita gunakan</p>
+                <p class="gwd-p-1fwy">saat menghitung luas bangun datar di bawah ini?</p>
+            </div>
+            <div class="gwd-div-zem0">
+                <img src="assets/images/slide4/outline.png" id="outline" class="gwd-img-1k9r">
+                <!-- <p class="gwd-p-ypga">Rectangle</p>
+                <p class="gwd-p-w4so">Square</p>
+                <p class="gwd-p-7h2s">Triangle</p>
+                <p class="gwd-p-10m5">Circle</p>
+                <p class="gwd-p-s82l">Circular sector</p> -->
+            </div>
+            <div class="gwd-div-122q">
+                <img src="assets/images/slide4/bluetraingle.png" id="bluetraingle" class="gwd-img-1q51">
+                <img src="assets/images/slide4/triangles.png" id="triangles" class="gwd-img-tcbw">
+                <p class="gwd-p-1oiv">4 cm</p>
+                <p class="gwd-p-fonm">4 cm</p>
+                <p class="gwd-p-sp2p">4 cm</p>
+                <p class="gwd-p-1lcq">4 cm</p>
+                <p class="gwd-p-1wri">2 cm</p>
+                <p class="gwd-p-5x70">2 cm</p>
+                <p class="gwd-p-13hs">2 cm</p>
+                <p class="gwd-p-1r3f">2 cm</p>
+            </div>
+
+
+
+            <div class="selectActivity">
+                <div id="block1">
+                    <p class="gwd-p-ypga display1 options" id="option_1">Juring</p>
+                    <div class="feedback display1" id="fb_option_1"></div>
+                </div>
+                <div id="block2">
+                    <p class="gwd-p-w4so display1 options" id="option_2">Segitiga</p>
+                    <div class="feedback display1" id="fb_option_2"></div>
+                </div>
+                <div id="block3">
+                    <p class="gwd-p-7h2s display1 options" id="option_3">Persegi</p>
+                    <div class="feedback display1" id="fb_option_3"></div>
+                </div>
+                <div id="block4">
+                    <p class="gwd-p-10m5 display1 options" id="option_4">Lingkaran</p>
+                    <div class="feedback display1" id="fb_option_4"></div>
+                </div>
+                <div id="block5">
+                    <p class="gwd-p-s82l display1 options" id="option_5">Persegi Panjang</p>
+                    <div class="feedback display1" id="fb_option_5"></div>
+                </div>
+                <div class="judgement_btn gwd-img-1pfb display1" id="judgement_btn"></div>
+            </div>
+        </div>
+        <img src="assets/images/slide4/rec2.png" id="rec2" class="gwd-img-1s9j display9 blink">
+        <img src="assets/images/slide4/rec1.png" id="rec1" class="gwd-img-1h95 display10 blink1">
+        <div class="gwd-div-19a0 display2">
+            <img src="assets/images/slide4/dottedline.png" id="dottedline" class="gwd-img-7bqv">
+            <img src="assets/images/slide4/tri1.png" id="tri1" class="gwd-img-lm6f">
+            <p class="gwd-p-wtm0">−</p>
+            <p class="gwd-p-ra02">×</p>
+            <p class="gwd-p-g83e">4</p>
+        </div>
+        <div class="gwd-div-9v55 display4">
+            <div class="gwd-div-1942">
+                <svg data-gwd-shape="rectangle" class="gwd-rect-lox7"></svg>
+                <p class="gwd-p-1csk">Sisi <span class="gwd-span-1t91">×</span> Sisi</p>
+            </div>
+            <p class="gwd-p-1bwb">6 <span class="gwd-span-1ygf">×</span> 6</p>
+        </div>
+        <div class="gwd-div-15ac display5">
+            <div class="gwd-div-1all">
+                <svg data-gwd-shape="rectangle" class="gwd-svg-1dzh"></svg>
+                <p class="gwd-p-7qbc"><span class="gwd-span-gwwe"><span class="frac"><sup>1</sup><span>&frasl;</span><sub>2</sub></span></span><span class="gwd-span-13lx">&nbsp;×</span>&nbsp; Alas <span class="gwd-span-1lpm">×</span> Tinggi</p>
+            </div>
+            <p class="gwd-p-1iyc">4 <span class="gwd-span-nroe">×</span><span class="gwd-span-gwwe"><span class="frac1"><sup>1</sup><span>&frasl;</span><sub>2</sub></span></span><span class="gwd-span-13lx">&nbsp;×</span>&nbsp; 4&nbsp;&nbsp;<span class="gwd-span-vcvr">×</span> 2</p>
+        </div>
+        <p class="gwd-p-otv2 display5">−</p>
+        <p class="gwd-p-1yoe"><br></p>
+        <div class="gwd-div-1gtc display3">
+            <p class="gwd-p-98f5">Hitunglah luas bagian yang berwarna.</p>
+            <p class="gwd-p-x4g6"></p>
+            <img src="assets/images/slide4/blank.png" id="blank" class="gwd-img-fffw">
+            <p class="gwd-p-haal">cm<sup>2</sup></p>
+        </div>
+        <p class="gwd-p-1nb3 display6"><span class="gwd-span-hf53">＝</span> 36 <span class="gwd-span-ybmt">−</span> 16</p>
+        <p class="gwd-p-178v display7"><span class="gwd-span-jnhv">＝</span> 20</p>
+        <p class="gwd-p-vh6c display7_1">Jadi, luasnya adalah  20 cm<sup>2</sup>.</p>
+        <p class="slash1 display4"></p>
+        <p class="slash2 display5"></p>
+    </section>
+    <div class="seekBar">
+        <div class="seekbar_bgnd"> </div>
+        <div class="seekbar_fill" id="sliderVal"> </div>
+        <div class="seekbar_fgnd"> </div>
+        <div class="seeBarDrag">
+            <div class="seekbarArea">
+                <div class="seekBarSlider seekBarSlider_10" id="seekBarSlider"> </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery-ui.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery.ui.touch-punch.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/js/howler.core.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/easeljs-NEXT.combined.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/tweenjs-NEXT.min.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/slideTutorial.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/slideManager.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/seekBar.js"></script>
+<script type="text/javascript" src="assets/js/slide4.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/lms_lecture.js"></script>
+<!-- Handwriting popup js file -->
+<script src="../../../../../../../../tegaki_v2/js/char.recog.v2.min.js"></script>
+
+</html>

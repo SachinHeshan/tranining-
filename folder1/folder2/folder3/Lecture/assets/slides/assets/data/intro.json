@@ -1,0 +1,30 @@
+﻿{
+    "surala": {
+        "images": [
+            { "name": "intro_bg", "src": "../../../../common/CeylonSoft/re_primarymath_ind/images/intro_bg_b.png" },
+            { "name": "slide_mainbg", "src": "../../../../common/CeylonSoft/re_primarymath_ind/images/slide_mainbg.png" },
+            { "name": "intro_titleBg", "src": "../../../../common/CeylonSoft/re_primarymath_ind/images/intro_titleBg.png" },
+            { "name": "intro_3", "src": "../../../../common/CeylonSoft/re_primarymath_ind/images/intro_bganimation3/intro_3.png" },
+            { "name": "intro_4", "src": "../../../../common/CeylonSoft/re_primarymath_ind/images/intro_bganimation3/intro_4.png" },
+            { "name": "intro_5", "src": "../../../../common/CeylonSoft/re_primarymath_ind/images/intro_bganimation3/intro_5.png" },
+            { "name": "intro_6", "src": "../../../../common/CeylonSoft/re_primarymath_ind/images/intro_bganimation3/intro_6.png" },
+            { "name": "intro_7", "src": "../../../../common/CeylonSoft/re_primarymath_ind/images/intro_bganimation3/intro_7.png" },
+            { "name": "intro_student", "src": "../../../../common/CeylonSoft/re_primarymath_ind/sprites/intro_student.png" },
+            { "name": "student", "src": "../../../../common/CeylonSoft/re_primarymath_ind/sprites/student_s1.png" },
+            { "name": "teacher", "src": "../../../../common/CeylonSoft/re_primarymath_ind/sprites/teacher_stage_10.png" }
+        ],
+        "sounds": [
+            { "name": "click", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/click", "type": "effect" },
+            { "name": "opening", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/music/opening", "type": "effect" },
+            { "name": "IPM_S10L01u02_001", "src": "vo/IPM_S10L01u02_001" },
+            { "name": "IPM_S10L03u03_S001", "src": "vo/IPM_S10L03u03_S001" },
+            { "name": "IPM_S10L04u09_001", "src": "vo/IPM_S10L04u09_001" },
+            { "name": "IPM_S10L04u09_002", "src": "vo/IPM_S10L04u09_002" },
+            { "name": "IPM_S10L04u09_003", "src": "vo/IPM_S10L04u09_003" },
+            { "name": "IPM_S10L04u09_004", "src": "vo/IPM_S10L04u09_004" },
+            { "name": "IPM_S10L04u09_005", "src": "vo/IPM_S10L04u09_005" },
+            { "name": "IPM_S10L04u09_006", "src": "vo/IPM_S10L04u09_006" },
+            { "name": "IPM_S10L01u02_007", "src": "vo/IPM_S10L01u02_007" }
+        ]
+    }
+}

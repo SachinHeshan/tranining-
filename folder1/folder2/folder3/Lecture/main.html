@@ -1,0 +1,113 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Surala</title>
+    <!-- CSS for LMS -->
+    <link rel="stylesheet" type="text/css" href="../../../../common/CeylonSoft/lms/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../common/CeylonSoft/lms/css/default.css" />
+    <!-- end -->
+    <link href="../../../../common/CeylonSoft/re_primarymath_ind/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../common/CeylonSoft/re_primarymath_ind/css/unitStyles.css" rel="stylesheet" type="text/css" />
+    <link href="assets/slides/assets/css/titleSlide.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div id="content">
+        <div id="contentCenter">
+            <div class="slideNumber" id="slideNo"><span id="currentSlideNo"></span>/<span id="totalslideNo"></span></div>
+            <!-- <img src="../../../../common/CeylonSoft/re_primarymath_ind/images/intro_bg_b.png" alt="introduction background" id="preloadBGimage" style="position: absolute;" /> -->
+              <!-- should replace - Start -->
+            <button id="touchBtn" onClick="touchClick()">Start</button>
+            <canvas id="gameCanvas" width="1000px" height="700px"></canvas>
+            <div class="speech_bubble" id="calloutTxt">ばっちりさ！</div>
+            <div class="speech_bubble_teacher" id="calloutTxt">ばっちりさ！</div>
+            <iframe src="" id="slidecontainer" class="slidecontainer"></iframe>
+            <div class="titlescreen" id="titlescreen">
+                <!-- should replace - Tables(2) -->
+                <p id="stageTitle" class="stageTitle">Lesson 1 Unit 5 : Menghitung Luas Bangun Datar Kompleks</p> 
+                <div class="titleText">
+                    <p id="title_line1">Menghitung luas bangun datar kompleks.</p>
+                </div>
+            </div>
+            <img src="../../../../common/CeylonSoft/re_primarymath_ind/images/copyright.png" id="copyright">
+            <div class="skipBtn" id="skipBtn" onClick="skipIntro()"></div>
+            <div class="footerBtns">
+                <div class="bookmark" id="bookmarklist"></div>
+                <div class="navigationPanel">
+                    <div class="back_w" onClick="surala.slideNavigation.prevSlide()"></div>
+                    <div class="pause_w" id="playPause" onclick="surala.slideNavigation.playPause()"></div>
+                    <!--<div class="stop_w" id="pause" onclick="surala.slideNavigation.reloadSlide()"></div>-->
+                    <div class="next_w" onClick="surala.slideNavigation.nextSlide()"></div>
+                </div>
+            </div>
+            <div id="slideImages" style="display:none;"></div>
+            <div id="slideAudio" style="display:none;"></div>
+            <p style="visibility:hidden; font-family:DFGKyouKaShoRW4;">●</p>
+            <p style="visibility:hidden; font-family:DFPHSGothic-W5;">●</p>
+            <!-- LMS Code start -->
+            <div class="main">
+                <div class="main_list">
+                    <dl>
+                        <dt>log_url</dt>
+                        <dd id="logUrl"></dd>
+                        <dt>next_sco_url</dt>
+                        <dd id="nexScoUrl"></dd>
+                        <dt>status</dt>
+                        <dd id="status"></dd>
+                        <dt>current_page</dt>
+                        <dd id="currentPage"></dd>
+                        <dt>disp_page</dt>
+                        <dd id="dispPage"></dd>
+                        <dt>url_path</dt>
+                        <dd id="urlPath"></dd>
+                        <dt>indicator_flag</dt>
+                        <dd id="indicatorFlag"></dd>
+                        <dt>study_log_url</dt>
+                        <dd id="studyLogUrl"></dd>
+                    </dl>
+                </div>
+
+                <div tabindex="-1" class="modal bootstrap-dialog fade" role="dialog" aria-hidden="false" id="myModal">
+                    <div class="modal-backdrop fade in" style="height:100%"></div>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header ">
+                                <h4>確認</h4>
+                            </div>
+                            <div class="modal-body" id="dialogBody"> </div>
+                            <div class="modal-footer clear">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" onClick="okDown(this)">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- LMS Code end -->
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery-ui.js"></script>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery.ui.touch-punch.js"></script>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/scripts/preloadjs-NEXT.min.js"></script>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/scripts/easeljs-NEXT.combined.js"></script>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/scripts/tweenjs-NEXT.min.js"></script>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/sprites/student_s1.js"></script>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/sprites/teacher_stage_10.js"></script>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/js/browser.js"></script>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/js/slideTutorial.js"></script>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/js/bookmark.js"></script>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/js/howler.core.js"></script>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/js/audio.js"></script>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/js/assetLoader.js"></script>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/js/navigationPanel.js"></script>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/js/characterAnimation.js"></script>
+<script type="text/javascript" src="assets/js/unitManager.js"></script>
+<!-- Script for LMS -->
+<script type="text/javascript" src="../../../../common/CeylonSoft/lms/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../../common/CeylonSoft/re_primarymath_ind/js/lmsFunction.js"></script>
+<!-- code end -->
+
+</html>

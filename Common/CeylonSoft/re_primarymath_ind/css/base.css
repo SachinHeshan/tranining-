@@ -1,0 +1,60 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {
+  padding: 0;
+  margin: 0;
+}
+p {
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
+img {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+audio {
+  position: absolute;
+}
+
+@font-face {
+	font-family: 'Times NR MT Pro It SemiBold';
+	src: url('../../../../common/CeylonSoft/Surala-fonts/35581F_0_0.eot');
+	src: url('../../../../common/CeylonSoft/Surala-fonts/35581F_0_0.eot?#iefix') format('embedded-opentype'), 
+		url('../../../../common/CeylonSoft/Surala-fonts/35581F_0_0.woff2') format('woff2'), 
+		url('../../../../common/CeylonSoft/Surala-fonts/35581F_0_0.woff') format('woff'), 
+		url('../../../../common/CeylonSoft/Surala-fonts/35581F_0_0.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Times NR MT Pro Medium';
+	src: url('../../../../common/CeylonSoft/Surala-fonts/35581F_2_0.eot');
+	src: url('../../../../common/CeylonSoft/Surala-fonts/35581F_2_0.eot?#iefix') format('embedded-opentype'), url('../../../../common/CeylonSoft/Surala-fonts/35581F_2_0.woff2') format('woff2'), url('../../../../common/CeylonSoft/Surala-fonts/35581F_2_0.woff') format('woff'), url('../../../../common/CeylonSoft/Surala-fonts/35581F_2_0.ttf') format('truetype');
+}
+@font-face {
+	font-family: DFPHSGothic-W5;
+	src: url('../../../../common/CeylonSoft/Surala-fonts/DFP-HeiSeiGothic-W5.TTF');
+}
+@font-face {
+	font-family: DFGKyoKaShoR-W4;
+	src: url('../../../../common/CeylonSoft/Surala-fonts/DFG-KyouKaShoR-W4.ttf') format('truetype');
+}
+
+:not(input):not(textarea) {
+  user-select: none;
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+}
+::selection {
+  background: transparent;
+  color: inherit;
+}
+::-moz-selection {
+  background: transparent;
+  color: inherit;
+}

@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+.skipBtn:hover, .pre_skipBtn:hover {
+	background-position: -0px -0px;
+}
+.replayBtn:hover {
+	background-position: -0px -43px;
+}
+.next_w:hover {
+	background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -195px -0px;
+   width: 76px;
+   height: 44px;
+}
+.back_w:hover {
+	background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -195px -98px;
+   width: 76px;
+   height: 44px;
+}
+.pause_w:hover {
+	background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -0px -180px;
+   width: 76px;
+   height: 44px;
+}
+.play_w:hover {
+	background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -81px -180px;
+   width: 76px;
+   height: 44px;
+}
+.stop_w:hover {
+	background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -0px -308px;
+    width: 104px;
+    height: 48px;
+}
+
+/* pre story */
+.pre_next:hover {
+	background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -195px -0px;
+	width: 76px;
+	height: 44px;
+}
+.pre_back:hover {
+	background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -195px -98px;
+	width: 76px;
+	height: 44px;
+}

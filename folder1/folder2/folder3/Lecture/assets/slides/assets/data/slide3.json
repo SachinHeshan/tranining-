@@ -1,0 +1,59 @@
+﻿{
+    "surala": {
+        "images": [
+            { "name": "outline", "src": "assets/slides/assets/images/slide3/outline.png" },
+            { "name": "rectangle", "src": "assets/slides/assets/images/slide3/rectangle.png" },
+            { "name": "triangle", "src": "assets/slides/assets/images/slide3/triangle.png" },
+            { "name": "grenn1", "src": "assets/slides/assets/images/slide3/grenn1.png" },
+            { "name": "arc1", "src": "assets/slides/assets/images/slide3/arc1.png" },
+            { "name": "blackline", "src": "assets/slides/assets/images/slide3/blackline.png" },
+            { "name": "arcdotted", "src": "assets/slides/assets/images/slide3/arcdotted.png" },
+            { "name": "arcdotted21", "src": "assets/slides/assets/images/slide3/arcdotted21.png" },
+            { "name": "cutarcdotted", "src": "assets/slides/assets/images/slide3/cutarcdotted.png" },
+            { "name": "blank", "src": "assets/slides/assets/images/slide3/blank.png" }
+        ],
+        "sounds": [
+            { "name": "correct", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/correct" },
+            { "name": "wrong", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/wrong" },
+            { "name": "MG_benar_03", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_benar_03" },
+            { "name": "MG_salah_03", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_03" },
+            { "name": "MG_salah_01", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_01" },
+            { "name": "IPM_S10L04u09_031", "src": "vo/IPM_S10L04u09_031" },
+            { "name": "IPM_S10L04u09_032", "src": "vo/IPM_S10L04u09_032" },
+            { "name": "IPM_S10L04u09_033", "src": "vo/IPM_S10L04u09_033" },
+            { "name": "IPM_S10L04u09_034", "src": "vo/IPM_S10L04u09_034" },
+            { "name": "IPM_S10L04u09_035", "src": "vo/IPM_S10L04u09_035" },
+            { "name": "IPM_S10L04u09_036", "src": "vo/IPM_S10L04u09_036" },
+            { "name": "IPM_S10L04u09_037", "src": "vo/IPM_S10L04u09_037" },
+            { "name": "IPM_S10L04u09_038", "src": "vo/IPM_S10L04u09_038" },
+            { "name": "IPM_S10L04u09_039", "src": "vo/IPM_S10L04u09_039" }
+        ],
+        "slideDuration": [
+            { "audio": "IPM_S10L04u09_031", "dur": "2.9" },
+            { "audio": "IPM_S10L04u09_032", "dur": "10.8" },
+            { "audio": "IPM_S10L04u09_033", "dur": "3.5" },
+            { "audio": "IPM_S10L04u09_034", "dur": "6.5" },
+            { "audio": "IPM_S10L04u09_035", "dur": "5.7" },
+            { "audio": "IPM_S10L04u09_036", "dur": "5.0" },
+            { "audio": "IPM_S10L04u09_037", "dur": "5.0" },
+            { "audio": "IPM_S10L04u09_038", "dur": "7.6" },
+            { "audio": "IPM_S10L04u09_039", "dur": "7.2" }
+        ],
+        "content": {
+            "question1": {
+                "audio": {
+                    "correct": "MG_benar_03",
+                    "incorrect": "MG_salah_03"
+                },
+                "correctAnswer": "option_2,option_5"
+            },
+            "question2": {
+                "audio": {
+                    "correct": "MG_benar_03",
+                    "incorrect": "MG_salah_01"
+                },
+                "correctAnswer": "44"
+            }
+        }
+    }
+}

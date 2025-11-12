@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+.btn_active:hover {
+   background-position: -0px -38px;
+   cursor:pointer;
+}
+.decision_active:hover {
+   background-position: -0px -41px;
+   cursor:pointer;
+}
+.choose_active:hover {
+   background-position: -0px -41px;
+   cursor:pointer;
+}
+.next_active:hover {
+   background-position: -0px -41px;
+    cursor:pointer;
+}
+.erase_btn:hover {
+   background-position: -0px -41px;
+   cursor:pointer;
+}
+.confirmationBtn:hover {
+   background-position: -0px -41px;
+   cursor:pointer;
+}
+.popupNotation_active:hover {
+	background-position: -0px -53px;
+	cursor: pointer;
+}
+.popupNotation2_active:hover {
+	background-position: -0px -54px;
+	cursor: pointer;
+}
+.popupNotation3_active:hover {
+	background-position: -0px -53px;
+	cursor: pointer;
+}
+.graphDisplay:hover {
+    background-color: rgb(255, 255, 174);
+}

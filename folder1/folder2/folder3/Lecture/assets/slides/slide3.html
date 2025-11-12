@@ -1,0 +1,136 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Slide 3</title>
+    <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/css/slides.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/slide3.css" rel="stylesheet" type="text/css" />
+    <!-- Style of handwriting popup -->
+    <link href="../../../../../../../../tegaki_v2/css/char.recog.css" rel="stylesheet" />
+</head>
+
+<body ontouchstart="">
+    <div id="preload">
+        <canvas id="loadBarCanvas" width="120" height="120"></canvas>
+        <p>Loading...</p>
+    </div>
+    <section is="gwd-pagedeck" class="gwd-page-container slideContent" id="pagedeck" ondragstart="return false;">
+
+        <!-- title -->
+        <p class="gwd-p-8tmq display9">Latihan</p>
+        <!--Selection Activity-->
+        <img src="assets/images/slide3/outline.png" id="outline" class="gwd-img-1dul display1">
+        <div class="selectActivity">
+            <div id="block1">
+                <p class="gwd-p-u48o display1 options" id="option_1" readonly="readonly">Juring</p>
+                <div class="feedback display1" id="fb_option_1"></div>
+            </div>
+            <div id="block2">
+                <p class="gwd-p-18lf display1 options" id="option_2" readonly="readonly">Segitiga</p>
+                <div class="feedback display1" id="fb_option_2"></div>
+            </div>
+            <div id="block3">
+                <p class="gwd-p-r0r7 display1 options" id="option_3" readonly="readonly">Persegi</p>
+                <div class="feedback display1" id="fb_option_3"></div>
+            </div>
+            <div id="block4">
+                <p class="gwd-p-1go2 display1 options" id="option_4" readonly="readonly">Lingkaran</p>
+                <div class="feedback display1" id="fb_option_4"></div>
+            </div>
+            <div id="block5">
+                <p class="gwd-p-152w display1 options" id="option_5" readonly="readonly">Persegi Panjang</p>
+                <div class="feedback display1" id="fb_option_5"></div>
+            </div>
+            <div class="judgement_btn gwd-img-1pfb display1" id="judgement_btn"></div>
+        </div>
+
+
+        <!--Input Activity1-->
+        <input class="gwd-rect-g7cr display4" type="text" id="text_1" autocomplete="off" readonly="readonly" wfd-id="id0">
+        <div class="correctAnswer display4" id="crt1"></div>
+        <div class="feedback display4" id="fb1"></div>
+        <div class="judgement_btn gwd-img-1v3r display4" id="judgement_btn1"></div>
+
+
+        <div class="gwd-div-1d4l display5">
+            <div class="gwd-div-lreb">
+                <svg data-gwd-shape="rectangle" class="gwd-rect-y3yl"></svg>
+                <p class="gwd-p-a2dw">Panjang <span class="gwd-span-15wb">×</span> Lebar</p>
+            </div>
+            <p class="gwd-p-qqmv">8 <span class="gwd-span-9d80">×</span> 4</p>
+        </div>
+        <div class="gwd-div-mdf6 display3">
+            <img src="assets/images/slide3/rectangle.png" id="rectangle" class="gwd-img-3hre">
+            <p class="gwd-p-yzxw">＋</p>
+            <img src="assets/images/slide3/triangle.png" id="triangle" class="gwd-img-1r62">
+        </div>
+        <div class="gwd-div-ktpn display1">
+            <div class="gwd-div-1d8n">
+                <p class="gwd-p-13io">Mana sajakah rumus luas yang harus kita gunakan&nbsp;</p>
+                <p class="gwd-p-rsxs">saat menghitung luas bangun datar di bawah ini?</p>
+                <div class="gwd-div-nbx1">
+                    <img src="assets/images/slide3/grenn1.png" id="grenn1" class="gwd-img-tn0w">
+                    <p class="gwd-p-8u0o">7 cm</p>
+                    <p class="gwd-p-nafq">4 cm</p>
+                    <p class="gwd-p-1i7u">8 cm</p>
+                </div>
+
+                <img src="assets/images/slide3/arc1.png" id="arc1" class="gwd-img-1u5j">
+            </div>
+            <img src="assets/images/slide3/blackline.png" id="blackline" class="gwd-img-v74z">
+
+        </div>
+        <p class="gwd-p-bwwp display7">＋</p>
+        <div class="gwd-div-5e4g display2">
+            <img src="assets/images/slide3/arcdotted.png" id="arcdotted" class="gwd-img-19u7">
+        </div>
+        <img src="assets/images/slide3/arcdotted21.png" id="arcdotted1" class="gwd-img-19u71 display11 blink3">
+        <div class="gwd-div-19j5 display6">
+            <div class="gwd-div-1q4p">
+                <svg data-gwd-shape="rectangle" class="gwd-svg-d9da"></svg>
+                <p class="gwd-p-tjdn"><span class="gwd-span-gwwe"><span class="frac1"><sup>1</sup><span>&frasl;</span><sub>2</sub></span></span><span class="gwd-span-13lx">&nbsp;×</span>&nbsp; Alas <span class="gwd-span-13lx">×</span> Tinggi</p>
+            </div>
+            <p class="gwd-p-xuvx"><span class="gwd-span-1r0r"><span class="frac"><sup>1</sup><span>&frasl;</span><sub>2</sub></span></span><span class="gwd-span-13lx">&nbsp;×</span>&nbsp;8 <span class="gwd-span-xjbi">×</span> 3</p>
+        </div>
+        <div class="gwd-div-1jbf display4">
+            <p class="gwd-p-1e4g">Hitunglah luas bangun datar di atas.</p>
+            <p class="gwd-p-d4xj"></p>
+            <img src="assets/images/slide3/blank.png" id="blank" class="gwd-img-r310">
+            <p class="gwd-p-13eb">cm<sup>2</sup></p>
+            <p class="gwd-p-leqn1 display1">3 cm</p>
+            <img src="assets/images/slide3/cutarcdotted.png" class="cutImage">
+        </div>
+        <p class="gwd-p-a9p2 display7"><span class="gwd-span-15jw">&nbsp;＝</span> 32　<span class="gwd-span-xkex">＋</span>　12</p>
+
+        <p class="gwd-p-1xnw display7_1">&nbsp;<span class="gwd-span-6f7d">＝</span>&nbsp;44</p>
+        <p class="gwd-p-hxce display7_2">&nbsp;Jadi, luasnya adalah &nbsp;44&nbsp;cm<sup>2</sup>.</p>
+    </section>
+    <div class="seekBar">
+        <div class="seekbar_bgnd"> </div>
+        <div class="seekbar_fill" id="sliderVal"> </div>
+        <div class="seekbar_fgnd"> </div>
+        <div class="seeBarDrag">
+            <div class="seekbarArea">
+                <div class="seekBarSlider seekBarSlider_10" id="seekBarSlider"> </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery-ui.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery.ui.touch-punch.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/js/howler.core.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/easeljs-NEXT.combined.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/tweenjs-NEXT.min.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/slideTutorial.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/slideManager.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/seekBar.js"></script>
+<script type="text/javascript" src="assets/js/slide3.js"></script>
+<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/lms_lecture.js"></script>
+<!-- Handwriting popup js file -->
+<script src="../../../../../../../../tegaki_v2/js/char.recog.v2.min.js"></script>
+
+</html>

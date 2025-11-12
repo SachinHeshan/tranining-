@@ -1,0 +1,638 @@
+.display1,
+.display2,
+.display2a,
+.display3,
+.display4,
+.display5,
+.display1_1,
+.display6_1,
+.display7,
+.display7_1,
+.display7_2,
+.display9_1,
+.display9_2,
+.display8_1,
+.red1,
+.red2,
+.black1,
+.black1_2,
+.displaybluedot {
+    visibility: hidden;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+}
+
+body {
+    background-color: transparent;
+    transform: perspective(1400px) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    transform-style: preserve-3d;
+}
+
+.slideContent {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+#canvasStage {
+    position: absolute;
+    z-index: 4;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+#container {
+    position: absolute;
+    top: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.w5 {
+    font-family: 'DFPHSGothic-W5';
+}
+
+.times {
+    font-family: 'Times NR MT Pro Medium';
+}
+
+.title {
+    font-family: 'Times NR MT Pro Medium';
+    font-size: 25px;
+    left: 64px;
+    position: absolute;
+    top: 20px;
+}
+
+.gwd-img-12wi {
+    position: absolute;
+    left: 0px;
+    width: 750px;
+    top: 23px;
+}
+
+.gwd-img-14z4 {
+    position: absolute;
+    left: 44px;
+    z-index: 2;
+    top: 62px;
+    width: 593px;
+    height: 381px;
+}
+
+.gwd-p-1seh {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    color: rgb(255, 255, 255);
+    left: 100px;
+    font-size: 19px;
+    top: 87px;
+    z-index: 2;
+}
+
+.gwd-p-164r {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    color: rgb(255, 255, 255);
+    top: 120px;
+    font-size: 19px;
+    left: 100px;
+    z-index: 2;
+}
+
+.gwd-p-2ofl {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 19px;
+    color: rgb(255, 255, 255);
+    left: 100px;
+    top: 140px;
+    z-index: 2;
+}
+
+.gwd-p-mwnp {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 19px;
+    color: rgb(255, 255, 255);
+    top: 162px;
+    left: 100px;
+    width: 500px;
+    z-index: 2;
+}
+
+.gwd-img-1ds5 {
+    position: absolute;
+    left: 240px;
+    top: 201px;
+    width: 326px;
+    z-index: 2;
+}
+
+.gwd-img-1rpz {
+    position: absolute;
+    left: 0px;
+    width: 750px;
+    top: 23px;
+}
+
+.gwd-p-5hv3 {
+    position: absolute;
+    font-size: 25px;
+    font-family: "Times NR MT Pro Medium";
+    left: 30px;
+    top: 0px;
+}
+
+.gwd-img-1wsf {
+    position: absolute;
+    top: 105px;
+    left: 91px;
+    width: 284px;
+}
+
+.gwd-p-1o3a {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 19px;
+    top: 90px;
+    left: 217px;
+    width: 50px;
+}
+
+.gwd-p-1qad {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 19px;
+    top: 191px;
+    left: 62px;
+    width: 50px;
+}
+
+.gwd-p-108l {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 19px;
+    top: 196px;
+    left: 379px;
+    width: 50px;
+}
+
+.gwd-p-1fuh {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 19px;
+    top: 300px;
+    left: 195px;
+    width: 50px;
+}
+
+.gwd-img-1v0i {
+    position: absolute;
+    width: 94px;
+    left: 413px;
+    top: 94px;
+}
+
+.gwd-p-1wz2 {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 22px;
+    left: 515px;
+    top: 97px;
+}
+
+.gwd-img-vkgi {
+    position: absolute;
+    /* width: 53px; */
+    left: 45px;
+    top: 14px;
+}
+
+.gwd-p-1ct9 {
+    position: absolute;
+    font-size: 25px;
+    font-family: DFPHSGothic-W5;
+    left: 0px;
+    top: 6px;
+}
+
+.gwd-img-15yf {
+    position: absolute;
+    height: 38px;
+    width: 117px;
+    left: 22px;
+    top: 0px;
+}
+
+.gwd-p-spj5 {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 25px;
+    left: 20px;
+    top: 2px;
+}
+
+.gwd-img-1qnk {
+    position: absolute;
+    width: 58px;
+    left: 59px;
+    top: 0px;
+}
+
+.gwd-rect-z9dn {
+    position: absolute;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(253, 250, 134);
+    background-color: rgb(253, 250, 134);
+    width: 121px;
+    height: 27px;
+    left: 0px;
+    top: 0px;
+}
+
+.gwd-svg-1n3y {
+    position: absolute;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(253, 250, 134);
+    background-color: rgb(253, 250, 134);
+    width: 121px;
+    height: 27px;
+    left: 0px;
+    top: 0px;
+}
+
+.gwd-svg-17h7 {
+    position: absolute;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(253, 250, 134);
+    background-color: rgb(253, 250, 134);
+    width: 121px;
+    height: 27px;
+    left: 0px;
+    top: 0px;
+}
+
+.gwd-p-dtjc {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 14px;
+    left: 16px;
+    top: 6px;
+}
+
+.gwd-span-1xt2 {
+    font-family: DFPHSGothic-W5;
+}
+
+.gwd-p-1xu9 {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 14px;
+    left: 10px;
+    top: 7px;
+}
+
+.gwd-p-113r {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 14px;
+    left: 16px;
+    top: 7px;
+}
+
+.gwd-p-jvnz {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 25px;
+    left: 36px;
+    top: 120px;
+}
+
+.gwd-span-rw1j {
+    font-family: DFPHSGothic-W5;
+}
+
+.gwd-p-1sox {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 25px;
+    left: 0px;
+    top: 93px;
+}
+
+.gwd-span-qxnf {
+    font-family: DFPHSGothic-W5;
+}
+
+.gwd-span-8egr {
+    font-family: DFPHSGothic-W5;
+}
+
+.gwd-p-a9qv {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 25px;
+    left: 27px;
+    top: 94px;
+}
+
+.gwd-span-j8kl {
+    font-family: DFPHSGothic-W5;
+}
+
+.gwd-p-hkl4 {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 25px;
+    left: 171px;
+    top: 490px;
+}
+
+.gwd-p-1po0 {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 25px;
+    left: 169px;
+    top: 524px;
+}
+
+.gwd-p-v6m8 {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 25px;
+    left: 169px;
+    top: 550px;
+}
+
+.gwd-span-12mc {
+    font-family: DFPHSGothic-W5;
+}
+
+.gwd-span-1wx1 {
+    font-family: DFPHSGothic-W5;
+}
+
+.gwd-span-vqu4 {
+    font-family: DFPHSGothic-W5;
+}
+
+.gwd-span-1li1 {
+    font-family: DFPHSGothic-W5;
+}
+
+.gwd-span-1iyb {
+    font-family: DFPHSGothic-W5;
+}
+
+.gwd-img-q4wp {
+    position: absolute;
+    width: 102px;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+    /* visibility: hidden; */
+}
+
+.gwd-p-xa09 {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 18px;
+    left: 8px;
+    top: 10px;
+    z-index: 1;
+}
+
+.gwd-img-15ai {
+    position: absolute;
+    width: 49px;
+    top: 201px;
+    left: 213px;
+    height: 23px;
+}
+
+.gwd-img-h7ow {
+    position: absolute;
+    top: 133px;
+    width: 107px;
+    left: 184px;
+}
+
+.gwd-img-rd30 {
+    position: absolute;
+    width: 53px;
+    height: 25px;
+    top: 198px;
+    left: 212px;
+}
+
+.gwd-img-cgn4 {
+    position: absolute;
+    width: 254px;
+    left: -3px;
+    top: 5px;
+}
+
+.gwd-div-kxrd {
+    position: absolute;
+    width: 254px;
+    height: 161.297px;
+    left: 77px;
+    top: 66px;
+}
+
+.gwd-div-1ww4 {
+    position: absolute;
+    left: 34px;
+    top: 62px;
+    width: 553.219px;
+    height: 227.297px;
+}
+
+.gwd-div-10et {
+    position: absolute;
+    width: 123px;
+    height: 29px;
+    left: 0px;
+    top: 86px;
+}
+
+.gwd-div-1bzj {
+    position: absolute;
+    left: 143px;
+    top: 335px;
+    width: 123px;
+    height: 150px;
+}
+
+.gwd-div-pc24 {
+    position: absolute;
+    width: 123px;
+    height: 29px;
+    left: 20px;
+    top: 58px;
+}
+
+.gwd-div-169g {
+    position: absolute;
+    left: 265px;
+    top: 362px;
+    width: 143px;
+    height: 123px;
+}
+
+.gwd-div-ync1 {
+    position: absolute;
+    width: 123px;
+    height: 29px;
+    left: 26px;
+    top: 59px;
+}
+
+.gwd-div-jyto {
+    position: absolute;
+    left: 399px;
+    top: 361px;
+    width: 149px;
+    height: 124px;
+}
+
+.gwd-div-1cpp {
+    position: absolute;
+    left: 234px;
+    top: 148px;
+    width: 102px;
+    height: 60.5px;
+}
+
+.gwd-img-gw0e {
+    display: block;
+    height: 40px;
+    position: absolute;
+    width: 107px;
+    left: 552px;
+    cursor: pointer;
+    top: -45px;
+    /* pointer-events: none; */
+}
+
+.gwd-rect-uxp1 {
+    background-color: rgb(253, 250, 134);
+    box-sizing: border-box;
+    display: block;
+    height: 31px;
+    position: absolute;
+    width: 112px;
+    top: 0px;
+    left: 0px;
+}
+
+.gwd-rect-g7cr {
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 28px;
+    outline: none;
+    text-align: center;
+    left: 444px;
+    width: 101px;
+    top: 156px;
+    height: 42px;
+    z-index: 1;
+}
+
+.gap {
+    font-size: 21px;
+}
+
+#fb1.wrongFB5 {
+    position: absolute;
+    top: 157px;
+    left: 473px;
+    z-index: 1;
+}
+
+#fb1.correctFB6 {
+    position: absolute;
+    top: 165px;
+    left: 503px;
+    z-index: 1;
+}
+
+#crt1 {
+    position: absolute;
+    top: 199px;
+    left: 480px;
+    font-size: 34px;
+    z-index: 1;
+    font-family: "Times NR MT Pro Medium";
+    font-size: 28px;
+    color: red;
+}
+
+.wrongFB {
+    width: 69px;
+    height: 70px;
+}
+
+.correctFB {
+    width: 79px;
+    height: 85px;
+}
+
+.popupContent {
+    visibility: hidden;
+}
+
+.gwd-img-1pfb {
+    display: block;
+    height: 37.9844px;
+    position: absolute;
+    width: 79.9844px;
+    left: 531px;
+    top: 170px;
+}
+
+.gwd-img-1wsf {
+    position: absolute;
+    /* top: 47px; */
+    /* left: 53px; */
+    width: 284px;
+}
+
+.mov1 {
+    position: absolute;
+    left: -37px;
+    top: -57px;
+}
+
+.gwd-p-8tmq {
+    position: absolute;
+    font-family: "Times NR MT Pro Medium";
+    top: 19px;
+    left: 65px;
+    font-size: 23px;
+}
+
+.blink1,
+.blink2,
+.blink3 {
+    visibility: hidden;
+}
+
+.gwd-p-fd3x {
+    position: absolute;
+    top: -36px;
+    left: 570px;
+    font-size: 20px;
+    color: white;
+}
+
+.gwd-div-meyt {
+    cursor: pointer;
+}

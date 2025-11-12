@@ -1,0 +1,54 @@
+﻿{
+    "surala": {
+        "images": [
+            { "name": "dotted_line", "src": "assets/slides/assets/images/slide2/dotted_line.png" },
+            { "name": "complete_rectangle", "src": "assets/slides/assets/images/slide2/complete_rectangle.png" },
+            { "name": "initial_image", "src": "assets/slides/assets/images/slide2/initial_image.png" },
+            { "name": "large_square", "src": "assets/slides/assets/images/slide2/large_square.png" },
+            { "name": "lined_rectangle", "src": "assets/slides/assets/images/slide2/lined_rectangle.png" },
+            { "name": "lined_square", "src": "assets/slides/assets/images/slide2/lined_square.png" },
+            { "name": "smaller_init", "src": "assets/slides/assets/images/slide2/smaller_init.png" },
+            { "name": "smaller_square_lined", "src": "assets/slides/assets/images/slide2/smaller_square_lined.png" },
+            { "name": "smaller_squer", "src": "assets/slides/assets/images/slide2/smaller_squer.png" }
+        ],
+        "sounds": [
+            { "name": "IPM_S10L04u09_015", "src": "vo/IPM_S10L04u09_015" },
+            { "name": "IPM_S10L04u09_016", "src": "vo/IPM_S10L04u09_016" },
+            { "name": "IPM_S10L04u09_017", "src": "vo/IPM_S10L04u09_017" },
+            { "name": "IPM_S10L04u09_S002", "src": "vo/IPM_S10L04u09_S002" },
+            { "name": "IPM_S10L04u09_018", "src": "vo/IPM_S10L04u09_018" },
+            { "name": "IPM_S10L04u09_019", "src": "vo/IPM_S10L04u09_019" },
+            { "name": "IPM_S10L04u09_020", "src": "vo/IPM_S10L04u09_020" },
+            { "name": "IPM_S10L04u09_021", "src": "vo/IPM_S10L04u09_021" },
+            { "name": "IPM_S10L04u09_022", "src": "vo/IPM_S10L04u09_022" },
+            { "name": "IPM_S10L04u09_023", "src": "vo/IPM_S10L04u09_023" },
+            { "name": "IPM_S10L04u09_024", "src": "vo/IPM_S10L04u09_024" },
+            { "name": "IPM_S10L04u09_025", "src": "vo/IPM_S10L04u09_025" },
+            { "name": "IPM_S10L04u09_026", "src": "vo/IPM_S10L04u09_026" },
+            { "name": "IPM_S10L04u09_027", "src": "vo/IPM_S10L04u09_027" },
+            { "name": "IPM_S10L04u09_028", "src": "vo/IPM_S10L04u09_028" },
+            { "name": "IPM_S10L04u09_029", "src": "vo/IPM_S10L04u09_029" },
+            { "name": "IPM_S10L04u09_030", "src": "vo/IPM_S10L04u09_030" }
+
+        ],
+        "slideDuration": [
+            { "audio": "IPM_S10L04u09_015", "dur": "2.5" },
+            { "audio": "IPM_S10L04u09_016", "dur": "9.0" },
+            { "audio": "IPM_S10L04u09_017", "dur": "8.1" },
+            { "audio": "IPM_S10L04u09_S002", "dur": "5.3" },
+            { "audio": "IPM_S10L04u09_018", "dur": "2.5" },
+            { "audio": "IPM_S10L04u09_019", "dur": "3.6" },
+            { "audio": "IPM_S10L04u09_020", "dur": "5.1" },
+            { "audio": "IPM_S10L04u09_021", "dur": "3.3" },
+            { "audio": "IPM_S10L04u09_022", "dur": "3.5" },
+            { "audio": "IPM_S10L04u09_023", "dur": "3.4" },
+            { "audio": "IPM_S10L04u09_024", "dur": "5.3" },
+            { "audio": "IPM_S10L04u09_025", "dur": "5.1" },
+            { "audio": "IPM_S10L04u09_026", "dur": "5.3" },
+            { "audio": "IPM_S10L04u09_027", "dur": "5.7" },
+            { "audio": "IPM_S10L04u09_028", "dur": "21.9" },
+            { "audio": "IPM_S10L04u09_029", "dur": "10.4" },
+            { "audio": "IPM_S10L04u09_030", "dur": "7.9" }
+        ]
+    }
+}

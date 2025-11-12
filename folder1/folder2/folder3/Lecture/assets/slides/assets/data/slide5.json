@@ -1,0 +1,59 @@
+﻿{
+    "surala": {
+        "images": [
+            { "name": "additional", "src": "assets/slides/assets/images/slide5/additional.png" },
+            { "name": "callout", "src": "assets/slides/assets/images/slide5/callout.png" },
+            { "name": "bargraph", "src": "assets/slides/assets/images/slide5/bargraph.png" },
+            { "name": "button", "src": "assets/slides/assets/images/slide5/button.png" },
+            { "name": "crossblue", "src": "assets/slides/assets/images/slide5/crossblue.png" },
+            { "name": "longgraph", "src": "assets/slides/assets/images/slide5/longgraph.png" },
+            { "name": "plmbol", "src": "assets/slides/assets/images/slide5/plmbol.png" },
+            { "name": "redbg", "src": "assets/slides/assets/images/slide5/redbg.png" },
+            { "name": "yellowgraph", "src": "assets/slides/assets/images/slide5/yellowgraph.png" },
+            { "name": "green_button", "src": "assets/slides/assets/images/slide5/green_button.png" }
+        ],
+        "sounds": [
+            { "name": "correct", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/correct" },
+            { "name": "wrong", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/wrong" },
+            { "name": "MG_benar_01", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_benar_01" },
+            { "name": "MG_salah_09", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_09" },
+            { "name": "IPM_S10L04u09_049", "src": "vo/IPM_S10L04u09_049" },
+            { "name": "IPM_S10L04u09_050", "src": "vo/IPM_S10L04u09_050" },
+            { "name": "IPM_S10L04u09_051", "src": "vo/IPM_S10L04u09_051" },
+            { "name": "IPM_S10L04u09_052", "src": "vo/IPM_S10L04u09_052" },
+            { "name": "IPM_S10L04u09_053", "src": "vo/IPM_S10L04u09_053" },
+            { "name": "IPM_S10L04u09_054", "src": "vo/IPM_S10L04u09_054" },
+            { "name": "IPM_S10L04u09_055", "src": "vo/IPM_S10L04u09_055" },
+            { "name": "IPM_S10L04u09_056", "src": "vo/IPM_S10L04u09_056" },
+            { "name": "IPM_S10L04u09_057", "src": "vo/IPM_S10L04u09_057" },
+            { "name": "IPM_S10L04u09_058", "src": "vo/IPM_S10L04u09_058" },
+            { "name": "IPM_S10L04u09_059", "src": "vo/IPM_S10L04u09_059" },
+            { "name": "IPM_S10L04u09_060", "src": "vo/IPM_S10L04u09_060" },
+            { "name": "IPM_S10L04u09_061", "src": "vo/IPM_S10L04u09_061" }
+        ],
+        "slideDuration": [
+            { "audio": "IPM_S10L04u09_049", "dur": "9.4" },
+            { "audio": "IPM_S10L04u09_050", "dur": "6.0" },
+            { "audio": "IPM_S10L04u09_051", "dur": "6.7" },
+            { "audio": "IPM_S10L04u09_052", "dur": "5.9" },
+            { "audio": "IPM_S10L04u09_053", "dur": "4.8" },
+            { "audio": "IPM_S10L04u09_054", "dur": "4.8" },
+            { "audio": "IPM_S10L04u09_055", "dur": "7.5" },
+            { "audio": "IPM_S10L04u09_056", "dur": "9.7" },
+            { "audio": "IPM_S10L04u09_057", "dur": "4.0" },
+            { "audio": "IPM_S10L04u09_058", "dur": "10.2" },
+            { "audio": "IPM_S10L04u09_059", "dur": "5.8" },
+            { "audio": "IPM_S10L04u09_060", "dur": "7.0" },
+            { "audio": "IPM_S10L04u09_061", "dur": "5.3" }
+        ],
+        "content": {
+            "question1": {
+                "audio": {
+                    "correct": "MG_benar_01",
+                    "incorrect": "MG_salah_09"
+                },
+                "correctAnswer": "22"
+            }
+        }
+    }
+}

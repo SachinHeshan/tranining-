@@ -1,0 +1,299 @@
+@charset "utf-8";
+
+/*
+ * Surala: main shell styles 
+ * Title screen styles
+ * main shell button styles
+ */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Times NR MT Pro Medium';
+    /*max-width: 1000px;
+	height: 700px;*/
+    background: #383838;
+    cursor: default;
+}
+
+html {
+    background: #383838;
+    overflow: hidden;
+}
+
+#contentCenter {
+    width: 1000px;
+    height: 700px;
+    overflow: hidden;
+    display: inline-block;
+    position: absolute;
+    margin-left: -500px;
+    left: 50%;
+    top: 50%;
+    margin-top: -350px;
+    -webkit-overflow-scrolling: touch;
+}
+
+div#content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slidecontainer {
+    background: url('../../../../common/CeylonSoft/re_primarymath_ind/images/lectureframe_opened.png') no-repeat top left;
+    width: 1000px;
+    height: 632px;
+    border: 0 none;
+    margin: 1px 0 0 0px;
+    position: absolute;
+    display: none;
+    z-index: 11;
+    overflow: hidden;
+}
+
+#touchBtn {
+    /*background: #F29B45;
+	border: 1px solid #DC7317;*/
+    border: none;
+    background-color: none;
+    background: url('../../../../common/CeylonSoft/re_primarymath_ind/images/intro_startBtn.png');
+    width: 148px;
+    height: 52px;
+    text-align: center;
+    left: 43%;
+    top: 320px;
+    position: absolute;
+    z-index: 111;
+    display: none;
+    outline: 0;
+}
+
+#gameCanvas {
+    position: absolute;
+    z-index: -1;
+}
+
+.speech_bubble {
+    background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/student_callout.png) no-repeat;
+    font-family: 'Times NR MT Pro Medium';
+    font-size: 16px;
+    padding: 80px 8px 30px 8px;
+    width: 174px;
+    height: 95px;
+    position: absolute;
+    margin: 396px 0 0 803px;
+    display: none;
+    line-height: 22px;
+    box-sizing: content-box;
+    color: #000;
+    text-align: center;
+    /*-webkit-writing-mode: vertical-lr;
+    -ms-writing-mode: tb-rl;*/
+}
+
+.speech_bubble_teacher {
+    background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/teacher_callout.png) no-repeat;
+    font-family: 'Times NR MT Pro Medium';
+    font-size: 16px;
+    padding: 10px 0px 30px 56px;
+    width: 135px;
+    height: 150px;
+    position: absolute;
+    margin: 184px 0 0 102px;
+    display: none;
+    font-weight: bold;
+    line-height: 20px;
+    box-sizing: content-box;
+    text-align: center;
+    -webkit-writing-mode: vertical-lr;
+    -ms-writing-mode: tb-rl;
+    z-index: 37;
+}
+
+.footerBtns {
+    position: absolute;
+    display: none;
+}
+
+.bookmark {
+    /*background: #fff;
+    border: 1px solid #F33296;*/
+    border-radius: 5px;
+    margin-top: 620px;
+    margin-left: 20px;
+    height: 60px;
+    width: 450px;
+    float: left;
+}
+
+.navigationPanel {
+    margin-top: 638px;
+    margin-left: 490px;
+    position: absolute;
+    height: 44px;
+    width: 250px;
+}
+
+.navigationPanel div {
+    cursor: pointer;
+}
+
+.slideNumber {
+    display: none;
+    font-size: 22px;
+    margin: 8px 0 0 920px;
+    position: absolute;
+    padding: 0px 15px;
+    z-index: 11;
+}
+
+.main {
+    display: none;
+}
+
+
+/** title end **/
+
+
+/** global main shell button styles **/
+
+.skipBtn {
+    background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -0px -135px;
+    width: 109px;
+    height: 40px;
+    margin: 646px 0 0 486px;
+    position: absolute;
+    display: none;
+    cursor: pointer;
+}
+
+.chest_open {
+    background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -234px -147px;
+    ;
+    width: 34px;
+    height: 60px;
+    margin: 10px 5px;
+}
+
+.chest_closed {
+    background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -195px -147px;
+    width: 34px;
+    height: 60px;
+    cursor: pointer;
+    margin: 10px 5px;
+}
+
+.bobmb_playhead {
+    background: url('../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png') no-repeat -110px -248px;
+    width: 34px;
+    height: 53px;
+}
+
+.back_w {
+    background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -114px -98px;
+    width: 76px;
+    height: 44px;
+    float: left;
+    margin: 7px 0 0 12px;
+}
+
+.next_w {
+    background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -195px -49px;
+    width: 76px;
+    height: 44px;
+    float: left;
+    margin: 7px 0 0 1px;
+}
+
+
+/*.play_r {
+	background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -0px -73px;
+	width: 104px;
+	height: 52px;
+	float: left;
+	margin-left: 10px;
+}*/
+
+.pause_w {
+    background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -114px -0px;
+    width: 76px;
+    height: 44px;
+    float: left;
+    margin: 7px 0 0 0;
+}
+
+.stop_w {
+    background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -0px -248px;
+    width: 104px;
+    height: 52px;
+    float: left;
+    margin: 7px 0 0 0;
+}
+
+.play_w {
+    background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -114px -49px;
+    width: 76px;
+    height: 44px;
+    float: left;
+    margin: 7px 0 0 0;
+}
+
+
+/** global main shell button end **/
+
+.replayBtn {
+    background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/replay_btn.png) no-repeat -0px -0px;
+    width: 187px;
+    height: 42px;
+    margin: 645px 0 0 290px;
+    position: absolute;
+    display: none;
+    cursor: pointer;
+}
+
+
+/* speed control */
+
+.lecture-controls-box {
+    position: absolute;
+    top: 590px;
+    right: 60px;
+    display: none;
+    z-index: 12;
+}
+
+#speedBack {
+    background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/speed_L.png) no-repeat;
+    width: 51px;
+    height: 51px;
+    cursor: default;
+    opacity: 0.5;
+    float: left;
+    margin: 0 5px;
+}
+
+#speedCentre {
+    background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/speed_C.png) no-repeat;
+    width: 43px;
+    height: 43px;
+    position: absolute;
+    margin: 4px 0 0 40px;
+    line-height: 42px;
+    text-align: center;
+    font-size: 16px;
+    z-index: 1;
+}
+
+#speedNext {
+    background: url(../../../../common/CeylonSoft/re_primarymath_ind/images/speed_R.png) no-repeat;
+    width: 51px;
+    height: 51px;
+    cursor: pointer;
+    float: left;
+    margin: 0 5px;
+}

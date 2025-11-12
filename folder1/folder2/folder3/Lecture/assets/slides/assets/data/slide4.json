@@ -1,0 +1,57 @@
+﻿{
+    "surala": {
+        "images": [
+            { "name": "outline", "src": "assets/slides/assets/images/slide4/outline.png" },
+            { "name": "bluetraingle", "src": "assets/slides/assets/images/slide4/bluetraingle.png" },
+            { "name": "rec2", "src": "assets/slides/assets/images/slide4/rec2.png" },
+            { "name": "rec1", "src": "assets/slides/assets/images/slide4/rec1.png" },
+            { "name": "tri1", "src": "assets/slides/assets/images/slide4/tri1.png" },
+            { "name": "blank", "src": "assets/slides/assets/images/slide4/blank.png" },
+            { "name": "triangles", "src": "assets/slides/assets/images/slide4/triangles.png" },
+            { "name": "dottedline", "src": "assets/slides/assets/images/slide4/dottedline.png" }
+        ],
+        "sounds": [
+            { "name": "correct", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/correct" },
+            { "name": "wrong", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/wrong" },
+            { "name": "MG_benar_01", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_benar_01" },
+            { "name": "MG_salah_01", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_01" },
+            { "name": "MG_salah_04", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_04" },
+            { "name": "IPM_S10L04u09_040", "src": "vo/IPM_S10L04u09_040" },
+            { "name": "IPM_S10L04u09_041", "src": "vo/IPM_S10L04u09_041" },
+            { "name": "IPM_S10L04u09_042", "src": "vo/IPM_S10L04u09_042" },
+            { "name": "IPM_S10L04u09_043", "src": "vo/IPM_S10L04u09_043" },
+            { "name": "IPM_S10L04u09_044", "src": "vo/IPM_S10L04u09_044" },
+            { "name": "IPM_S10L04u09_045", "src": "vo/IPM_S10L04u09_045" },
+            { "name": "IPM_S10L04u09_046", "src": "vo/IPM_S10L04u09_046" },
+            { "name": "IPM_S10L04u09_047", "src": "vo/IPM_S10L04u09_047" },
+            { "name": "IPM_S10L04u09_048", "src": "vo/IPM_S10L04u09_048" }
+        ],
+        "slideDuration": [
+            { "audio": "IPM_S10L04u09_040", "dur": "3.7" },
+            { "audio": "IPM_S10L04u09_041", "dur": "10.6" },
+            { "audio": "IPM_S10L04u09_042", "dur": "9.4" },
+            { "audio": "IPM_S10L04u09_043", "dur": "4.3" },
+            { "audio": "IPM_S10L04u09_044", "dur": "8.8" },
+            { "audio": "IPM_S10L04u09_045", "dur": "4.5" },
+            { "audio": "IPM_S10L04u09_046", "dur": "4.5" },
+            { "audio": "IPM_S10L04u09_047", "dur": "10.9" },
+            { "audio": "IPM_S10L04u09_048", "dur": "9.6" }
+        ],
+        "content": {
+            "question1": {
+                "audio": {
+                    "correct": "MG_benar_01",
+                    "incorrect": "MG_salah_01"
+                },
+                "correctAnswer": "option_2,option_3"
+            },
+            "question2": {
+                "audio": {
+                    "correct": "MG_benar_01",
+                    "incorrect": "MG_salah_04"
+                },
+                "correctAnswer": "20"
+            }
+        }
+    }
+}

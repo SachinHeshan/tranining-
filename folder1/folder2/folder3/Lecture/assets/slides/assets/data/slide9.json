@@ -1,0 +1,16 @@
+﻿{
+    "surala": {
+        "images": [
+            { "name": "summaryq", "src": "assets/slides/assets/images/slide9/summaryq.png" },
+            { "name": "summary_frame", "src": "assets/slides/assets/images/slide9/summary_frame.png" }
+        ],
+        "sounds": [
+            { "name": "IPM_S10L01u02_043", "src": "vo/IPM_S10L01u02_043" },
+            { "name": "IPM_S10L01u02_044", "src": "vo/IPM_S10L01u02_044" }
+        ],
+        "slideDuration": [
+            { "audio": "IPM_S10L01u02_043", "dur": "5.3" },
+            { "audio": "IPM_S10L01u02_044", "dur": "6.7" }
+        ]
+    }
+}

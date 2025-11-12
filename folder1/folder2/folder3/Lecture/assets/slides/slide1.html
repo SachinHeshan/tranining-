@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Slide 1 – Jumlah Sudut Segitiga</title>
+
+ <!-- COMMON LMS LIBS (keep the same paths you already use) -->
+    <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/css/jquery-ui.css" rel="stylesheet">
+    <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/css/base.css" rel="stylesheet">
+    <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/css/slides.css" rel="stylesheet">
+    <link href="assets/css/slide1.css" rel="stylesheet">
+
+    <script src="../../../../../../Common/CeylonSoft/re_primarymath_ind/scripts/jquery-1.12.3.min.js"></script>
+    <script src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery-ui.js"></script>
+    <script src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery.ui.touch-punch.js"></script>
+    <script src="../../../../../../common/CeylonSoft/re_primarymath_ind/js/howler.core.js"></script>
+    <script src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/slideTutorial.js"></script>
+    <script src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/slideManager.js"></script>
+    <script src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/seekBar.js"></script>
+    <script src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/easeljs-NEXT.combined.js"></script>
+    <script src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/tweenjs-NEXT.min.js"></script>
+    <script src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/konva.min.js"></script>
+
+    <script src="assets/js/slide1.js"></script>
+    <script src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/lms_lecture.js"></script>
+</head>
+
+<body ontouchstart="">
+<div id="preload"><canvas id="loadBarCanvas" width="120" height="120"></canvas><p>Loading...</p></div>
+
+<section class="slideContent" id="pagedeck">
+
+    <!-- TITLE -->
+    <p class="title">Ulasan</p>
+
+
+    <!-- MAIN CONTENT (hidden until sequence) -->
+    <div class="display1">
+
+        <!-- ① QUESTION -->
+        <div class="section section1">
+            
+            <p class="question-text">
+                Berapakah jumlah dari ketiga sudut dalam segitiga?
+            </p>
+
+
+            <!-- Input box -->
+            <input type="text" id="answerBox" class="answer-input" placeholder=" ">
+            <span class="degree">°</span>
+
+            <!-- Judgement button -->
+            <button type="button" class="judgement_btn " id="judgement_btn" style="border: none; cursor: pointer; z-index: 1000; pointer-events: auto;" onclick="console.log('Button clicked!'); alert('Button is working!'); if(typeof evaluateActivity === 'function') evaluateActivity();"></button>
+
+            <!-- Container to show the correct answer under the box -->
+            <span id="correctAnswerDisplay"   class="correctAnswerDisplay" >
+             180°
+            </span>
+
+            
+           
+        </div>
+
+        <!-- ② YELLOW EXPLANATION BOX -->
+        <div class="section section2">
+           
+            <div class="yellow-box">
+                <p class="box-title">Menghitung Besar Sudut Dalam Segitiga</p>
+                <p class="box-text">
+                    Jumlah dari ketiga sudut dalam segitiga adalah <strong>180°</strong>.
+                </p>
+
+                <!-- Triangle PNG inside yellow box -->
+                <img src="assets/images/slide1/Trangal.png" class="triangle-in-box" alt="triangle">
+
+                <p class="formula">
+                    <span class="angle">∠A</span> + <span class="angle">∠B</span> + <span class="angle">∠C</span> = 180°
+                </p>
+            </div>
+        </div>
+
+        <!-- ③ BOTTOM TRIANGLE (NO CALL-OUTS) -->
+        <div class="section section3">
+         
+
+            <!-- Large triangle PNG (with "Sudut dalam" labels already in PNG) -->
+            <img src="assets/images/slide1/side1.png" class="big-triangle" alt="big triangle">
+        </div>
+
+        <!-- FOOTER -->
+        <p class="footer-code">P01</p>
+    </div>
+
+</section>
+
+
+</div>
+</body>
+</html>

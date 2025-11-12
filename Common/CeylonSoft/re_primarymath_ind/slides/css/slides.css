@@ -1,0 +1,541 @@
+body {
+    font-family: 'Times NR MT Pro Medium';
+    
+/* to avoid divice issue in ipad 16.4.1 for activity slides not getting clicked/ selected.  Reported date for common fix: 01-06-2023*/
+    transform-style: unset !important;
+}
+
+.vertical-txt {
+    display: -webkit-box;
+    font-family: 'Times NR MT Pro Medium';
+}
+
+.ver-txt {
+    -webkit-writing-mode: vertical-rl;
+    -ms-writing-mode: tb-lr;
+    position: absolute;
+}
+
+.slideTitle {
+    height: 430px;
+    float: right;
+    padding-right: 28px;
+    margin-top: 105px;
+}
+
+.vtxt {
+    -webkit-writing-mode: vertical-rl;
+    -ms-writing-mode: tb-rl;
+}
+
+.ipadClass {
+    position: absolute;
+    margin-left: 706px;
+}
+
+.displayBgbird {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/crow.png');
+    width: 154px;
+    height: 671px;
+    position: absolute;
+    margin: 74px 0 0 874px;
+}
+
+.slideTitleTxt {
+    -webkit-writing-mode: vertical-rl;
+    -ms-writing-mode: tb-rl;
+    font-family: 'Times NR MT Pro Medium';
+    font-size: 26px;
+}
+
+.subSlideTitleTxt {
+    -webkit-writing-mode: vertical-rl;
+    -ms-writing-mode: tb-lr;
+    font-size: 16px;
+    position: absolute;
+}
+
+.slideContent {
+    width: 753px;
+    height: 593px;
+    margin: 0px 0 0 0px;
+    float: left;
+    overflow: hidden;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+/** seek bar styles **/
+
+.seekBar {
+    clear: both;
+    margin: 0 0 0 12px;
+}
+
+.seekbar_bgnd {
+    width: 720px;
+    height: 12px;
+    margin-top: 14px;
+    position: absolute;
+}
+
+.seekbar_fill {
+    background: url(../../../../../common/CeylonSoft/re_primarymath_ind/images/seekbar_fill.png);
+    height: 12px;
+    margin: 12px 0 0 0px;
+    position: absolute;
+    border-radius: 7px;
+}
+
+.seekbar_fgnd {
+    background: url(../../../../../common/CeylonSoft/re_primarymath_ind/images/seekbar_fgnd.png);
+    width: 716px;
+    height: 12px;
+    margin-top: 12px;
+    border-radius: 5px;
+    position: absolute;
+}
+
+.seekBarSlider {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/progressBar_mc.png') no-repeat;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    margin-top: -18px;
+    margin-left: -28px;
+    cursor: pointer;
+}
+
+.seekBarSlider_1 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/progressBar_mc_1.png') no-repeat;
+    width: 40px;
+    height: 54px;
+    position: absolute;
+    margin-top: -30px;
+    margin-left: -28px;
+    cursor: pointer;
+}
+
+.seekBarSlider_2 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/progressBar_mc_2.png') no-repeat;
+    width: 33px;
+    height: 53px;
+    position: absolute;
+    margin-top: -30px;
+    margin-left: -28px;
+    cursor: pointer;
+}
+
+.seekBarSlider_3 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/progressBar_mc_4.png') no-repeat;
+    width: 33px;
+    height: 53px;
+    position: absolute;
+    margin-top: -30px;
+    margin-left: -28px;
+    cursor: pointer;
+}
+
+.seekBarSlider_5 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/progressBar_mc_3.png') no-repeat;
+}
+
+.seekBarSlider_8 {
+    background: url(../../../../../common/CeylonSoft/re_primarymath_ind/images/progressBar_mc_4.png) no-repeat;
+    width: 40px;
+    height: 54px;
+    position: absolute;
+    margin-top: -30px;
+    margin-left: -28px;
+}
+
+.seekBarSlider_10 {
+    background: url(../../../../../common/CeylonSoft/re_primarymath_ind/images/progressBar_mc_10.png) no-repeat;
+    width: 60px;
+    height: 37px;
+    position: absolute;
+    margin-top: -13px;
+    margin-left: -28px;
+}
+
+.seekBarSlider_12 {
+    background: url(../../../../../common/CeylonSoft/re_primarymath_ind/images/progressBar_mc_12.png) no-repeat;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    margin-top: -13px;
+    margin-left: -28px;
+}
+
+.seeBarDrag {
+    width: 710px;
+    height: 12px;
+    margin-top: 14px;
+    margin-left: 16px;
+    position: absolute;
+    padding: 0;
+}
+
+.seekbarArea {
+    width: 710px;
+    height: 12px;
+    position: absolute;
+    padding: 0;
+}
+
+
+/** seek bar styles end **/
+
+#loadBg {
+    width: 300px;
+    height: 21px;
+    border: 1px solid #000;
+    background: #000;
+    position: absolute;
+    color: #fff;
+}
+
+#preload {
+    position: absolute;
+    top: 38%;
+    left: 31%;
+}
+
+#preload p {
+    z-index: 11;
+    position: absolute;
+    line-height: 21px;
+    font-size: 18px;
+    margin-left: 24px;
+    color: #000;
+    font-family: Times New Roman;
+    display: none;
+}
+
+#loadBar {
+    width: 1px;
+    height: 21px;
+    background-image: url(../../../../../common/CeylonSoft/re_primarymath_ind/images/progressBar.png);
+    position: absolute;
+    margin: 1px 0 0 1px;
+}
+
+.fontH1 {
+    font-family: 'Times NR MT Pro Medium';
+    font-size: 36px;
+}
+
+.fontLevel1 {
+    font-family: 'Times NR MT Pro Medium';
+    font-size: 26px;
+}
+
+.fontLevel2 {
+    font-family: 'Times NR MT Pro Medium';
+    font-size: 24px;
+}
+
+.fontLevel3 {
+    font-family: 'Times NR MT Pro Medium';
+    font-size: 22px;
+}
+
+.leftBlock {
+    float: left;
+}
+
+.rightBlock {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.align-center {
+    margin: 0 auto;
+}
+
+.blueDotFrame {
+    border: 4px dotted #00b0f0;
+    border-radius: 30px;
+}
+
+
+/* button css */
+
+.judgement_btn {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/submit.png') no-repeat -0px -0px;
+    width: 80px;
+    height: 38px;
+    cursor: default;
+}
+
+.btn_active:active {
+    /*background-position: -0px -82px;*/
+    cursor: pointer;
+}
+
+.decision_btn {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/decisionBtn.png') no-repeat -0px -0px;
+    width: 82px;
+    height: 40px;
+    cursor: default;
+}
+
+.decision_active:active {
+    background-position: -0px -82px;
+    cursor: pointer;
+}
+
+.choose_active {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/choose.png') no-repeat -0px -0px;
+    width: 82px;
+    height: 40px;
+}
+
+.choose_active:active {
+    background-position: -0px -82px;
+    cursor: pointer;
+}
+
+.next_active {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/next.png') no-repeat -0px -0px;
+    width: 82px;
+    height: 40px;
+}
+
+.next_active:active {
+    background-position: -0px -82px;
+    cursor: pointer;
+}
+
+.erase_btn {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/erase.png') no-repeat -0px -0px;
+    width: 82px;
+    height: 40px;
+    cursor: default;
+}
+
+.erase_active:active {
+    background-position: -0px -82px;
+    cursor: pointer;
+}
+
+.confirmationBtn {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/confirmationBtn.png') no-repeat -0px -0px;
+    width: 82px;
+    height: 40px;
+    cursor: default;
+}
+
+.confirmationBtn:active {
+    background-position: -0px -82px;
+    cursor: pointer;
+}
+
+.popupNotation {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/board_button.png') no-repeat -0px -1px;
+    width: 210px;
+    height: 55px;
+    cursor: default;
+}
+
+.popupNotation_active:active {
+    background-position: -0px -105px;
+    cursor: pointer;
+}
+
+.popupNotation2 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/board_button1.png') no-repeat -0px -1px;
+    width: 150px;
+    height: 55px;
+    cursor: default;
+}
+
+.popupNotation2_active:active {
+    background-position: -0px -107px;
+    cursor: pointer;
+}
+
+.popupNotation3 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/board_button2.png') no-repeat -0px -1px;
+    width: 154px;
+    height: 55px;
+    cursor: default;
+}
+
+.popupNotation3_active:active {
+    background-position: -0px -107px;
+    cursor: pointer;
+}
+
+.display1,
+.display2,
+.display3,
+.display4,
+.display5,
+.display6,
+.display7,
+.display8,
+.display9,
+.display10,
+.display11,
+.display12,
+.display13,
+.display14,
+.display15,
+.display16,
+.display17,
+.display18,
+.display19,
+.display20,
+.display21,
+.display22,
+.display23,
+.display24,
+.display25,
+.display26,
+.display27,
+.display28,
+.display29,
+.display30 {
+    visibility: hidden;
+}
+
+.wrongicon {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/batsu.png') no-repeat;
+    width: 65px;
+    height: 65px;
+}
+
+.righticon {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/maru.gif') no-repeat;
+    width: 106px;
+    height: 106px;
+}
+
+.correctFB1 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/correct1.png') no-repeat;
+    width: 85px;
+    height: 84px;
+}
+
+.correctFB2 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/correct2.png') no-repeat;
+    width: 75px;
+    height: 74px;
+}
+
+.correctFB3 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/correct3.png') no-repeat;
+    width: 64px;
+    height: 64px;
+}
+
+.correctFB4 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/correct4.png') no-repeat;
+    width: 55px;
+    height: 54px;
+}
+
+.correctFB5 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/correct5.png') no-repeat;
+    width: 44px;
+    height: 43px;
+}
+
+.correctFB6 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/correct6.png') no-repeat;
+    width: 34px;
+    height: 33px;
+}
+
+.correctFB7 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/correct7.png') no-repeat;
+    width: 29px;
+    height: 29px;
+}
+
+.correctFB8 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/correct8.png') no-repeat;
+    width: 23px;
+    height: 24px;
+}
+
+.wrongFB1 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/wrong1.png') no-repeat;
+    width: 85px;
+    height: 85px;
+}
+
+.wrongFB2 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/wrong2.png') no-repeat;
+    width: 76px;
+    height: 75px;
+}
+
+.wrongFB3 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/wrong3.png') no-repeat;
+    width: 66px;
+    height: 65px;
+}
+
+.wrongFB4 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/wrong4.png') no-repeat;
+    width: 55px;
+    height: 55px;
+}
+
+.wrongFB5 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/wrong5.png') no-repeat;
+    width: 44px;
+    height: 44px;
+}
+
+.wrongFB6 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/wrong6.png') no-repeat;
+    width: 34px;
+    height: 33px;
+}
+
+.wrongFB7 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/wrong7.png') no-repeat;
+    width: 29px;
+    height: 28px;
+}
+
+.wrongFB8 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/wrong8.png') no-repeat;
+    width: 23px;
+    height: 23px;
+}
+
+img {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.seekBarSlider_6 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/progressBar_mc_3.png') no-repeat;
+    width: 39px;
+    height: 53px;
+    position: absolute;
+    margin-top: -30px;
+    margin-left: -28px;
+    cursor: pointer;
+}
+
+.seekBarSlider_7 {
+    background: url('../../../../../common/CeylonSoft/re_primarymath_ind/images/progressBar_mc_5.png') no-repeat;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    margin-top: -18px;
+    margin-left: -24px;
+    cursor: pointer;
+}
+
+.fontunify {
+    font-family: DFPHSGothic-W5;
+}

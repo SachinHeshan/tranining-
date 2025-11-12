@@ -1,0 +1,170 @@
+/* custom css only for this unit */
+
+.titlescreen {
+    position: absolute;
+    margin: 20px 0 0 52px;
+    width: 890px;
+    display: block;
+}
+
+#stageTitle {
+    font-family: 'Times NR MT Pro Medium';
+    font-size: 26px;
+    line-height: 40px;
+    color: #0070C0;
+    /* position: absolute;*/
+    margin: 17px 0 0 0px;
+    text-align: center;
+}
+
+.titleText {
+    font: 32px 'Times NR MT Pro Medium';
+    color: #000;
+    /* position: absolute; */
+    margin: 11px 0 0 0px;
+    padding: 0px;
+    /*background: rgba(241, 171, 64, 0.3); */
+    border-radius: 10px;
+    text-align: center;
+}
+
+#slu_no {
+    text-align: center;
+    line-height: 60px;
+    font-size: 36px;
+}
+
+#titleText {
+    margin: 15px 0 0 35px;
+}
+
+.stageTitle,
+.titleText,
+.unitIndex {
+    visibility: hidden;
+}
+
+.dw5_font {
+    font-family: 'Times NR MT Pro Medium';
+}
+
+
+/* Pre Story */
+
+.preStory {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1000px;
+    height: 700px;
+    z-index: 1;
+    display: none;
+}
+
+.topArea {
+    background: #000;
+    width: 1000px;
+    height: 80px;
+    position: absolute;
+}
+
+.bottomArea {
+    background: #000;
+    width: 1000px;
+    height: 120px;
+    position: absolute;
+    top: 580px;
+}
+
+.pre_skipBtn {
+    background: url(../../../../../../../../common/CeylonSoft/re_primarymath_ind/images/mainshell_buttons.png) no-repeat -0px -135px;
+    width: 109px;
+    height: 40px;
+    margin: 20px 0 0 20px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.display1,
+.display2,
+.display3,
+.display4,
+.display5,
+.display6,
+.display7,
+.display8,
+.display9,
+.display10 {
+    display: none;
+    text-align: center;
+    /*margin: 0 auto;*/
+}
+
+#preStoryTxt1 {
+    text-align: left;
+    font-size: 30px;
+    font-family: 'Times NR MT Pro Medium';
+    position: absolute;
+    top: 60px;
+    left: 105px;
+}
+
+#preStoryTxt2 {
+    text-align: left;
+    font-size: 30px;
+    font-family: 'Times NR MT Pro Medium';
+    position: absolute;
+    top: 90px;
+    left: 105px;
+}
+
+#copyright {
+    position: absolute;
+    margin: 666px 0 0 860px;
+}
+
+.text1,
+.text2,
+.text3,
+.text4,
+.text5,
+.text6,
+.text7,
+.text8 {
+    font-family: 'Times NR MT Pro Medium';
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.text1,
+.text2,
+.text3,
+.text6 {
+    padding-top: 38px;
+}
+
+.text4,
+.text5,
+.text7,
+.text8 {
+    padding-top: 18px;
+}
+
+.speech_bubble {
+    line-height: 21px;
+}
+
+.speech_bubble {
+    font-family: 'Times NR MT Pro Medium';
+    font-size: 16px;
+    padding: 80px 8px 30px 8px;
+    width: 174px;
+    height: 95px;
+    position: absolute;
+    margin: 310px 0 0 795px;
+    display: none;
+    line-height: 22px;
+    box-sizing: content-box;
+    color: #000;
+    text-align: center;
+}
