@@ -1,4 +1,4 @@
-﻿<!doctype html>
+﻿﻿<!doctype html>
 <html>
 
 <head>
@@ -17,49 +17,55 @@
         <canvas id="loadBarCanvas" width="120" height="120"></canvas>
         <p>Loading...</p>
     </div>
-    <section is="gwd-pagedeck" class="gwd-page-container slideContent fontunify" id="pagedeck" ondragstart="return false">
-        <span class="titleText">Luas Bangun Datar Kompleks</span>
-        <div class="gwd-div-1f4i">
-            <img src="assets/images/slide2/initial_image.png" id="init_rectangle" class="gwd-img-hoc8 display1">
-            <img src="assets/images/slide2/dotted_line.png" id="dotted_line" class="gwd-img-hdc1 display_dotted_line">
-            <img src="assets/images/slide2/lined_rectangle.png" id="red_line_rectanle" class="gwd-img-hdca">
-            <img src="assets/images/slide2/lined_square.png" id="red_line_squer" class="gwd-img-hdcb">
-            <img src="assets/images/slide2/smaller_squer.png" id="smaller_squer" class="gwd-img-hdce display4">
+
+    
+   <section>
+    <div class="header">
+        <div class="ulasan">■ Ulasan</div>
+       
+    </div>
+
+    <!-- Question -->
+    <div class="question">Berapakah besar sudut <i>a</i>?</div>
+
+    <div class="triangle">
+            <!-- Triangle image (base64 – a simple SVG) -->
+            <img src="assets/images/slide2/trangal.png" alt="Segitiga">
+            </div>
+
+    <div class="answer-box">
+            <span class="label">∠a =</span>
+            <input type="text" id="answerBox" class="gwd-rect-g7cr" placeholder=" ">
+            <span class="deg">°</span>
+             <button type="button" class="judgement_btn " id="judgement_btn" style="border: none; cursor: pointer; z-index: 1000; pointer-events: auto;" onclick="console.log('Button clicked!'); alert('Button is working!'); if(typeof evaluateActivity === 'function') evaluateActivity();"></button>
         </div>
-        <div class="gwd-div-2f4i">
-            <img src="assets/images/slide2/complete_rectangle.png" id="full_rectangle" class="gwd-img-h2c8 display2">
-            <p class="gwd-p-h2c7 display2">−</p>
-            <img src="assets/images/slide2/smaller_square_lined.png" id="smaller_squer" class="gwd-img-h2c9 display3">
-            <p class="gwd-p-h2c3 display5">＝</p>
-            <img src="assets/images/slide2/smaller_init.png" id="diff_rectangle" class="gwd-img-h2c1 display5">
-        </div>
-        <div class="gwd-div-2f4e">
-            <div class="gwd-div-2d41 display6">
-                <span><p class="gwd-p-ndvg">Panjang <span class="mth-operators-sm">×</span> Lebar</p></span>
-                <p>5 <span class="mth-operators">×</span> 10</p>
-            </div>
-            <p class="gwd-p-h2c5 display6">−</p>
-            <div class="gwd-div-2d42 display7">
-                <span><p class="gwd-p-trww">Sisi <span class="mth-operators-sm">×</span> Sisi</p></span>
-                <p>2 <span class="mth-operators">×</span> 2</p>
-            </div>
-            <div class="gwd-div-2d44 display8">
-                <p class="gwd-p-h2c6">＝</p>
-                <p class="gwd-p-h2c0">＝</p>
-                <p class="gwd-p-m6ne display8a">Jadi, luasnya adalah 46 cm<sup>2</sup>.</p>
-            </div>
-            <div class="gwd-div-2d43 display8">
-                <br>
-                <p>50 <span class="gwd-span-ntxo">−</span> 4</p>
-                <p>46</p>
-            </div>
-        </div>
-        <div class="gwd-div-2f4f display9">
-            <div class="gwd-div-2f4s">
-                <p class="gwd-p-nveq">Saat menghitung luas bangun datar kompleks, bayangkan bentuk tersebut sebagai bentuk yang sudah kamu kenal.</p>
-            </div>
-        </div>
-    </section>
+
+        <div class="method2">
+        <span>Menggunakan cara 2:</span>
+        <div class="calc">∠a = 55° + 65°<br>= <strong>120°</strong></div>
+    </div>
+
+   </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
     <div class="seekBar">
         <div class="seekbar_bgnd"> </div>
         <div class="seekbar_fill" id="sliderVal"> </div>

@@ -35,10 +35,11 @@
 
 
     <!-- MAIN CONTENT (hidden until sequence) -->
-    <div class="display1">
+    <div class="section">
+        
 
         <!-- ① QUESTION -->
-        <div class="section section1">
+        <div class="section section1 display1">
             
             <p class="question-text">
                 Berapakah jumlah dari ketiga sudut dalam segitiga?
@@ -46,7 +47,7 @@
 
 
             <!-- Input box -->
-            <input type="text" id="answerBox" class="answer-input" placeholder=" ">
+            <input type="text" id="answerBox" class="gwd-rect-g7cr" placeholder=" ">
             <span class="degree">°</span>
 
             <!-- Judgement button -->
@@ -60,9 +61,10 @@
             
            
         </div>
+        
 
         <!-- ② YELLOW EXPLANATION BOX -->
-        <div class="section section2">
+        <div class="section section2 display2">
            
             <div class="yellow-box">
                 <p class="box-title">Menghitung Besar Sudut Dalam Segitiga</p>
@@ -80,18 +82,27 @@
         </div>
 
         <!-- ③ BOTTOM TRIANGLE (NO CALL-OUTS) -->
-        <div class="section section3">
+        <div class="section section3 display3">
          
 
             <!-- Large triangle PNG (with "Sudut dalam" labels already in PNG) -->
             <img src="assets/images/slide1/side1.png" class="big-triangle" alt="big triangle">
         </div>
 
-        <!-- FOOTER -->
-        <p class="footer-code">P01</p>
+       
     </div>
 
 </section>
+<div class="seekBar">
+        <div class="seekbar_bgnd"> </div>
+        <div class="seekbar_fill" id="sliderVal"> </div>
+        <div class="seekbar_fgnd"> </div>
+        <div class="seeBarDrag">
+            <div class="seekbarArea">
+                <div class="seekBarSlider seekBarSlider_10" id="seekBarSlider"> </div>
+            </div>
+        </div>
+    </div>
 
 
 </div>

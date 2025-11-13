@@ -58,7 +58,7 @@ html, body { width:100%; height:100%; margin:0; background:transparent; }
 
 
 
-.answer-input {
+.gwd-rect-g7cr {
     position: absolute;
     left: 70px; top: 39px;
     width: 70px; height: 45px;
@@ -112,8 +112,8 @@ html, body { width:100%; height:100%; margin:0; background:transparent; }
 
 .yellow-box {
     top: 140px;
-      background: #fff9c4;          /* light yellow background */
-      border: 2px solid #ffeb3b;    /* yellow border */
+      background: #feffc4;          /* light yellow background */
+      border: 2px solid #ff4d00;    /* yellow border */
       border-radius: 20px;          /* rounded corners */
       padding: 20px 25px;
       max-width: 590px;
@@ -169,8 +169,8 @@ html, body { width:100%; height:100%; margin:0; background:transparent; }
 .big-triangle {
  margin-top: -65px;
  margin-bottom: 20px;
-    width: 500px;
-    height: 510px;
+    width: 510px;
+    height: 520px;
 }
 
 

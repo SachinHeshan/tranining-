@@ -19,6 +19,11 @@ var currentQnNo = 1;
 var answerBtnClicked = false;
 var totalDuration = 0;
 var seqNo = 0;
+var totalSequence = 0;
+var totalAudios = 0;
+var sliderChanged = false;
+var pauseSeekbar = false;
+var seekBarStatus = "inprogress"; // Default value, will be updated by parent
 // seekBarStatus should be defined in the parent scope
 
 // ---------- INIT ----------
@@ -70,7 +75,12 @@ function addContent() {
     }
 
     // ----- NORMAL START -----
-    totalDuration = slideData.slideDuration.reduce((s, o) => s + parseFloat(o.dur), 0);
+    totalSequence = totalAudios = slideData.slideDuration.length;
+    totalDuration = 0; // Reset totalDuration
+    for (var i = 0; i < totalAudios; i++) {
+        totalDuration += parseFloat(parseFloat(slideData.slideDuration[i].dur).toFixed(2));
+    }
+    totalDuration = parseFloat(totalDuration.toFixed(2));
     setpixVal(totalDuration);
     setTimeout(() => {
         seekBarEnable();
@@ -103,6 +113,7 @@ function slideSequence(seq) {
     if (previousSeqNo === seq && !parent.playbuttonClick) return;
     previousSeqNo = seq;
     parent.playbuttonClick = false;
+    seqNo = seq;
 
     parent.surala.disablecallOut();
     parent.surala.character.stopAllAnimation();
@@ -110,15 +121,22 @@ function slideSequence(seq) {
     parent.surala.slideNavigation.blinkNextBtn(false);
 
     switch (seq) {
-        case 1:                     // show question
+        case 1:                     // show question (display1)
             $('.display1').css('visibility', 'visible');
-            parent.surala.audio.playSound('IPM_S10L04u09_007', null, next);
+            $('.display2').css('visibility', 'hidden');
+            $('.display3').css('visibility', 'hidden');
+            disableActivity();
+            parent.surala.audio.playSound('IPM_S10L01u05_001', null, next);
             break;
-        case 2:                     // enable input + button
+        case 2:                     // show yellow box (display2) and enable answer box
+            $('.display2').css('visibility', 'visible');
+            $('.display3').css('visibility', 'hidden');
+            // Enable the answer box when the first audio ends
             enableActivity();
             parent.surala.audio.playSound('IPM_S10L04u09_008', null, next);
             break;
-        case 3:                     // (optional extra narration)
+        case 3:                     // show bottom triangle (display3)
+            $('.display3').css('visibility', 'visible');
             parent.surala.audio.playSound('IPM_S10L04u09_009', null, next);
             break;
         case 4:                     // end
@@ -157,14 +175,17 @@ function evaluateActivity() {
     var correct = (userAns === "180");
 
     // ----- UI -----
-    disableActivity();
+    // Keep the answer box visible and disable it, but don't clear the user's answer
+    $('#answerBox').prop('disabled', true);
+    $('#judgement_btn').prop('disabled', true).removeClass('btn_active');
+    
     $('.feedback').css('visibility', 'hidden');
     if (correct) $('#correctFB').css('visibility', 'visible');
     else         $('#wrongFB').css('visibility', 'visible');
 
     if (correct) {
-        // For correct answer, show the correct PNG in the input box
-        $('#answerBox').val('').css({
+        // For correct answer, show the correct PNG as background but keep the typed answer
+        $('#answerBox').css({
             'background-image': 'url(../../../../../../common/CeylonSoft/re_primarymath_ind/images/correct1.png)',
             'background-repeat': 'no-repeat',
             'background-position': 'center',
@@ -174,24 +195,16 @@ function evaluateActivity() {
         // Don't show the correct answer text under the box for correct answers
         $('#correctAnswerDisplay').css('display', 'none');
     } else {
-        // Show wrong image first for wrong answer
-        $('#answerBox').val('').css({
+        // For wrong answer, show the wrong PNG as background and keep it, keep the typed answer
+        $('#answerBox').css({
             'background-image': 'url(../../../../../../common/CeylonSoft/re_primarymath_ind/images/wrong1.png)',
             'background-repeat': 'no-repeat',
             'background-position': 'center',
             'background-size': 'contain'
         });
         
-        // After a short delay, remove the wrong image and show the correct answer text under the box
-        setTimeout(function() {
-            // Remove the background image from the input box
-            $('#answerBox').css({
-                'background-image': 'none'
-            });
-            
-            // Show the correct answer text under the box
-            $('#correctAnswerDisplay').css('display', 'block');
-        }, 1500); // 1.5 seconds delay
+        // Show the correct answer text under the box (but never show correct PNG in box for wrong answers)
+        $('#correctAnswerDisplay').css('display', 'block');
     }
 
     // ----- AUDIO / ANIMATION -----
@@ -208,8 +221,11 @@ function evaluateActivity() {
                           !correct);
     });
 
-    // ----- LMS -----
-    var activityNo = page + '-' + currentQnNo;
+
+
+
+   /* -- LMS code | sending result to LMS -- */
+    var activityNo = "slide1" + '-' + currentQnNo;
     var param = {
         flash_problem_num: activityNo,
         flash_answer: userAns,
@@ -217,9 +233,14 @@ function evaluateActivity() {
         flash_count: 1,
         flash_success: correct ? 1 : 0
     };
+
     setMain(activityNo, param);
     sendMassage(studyLogUrl, param, false);
 }
+
+
+
+
 
 /* ---------- PLAY NEXT AUDIO AFTER FEEDBACK ---------- */
 var fbAudio = null;
@@ -235,18 +256,12 @@ function playNextAnimation(audio, needShowAnswer) {
     });
 }
 
+
+
+
 function showCorrectAnswer() {
-    // Show the correct answer with the correct image
-    $('#answerBox').val('').css({
-        'background-image': 'url(../../../../../../common/CeylonSoft/re_primarymath_ind/images/correct1.png)',
-        'background-repeat': 'no-repeat',
-        'background-position': 'center',
-        'background-size': 'contain'
-    });
-    
-    // Also show the correct answer text under the box
-    // NOTE: This function should only be called when we want to explicitly show the correct answer
-    // For example, at the end of the lesson or when the user has given a wrong answer
+   
+    //  only show the correct answer text, 
     $('#correctAnswerDisplay').css('display', 'block');
 }
 
@@ -254,74 +269,80 @@ function showcontent(num) {
   parent.surala.disablecallOut();
   switch (num) {
       case 1:
-          // disableActivity();
-
-          if (seqNo >= 1 && seqNo <= 7 && seekBarStatus !== "ended") {
-              answerBtnClicked = false;
-          }
-
+          // Show display1 only (question)
+          $('.display1').css('visibility', 'visible');
+          $('.display2').css('visibility', 'hidden');
+          $('.display3').css('visibility', 'hidden');
           break;
       case 2:
-          break;
-      case 3:
-          break;
-      case 4:
-          break;
-      case 5:
-          break;
-      case 6:
-
-
-      case 7:
-
-          $(".display1").css("visibility", "visible");
-
-          if (seqNo < 8 && seekBarStatus !== "ended") {
+          // Show display1 and display2
+          $('.display1').css('visibility', 'visible');
+          $('.display2').css('visibility', 'visible');
+          $('.display3').css('visibility', 'hidden');
+          
+          // Enable the answer box when the seekbar moves to position 2
+          if (seekBarStatus !== "ended") {
               answerBtnClicked = false;
-              // enableActivity instead of automatically showing answer
               enableActivity();
           }
           break;
-
+      case 3:
+          // Show display1, display2, and display3
+          $('.display1').css('visibility', 'visible');
+          $('.display2').css('visibility', 'visible');
+          $('.display3').css('visibility', 'visible');
+          break;
+      case 4:
+          // Ensure display1 is visible
+          $('.display1').css('visibility', 'visible');
+          break;
+      case 5:
+          // Ensure display1 is visible
+          $('.display1').css('visibility', 'visible');
+          break;
+      case 6:
+          // Ensure display1 is visible
+          $('.display1').css('visibility', 'visible');
+          break;
+      case 7:
+          $('.display1').css('visibility', 'visible');
+          if (seqNo < 8 && seekBarStatus !== "ended") {
+              answerBtnClicked = false;
+              enableActivity();
+          }
+          break;
       case 8:
-
+          $('.display1').css('visibility', 'visible');
           if (seqNo >= 8 && seekBarStatus !== "ended") {
-
               if (!answerBtnClicked) {
-                  // enableButton equivalent - enable activity
                   enableActivity();
               } else {
-                  // Only show correct answer if the user gave a wrong answer
-                  // We need to check if the answer was wrong before showing the correct answer
-                  // For now, we'll hide it by default and let evaluateActivity control it
                   $('#correctAnswerDisplay').css('display', 'none');
               }
           }
           break;
       case 9:
+          $('.display1').css('visibility', 'visible');
           if (seekBarStatus == "ended") {
               if (answerBtnClicked) {
-                  // Only show correct answer if the user gave a wrong answer
-                  // We need to check if the answer was wrong before showing the correct answer
-                  // For now, we'll hide it by default and let evaluateActivity control it
                   $('#correctAnswerDisplay').css('display', 'none');
               }
-              // disableActivity as before
               disableActivity();
           }
           break;
   }
 }
 
-
 function hidecontent(num) {
   switch (num) {
       case 1:
-
+          $(".display1").css("visibility", "hidden");
           break;
       case 2:
+          $(".display2").css("visibility", "hidden");
           break;
       case 3:
+          $(".display3").css("visibility", "hidden");
           break;
       case 4:
           break;
@@ -330,14 +351,8 @@ function hidecontent(num) {
       case 6:
           $(".display1").css("visibility", "hidden");
           break;
-      case 7:
+      default:
           break;
-      case 8:
-          break;
-      case 9:
-          break;
-
-
   }
 }
 
