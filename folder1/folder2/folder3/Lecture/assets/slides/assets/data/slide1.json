@@ -21,8 +21,11 @@
             { "name": "IPM_S10L04u09_012", "src": "vo/IPM_S10L04u09_012" },
             { "name": "IPM_S10L04u09_013", "src": "vo/IPM_S10L04u09_013" },
             { "name": "IPM_S10L04u09_014", "src": "vo/IPM_S10L04u09_014" },
-            { "name": "IPM_S10L01u05_001", "src": "vo/IPM_S10L01u05_001" }
-           
+            { "name": "IPM_S10L01u05_001", "src": "vo/IPM_S10L01u05_001" },
+            { "name": "IPM_S10L01u05_006", "src": "vo/IPM_S10L01u05_006" },
+            { "name": "IPM_S10L01u05_007", "src": "vo/IPM_S10L01u05_007" },
+            { "name": "IPM_S10L01u05_008", "src": "vo/IPM_S10L01u05_008" },
+            { "name": "IPM_S10L01u05_009", "src": "vo/IPM_S10L01u05_009" }
             
         ],
         "slideDuration": [

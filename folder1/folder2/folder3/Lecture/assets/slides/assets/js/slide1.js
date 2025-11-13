@@ -120,32 +120,35 @@ function slideSequence(seq) {
     parent.surala.character.teacherTalk(true);
     parent.surala.slideNavigation.blinkNextBtn(false);
 
-    switch (seq) {
-        case 1:                     // show question (display1)
+     switch (seq) {
+        case 1: // Show question (display1)
             $('.display1').css('visibility', 'visible');
-            $('.display2').css('visibility', 'hidden');
-            $('.display3').css('visibility', 'hidden');
             disableActivity();
-            parent.surala.audio.playSound('IPM_S10L01u05_001', null, next);
+            parent.surala.audio.playSound('IPM_S10L01u05_006', null, next);
             break;
-        case 2:                     // show yellow box (display2) and enable answer box
+
+        case 2: // Show yellow box (display2) and enable answer box
             $('.display2').css('visibility', 'visible');
-            $('.display3').css('visibility', 'hidden');
-            // Enable the answer box when the first audio ends
             enableActivity();
-            parent.surala.audio.playSound('IPM_S10L04u09_008', null, next);
+            parent.surala.audio.playSound('IPM_S10L01u05_007', null, next);
             break;
-        case 3:                     // show bottom triangle (display3)
+
+        case 3: // Play bottom triangle sound
+            parent.surala.audio.playSound('IPM_S10L01u05_008', null, next);
+            break;
+
+        case 4: // Show bottom triangle (display3) and end
             $('.display3').css('visibility', 'visible');
-            parent.surala.audio.playSound('IPM_S10L04u09_009', null, next);
-            break;
-        case 4:                     // end
             parent.surala.character.teacherTalk(false);
-            parent.surala.audio.playSound('IPM_S10L04u09_010', null, () => {});
+            parent.surala.audio.playSound('IPM_S10L01u05_009', null, () => {});
             break;
     }
+
     function next() {
-        if (sliderChanged) { sliderChanged = false; return; }
+        if (sliderChanged) {
+            sliderChanged = false;
+            return;
+        }
         slideSequence(seq + 1);
     }
 }
@@ -271,8 +274,7 @@ function showcontent(num) {
       case 1:
           // Show display1 only (question)
           $('.display1').css('visibility', 'visible');
-          $('.display2').css('visibility', 'hidden');
-          $('.display3').css('visibility', 'hidden');
+         
           break;
       case 2:
           // Show display1 and display2
