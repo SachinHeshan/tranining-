@@ -24,6 +24,7 @@ var totalAudios = 0;
 var sliderChanged = false;
 var pauseSeekbar = false;
 var seekBarStatus = "inprogress"; // Default value, will be updated by parent
+var answerSubmitted = false; // Track if answer has been submitted
 // seekBarStatus should be defined in the parent scope
 
 // ---------- INIT ----------
@@ -110,6 +111,11 @@ function showLMSFeedback() {
    ============================================================== */
 var previousSeqNo = 0;
 function slideSequence(seq) {
+    // Block sequence progression until answer is submitted for cases after the question is shown
+    if ((seq === 3 || seq === 4 || seq === 5 ) && !answerSubmitted) {
+        return;
+    }
+    
     if (previousSeqNo === seq && !parent.playbuttonClick) return;
     previousSeqNo = seq;
     parent.playbuttonClick = false;
@@ -120,38 +126,50 @@ function slideSequence(seq) {
     parent.surala.character.teacherTalk(true);
     parent.surala.slideNavigation.blinkNextBtn(false);
 
-     switch (seq) {
-        case 1: // Show question (display1)
+    switch (seq) {
+        case 1:
+            parent.surala.audio.playSound('IPM_S10L01u05_005', null, () => {
+                slideSequence(seq + 1);
+            });
+            break;
+
+        case 2:
             $('.display1').css('visibility', 'visible');
-            disableActivity();
-            parent.surala.audio.playSound('IPM_S10L01u05_006', null, next);
-            break;
-
-        case 2: // Show yellow box (display2) and enable answer box
-            $('.display2').css('visibility', 'visible');
             enableActivity();
-            parent.surala.audio.playSound('IPM_S10L01u05_007', null, next);
+            parent.surala.audio.playSound('IPM_S10L01u05_006', null, () => {
+                // Do not automatically advance - wait for user answer
+            });
             break;
 
-        case 3: // Play bottom triangle sound
-            parent.surala.audio.playSound('IPM_S10L01u05_008', null, next);
+        case 3:
+            $('.display2').css('visibility', 'visible');
+            parent.surala.audio.playSound('IPM_S10L01u05_007', null, () => {
+                slideSequence(seq + 1);
+            });
             break;
 
-        case 4: // Show bottom triangle (display3) and end
+        case 4:
+            parent.surala.audio.playSound('IPM_S10L01u05_008', null, () => {
+                slideSequence(seq + 1);
+            });
+            break;
+
+        case 5:
             $('.display3').css('visibility', 'visible');
-            parent.surala.character.teacherTalk(false);
-            parent.surala.audio.playSound('IPM_S10L01u05_009', null, () => {});
+            parent.surala.audio.playSound('IPM_S10L01u05_009', null, () => {
+                slideSequence(seq + 1);
+            });
             break;
-    }
 
-    function next() {
-        if (sliderChanged) {
-            sliderChanged = false;
-            return;
-        }
-        slideSequence(seq + 1);
+        case 6:
+            parent.surala.character.teacherTalk(false);
+            parent.surala.audio.playSound('IPM_S10L01u05_010', null, () => {
+                // Last slide – no next call
+            });
+            break;
     }
 }
+
 
 /* ==============================================================
    ACTIVITY (type 180 → Jawab)
@@ -163,7 +181,12 @@ function enableActivity() {
     });
     $('#judgement_btn').prop('disabled', false).addClass('btn_active')
         .off('click').on('click', evaluateActivity);
+    
+    // Pause the seekbar when activity is enabled
+    pauseSeekbar = true;
+    parent.surala.slideNavigation.playPauseState = false;
 }
+
 function disableActivity() {
     $('#answerBox').prop('disabled', true);
     $('#judgement_btn').prop('disabled', true).removeClass('btn_active');
@@ -173,6 +196,7 @@ function disableActivity() {
 function evaluateActivity() {
     if (answerBtnClicked) return;
     answerBtnClicked = true;
+    answerSubmitted = true; // Mark that answer has been submitted
 
     var userAns = $.trim($('#answerBox').val());
     var correct = (userAns === "180");
@@ -217,11 +241,25 @@ function evaluateActivity() {
     parent.surala.character.animate('teacher', correct ? 'correct' : 'wrong', () => {
         parent.surala.character.animate('teacher', correct ? 'correct_speak' : 'wrong_speak');
     });
-    parent.surala.audio.playSound(correct ? 'correct' : 'wrong', null, () => {
+    
+    // Play the feedback sound only once
+    var feedbackSound = correct ? 'MG_benar_02' : 'MG_salah_07';
+    parent.surala.audio.playSound(feedbackSound, null, () => {
+        // After the feedback sound finishes
         if (sliderChanged) { sliderChanged = false; return; }
-        playNextAnimation(correct ? slideData.content.question1.audio.correct
-                                  : slideData.content.question1.audio.incorrect,
-                          !correct);
+        
+        // If wrong answer, show the correct answer
+        if (!correct) {
+            showCorrectAnswer();
+        }
+        
+        // Resume the seekbar after answer is processed
+        pauseSeekbar = false;
+        parent.surala.slideNavigation.playPauseState = true;
+        playSeekbar();
+        
+        // Continue with the sequence from case 3
+        slideSequence(3);
     });
 
 
@@ -241,27 +279,7 @@ function evaluateActivity() {
     sendMassage(studyLogUrl, param, false);
 }
 
-
-
-
-
 /* ---------- PLAY NEXT AUDIO AFTER FEEDBACK ---------- */
-var fbAudio = null;
-function playNextAnimation(audio, needShowAnswer) {
-    if (fbAudio === audio) return;
-    fbAudio = audio;
-    parent.surala.audio.playSound(audio, null, () => {
-        if (sliderChanged) { sliderChanged = false; return; }
-        if (needShowAnswer) showCorrectAnswer();
-        slideSequence(4);               // final sequence
-        pauseSeekbar = false;
-        playSeekbar();
-    });
-}
-
-
-
-
 function showCorrectAnswer() {
    
     //  only show the correct answer text, 
@@ -274,63 +292,32 @@ function showcontent(num) {
       case 1:
           // Show display1 only (question)
           $('.display1').css('visibility', 'visible');
-         
           break;
       case 2:
-          // Show display1 and display2
+          // Show display1 and enable activity
           $('.display1').css('visibility', 'visible');
-          $('.display2').css('visibility', 'visible');
-          $('.display3').css('visibility', 'hidden');
-          
-          // Enable the answer box when the seekbar moves to position 2
           if (seekBarStatus !== "ended") {
               answerBtnClicked = false;
               enableActivity();
           }
           break;
       case 3:
+          // Show display1 and display2
+          $('.display1').css('visibility', 'visible');
+          $('.display2').css('visibility', 'visible');
+          break;
+      case 4:
+          // Just play audio, no UI changes
+          break;
+      case 5:
           // Show display1, display2, and display3
           $('.display1').css('visibility', 'visible');
           $('.display2').css('visibility', 'visible');
           $('.display3').css('visibility', 'visible');
           break;
-      case 4:
-          // Ensure display1 is visible
-          $('.display1').css('visibility', 'visible');
-          break;
-      case 5:
-          // Ensure display1 is visible
-          $('.display1').css('visibility', 'visible');
-          break;
       case 6:
-          // Ensure display1 is visible
+          // End of sequence
           $('.display1').css('visibility', 'visible');
-          break;
-      case 7:
-          $('.display1').css('visibility', 'visible');
-          if (seqNo < 8 && seekBarStatus !== "ended") {
-              answerBtnClicked = false;
-              enableActivity();
-          }
-          break;
-      case 8:
-          $('.display1').css('visibility', 'visible');
-          if (seqNo >= 8 && seekBarStatus !== "ended") {
-              if (!answerBtnClicked) {
-                  enableActivity();
-              } else {
-                  $('#correctAnswerDisplay').css('display', 'none');
-              }
-          }
-          break;
-      case 9:
-          $('.display1').css('visibility', 'visible');
-          if (seekBarStatus == "ended") {
-              if (answerBtnClicked) {
-                  $('#correctAnswerDisplay').css('display', 'none');
-              }
-              disableActivity();
-          }
           break;
   }
 }

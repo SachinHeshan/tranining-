@@ -11,108 +11,33 @@
             { "name": "correct", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/correct" },
             { "name": "wrong", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/wrong" },
             { "name": "MG_benar_02", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_benar_02" },
-            { "name": "MG_salah_09", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_09" },
-            { "name": "IPM_S10L04u09_007", "src": "vo/IPM_S10L04u09_007" },
-            { "name": "IPM_S10L04u09_008", "src": "vo/IPM_S10L04u09_008" },
-            { "name": "IPM_S10L04u09_009", "src": "vo/IPM_S10L04u09_009" },
-            { "name": "IPM_S10L04u09_S001", "src": "vo/IPM_S10L04u09_S001" },
-            { "name": "IPM_S10L04u09_010", "src": "vo/IPM_S10L04u09_010" },
-            { "name": "IPM_S10L04u09_011", "src": "vo/IPM_S10L04u09_011" },
-            { "name": "IPM_S10L04u09_012", "src": "vo/IPM_S10L04u09_012" },
-            { "name": "IPM_S10L04u09_013", "src": "vo/IPM_S10L04u09_013" },
-            { "name": "IPM_S10L04u09_014", "src": "vo/IPM_S10L04u09_014" },
-            { "name": "IPM_S10L01u05_001", "src": "vo/IPM_S10L01u05_001" },
+            { "name": "MG_salah_07", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_07" },
+            { "name": "IPM_S10L01u05_005", "src": "vo/IPM_S10L01u05_005" },
             { "name": "IPM_S10L01u05_006", "src": "vo/IPM_S10L01u05_006" },
             { "name": "IPM_S10L01u05_007", "src": "vo/IPM_S10L01u05_007" },
             { "name": "IPM_S10L01u05_008", "src": "vo/IPM_S10L01u05_008" },
-            { "name": "IPM_S10L01u05_009", "src": "vo/IPM_S10L01u05_009" }
+            { "name": "IPM_S10L01u05_009", "src": "vo/IPM_S10L01u05_009" },
+            { "name": "IPM_S10L01u05_010", "src": "vo/IPM_S10L01u05_010" }
             
         ],
         "slideDuration": [
-            { "audio": "IPM_S10L04u09_007", "dur": "5.6" },
-            { "audio": "IPM_S10L04u09_008", "dur": "4.6" },
-            { "audio": "IPM_S10L04u09_009", "dur": "2.8" },
-            { "audio": "IPM_S10L04u09_S001", "dur": "2.5" },
-            { "audio": "IPM_S10L04u09_010", "dur": "3.9" },
-            { "audio": "IPM_S10L04u09_011", "dur": "6.1" },
-            { "audio": "IPM_S10L04u09_012", "dur": "6.8" },
-            { "audio": "IPM_S10L04u09_013", "dur": "3.9" },
-            { "audio": "IPM_S10L04u09_014", "dur": "11.3" }
-           
+            { "audio": "IPM_S10L04u05_005", "dur": "5.2" },
+            { "audio": "IPM_S10L04u05_006", "dur": "4.7" },
+            { "audio": "IPM_S10L04u05_007", "dur": "5.6" },
+            { "audio": "IPM_S10L04u05_008", "dur": "6.3" },
+            { "audio": "IPM_S10L04u05_009", "dur": "4.9" },
+            { "audio": "IPM_S10L04u05_010", "dur": "3.1" }
+          
         ],
-        "content": {
+      "content": {
             "question1": {
-                "correctAnswerList0": "q1dragItem2",
-                "correctAnswerList1": "q1dragItem3",
-                "correctAnswerList2": "q1dragItem4",
-                "correctAnswerList3": "q1dragItem5",
-                "correctAnswerList4": "q1dragItem1",
-                "dragElemts": "drag1,drag2,drag3,drag4,drag5",
-                "dragElemtspos": {
-                    "element1": { "x": "155", "y": "466" },
-                    "element2": { "x": "264", "y": "466" },
-                    "element3": { "x": "372", "y": "466" },
-                    "element4": { "x": "170", "y": "508" },
-                    "element5": { "x": "380", "y": "508" }
-                },
                 "audio": {
                     "correct": "MG_benar_02",
-                    "incorrect": "MG_salah_09"
+                    "incorrect": "MG_salah_07"
                 },
-                "dropareadata": {
-                    "dropareadata1": {
-                        "dropboxWidth": 160,
-                        "dropboxHeight": 40,
-                        "dropboxX": 468,
-                        "dropboxY": 131,
-                        "dropPadding": 0
-                    },
-                    "dropareadata2": {
-                        "dropboxWidth": 160,
-                        "dropboxHeight": 40,
-                        "dropboxX": 468,
-                        "dropboxY": 206,
-                        "dropPadding": 0
-                    },
-                    "dropareadata3": {
-                        "dropboxWidth": 160,
-                        "dropboxHeight": 40,
-                        "dropboxX": 468,
-                        "dropboxY": 281,
-                        "dropPadding": 0
-                    },
-                    "dropareadata4": {
-                        "dropboxWidth": 160,
-                        "dropboxHeight": 40,
-                        "dropboxX": 468,
-                        "dropboxY": 357,
-                        "dropPadding": 0
-                    },
-                    "dropareadata5": {
-                        "dropboxWidth": 160,
-                        "dropboxHeight": 40,
-                        "dropboxX": 468,
-                        "dropboxY": 432,
-                        "dropPadding": 0
-                    }
-                },
-                "dropElemtsArea": {
-                    "width": "160",
-                    "height": "40"
-                },
-                "dropElemtspos": {
-                    "element1": { "x": "555", "y": "134" },
-                    "element2": { "x": "555", "y": "192" },
-                    "element3": { "x": "555", "y": "252" },
-                    "element4": { "x": "555", "y": "322" },
-                    "element5": { "x": "555", "y": "386" }
-                }
-            },
-            "canvasdata": {
-                "width": 750,
-                "height": 591
+                "correctAnswer": "180"
             }
         }
-
+ 
     }
 }
