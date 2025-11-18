@@ -17,7 +17,9 @@
             { "name": "IPM_S10L03u03_034", "src": "vo/IPM_S10L03u03_034" },
             { "name": "IPM_S10L03u03_035", "src": "vo/IPM_S10L03u03_035" },
             { "name": "IPM_S10L03u03_036", "src": "vo/IPM_S10L03u03_036" },
-            { "name": "IPM_S10L03u03_037", "src": "vo/IPM_S10L03u03_037" }
+            { "name": "IPM_S10L03u03_037", "src": "vo/IPM_S10L03u03_037" },
+             { "name": "MG_benar_02", "src": "vo/MG_benar_02" },
+            { "name": "MG_salah_07", "src": "vo/MG_salah_07" }
            
 
         ],

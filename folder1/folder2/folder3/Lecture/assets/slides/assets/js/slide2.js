@@ -22,6 +22,7 @@ var totalDuration = 0;
 var totalAudios = 0;
 
 var answerBtnClicked1 = false;
+var answerSubmittedInCase2 = false;
 var totalTegakiBox = 1;
 var seqNo = 0;
 var totalSequence = 0;
@@ -230,34 +231,79 @@ function slideSequence(seqNo) {
   parent.surala.slideNavigation.blinkNextBtn(false);
   
   // Hide all displays first
-  $('.display01, .display2').css("visibility", "hidden");
+  
   
   switch (seqNo) {
-      case 1:
+      case 1: $('.display01').css("visibility", "visibale");
             if (parent.surala && parent.surala.audio) {
-                parent.surala.audio.playSound('IPM_S10L03u03_034', null, () => {
-                    slideSequence(seq + 1);
+                parent.surala.audio.playSound('IPM_S10L03u03_034', null, function() {
+                    if (sliderChanged) {
+                        sliderChanged = false;
+                    } else {
+                        seqNo = 2;
+                        slideSequence(seqNo);
+                    }
                 });
             }
             break;
       case 2:
-          // Show display2 during second audio
-          $('.display01').css("visibility", "hidden");
-          $('.display2').css("visibility", "visible");
+          // Show display2 during second audio and enable answer selection
+          $('.display01').css("visibility", "visible");
+          $('.display01, .display2').css("visibility", "visible");
+          
+          // Enable shape selection and judgement button during case 2 audio
+          setTimeout(function() {
+              $("#judgement_btn").css('pointer-events', 'auto').css('cursor', 'pointer');
+              $('#judgement_btn').addClass('btn_active');
+              // Attach click handler for case 2 answer evaluation
+              $('#judgement_btn').off('click').on('click', function() {
+                  evaluateCase2Answer();
+              });
+          }, 500);
+          
           parent.surala.audio.playSound('IPM_S10L03u03_035', null, function() {
-            parent.playbuttonClick = true;
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else if (!answerSubmittedInCase2) {
+                // If no answer submitted, STOP here - don't continue to case 3
+                parent.surala.character.stopAllAnimation();
+                parent.surala.slideNavigation.blinkNextBtn(true);
+            }
+            // If answer was submitted, the evaluateCase2Answer function will handle progression to case 3 and 4
           });
           break;
       case 3:
           // Hide display2 and continue with third audio
-          $('.display01, .display2').css("visibility", "hidden");
+          $('.display01').css("visibility", "visible");
+          $('.display01, .display2').css("visibility", "visible");
+          
+          // Add blinking outline to yellow-box during case 3 audio
+          var blinkInterval = setInterval(function() {
+              $('.yellow-box').toggleClass('blink-outline');
+          }, 500);
+          
           parent.surala.audio.playSound('IPM_S10L03u03_036', null, function() {
-            parent.playbuttonClick = true;
+            // Stop blinking when audio ends
+            clearInterval(blinkInterval);
+            $('.yellow-box').removeClass('blink-outline');
+            
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 4;
+                slideSequence(seqNo);
+            }
           });
           break;
       case 4:
+             $('.display01').css("visibility", "visible");
+              $('.display01, .display2').css("visibility", "visible");
           parent.surala.audio.playSound('IPM_S10L03u03_037', null, function() {
-            parent.playbuttonClick = true;
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                parent.surala.character.stopAllAnimation();
+            }
           });
           break;
   }
@@ -624,7 +670,104 @@ function playNextAnimation(audio, stateVal) {
   });
 }
 
+// Evaluate answer submitted during case 2
+function evaluateCase2Answer() {
+  if (answerSubmittedInCase2) {
+      return; // Already submitted
+  }
+  
+  answerSubmittedInCase2 = true;
+  
+  // Disable button after submission
+  $('#judgement_btn').css('pointer-events', 'none').css('cursor', 'default');
+  $('#judgement_btn').removeClass('btn_active');
+  
+  // Stop current audio if playing
+  parent.surala.audio.clearAllSounds();
+  
+  // Correct answers are C and D
+  const correctAnswers = ["C", "D"];
+  
+  // Check if answer is correct
+  let allCorrect = selectedShapes.length === 2 && 
+                   selectedShapes.every(shape => correctAnswers.includes(shape)) &&
+                   correctAnswers.every(ans => selectedShapes.includes(ans));
+  
+  // Show feedback marks on shapes
+  selectedShapes.forEach(shape => {
+      let feedback = document.getElementById("feedback" + shape);
+      if (feedback) {
+          if (correctAnswers.includes(shape)) {
+              feedback.src = "../../../../../../Common/CeylonSoft/re_primarymath_ind/images/correct4.png";
+          } else {
+              feedback.src = "../../../../../../Common/CeylonSoft/re_primarymath_ind/images/wrong2.png";
+          }
+          
+          // Position the feedback image
+          const shapeMap = {
+              "A": "shape1-img",
+              "B": "shape2-img", 
+              "C": "shape3-img",
+              "D": "shape4-img",
+              "E": "shape5-img"
+          };
+          let imgClass = shapeMap[shape];
+          let imgElements = document.getElementsByClassName(imgClass);
+          
+          if (imgElements.length > 0) {
+              let img = imgElements[0];
+              let rect = img.getBoundingClientRect();
+              feedback.style.left = (rect.left + window.scrollX + rect.width - 50) + "px";
+              feedback.style.top = (rect.top + window.scrollY - 25) + "px";
+              feedback.style.display = "block";
+              feedback.style.width = "50px";
+              feedback.style.height = "50px";
+          }
+      }
+  });
+  
+  if (allCorrect) {
+      // Play correct animation and audio
+      parent.surala.character.animate('student', 'correct', function() {
+          parent.surala.character.animate('student', 'correct_stop');
+      });
+      parent.surala.character.animate('teacher', 'correct', function() {
+          parent.surala.character.animate('teacher', 'correct_speak');
+      });
+      
+      parent.surala.audio.playSound('MG_benar_02', null, function() {
+          if (sliderChanged) {
+              sliderChanged = false;
+          } else {
+              // Continue to case 3 after correct audio
+              seqNo = 3;
+              slideSequence(seqNo);
+          }
+      });
+  } else {
+      // Play wrong animation and audio
+      parent.surala.character.animate('student', 'wrong', function() {
+          parent.surala.character.animate('student', 'wrong_stop');
+      });
+      parent.surala.character.animate('teacher', 'wrong', function() {
+          parent.surala.character.animate('teacher', 'wrong_speak');
+      });
+      
+      parent.surala.audio.playSound('MG_salah_07', null, function() {
+          if (sliderChanged) {
+              sliderChanged = false;
+          } else {
+              // Continue to case 3 after wrong audio
+              seqNo = 3;
+              slideSequence(seqNo);
+          }
+      });
+  }
+}
+
 // Shape selection and feedback functionality
+var selectedShapes = [];
+
 document.addEventListener("DOMContentLoaded", function () {
     // shape IDs mapped to image classes
     const shapeMap = {
@@ -638,8 +781,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // correct answers (C and D correspond to shape3-img and shape4-img)
     const correctAnswers = ["C", "D"];
 
-    // user selected shapes
-    let selectedShapes = [];
+    // user selected shapes - now using global variable
+    // let selectedShapes = [];
 
     // Add feedback image containers to the DOM
     Object.keys(shapeMap).forEach(shape => {

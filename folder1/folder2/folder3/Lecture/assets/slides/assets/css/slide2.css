@@ -225,3 +225,22 @@
     z-index: -100;  
 }
 
+/* Smooth blinking animation for yellow-box during case 3 */
+@keyframes smooth-blink {
+    0% {
+        border: 3px solid #e6b411;
+        box-shadow: 0 0 0px transparent;
+    }
+    50% {
+        border: 5px solid #ff6600;
+        box-shadow: 0 0 20px #ff6600;
+    }
+    100% {
+        border: 3px solid #e6b411;
+        box-shadow: 0 0 0px transparent;
+    }
+}
+
+.yellow-box.blink-outline {
+    animation: smooth-blink 1s ease-in-out infinite;
+}
