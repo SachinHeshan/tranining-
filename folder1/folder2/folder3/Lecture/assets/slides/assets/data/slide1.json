@@ -1,11 +1,9 @@
 ﻿{
     "surala": {
         "images": [
-            { "name": "drag1", "src": "assets/slides/assets/images/slide1/drag1.png" },
-            { "name": "drag2", "src": "assets/slides/assets/images/slide1/drag2.png" },
-            { "name": "drag3", "src": "assets/slides/assets/images/slide1/drag3.png" },
-            { "name": "drag4", "src": "assets/slides/assets/images/slide1/drag4.png" },
-            { "name": "drag5", "src": "assets/slides/assets/images/slide1/drag5.png" }
+            { "name": "trangal", "src": "assets/slides/assets/images/slide1/Trangal.png" },
+            { "name":"yellow box", "src": "assets/images/slide1/yellow-box.png"}
+            
         ],
         "sounds": [
             { "name": "correct", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/correct" },

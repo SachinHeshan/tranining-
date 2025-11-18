@@ -12,23 +12,13 @@
             { "name": "smaller_squer", "src": "assets/slides/assets/images/slide2/smaller_squer.png" }
         ],
         "sounds": [
-            { "name": "IPM_S10L04u09_015", "src": "vo/IPM_S10L04u09_015" },
-            { "name": "IPM_S10L04u09_016", "src": "vo/IPM_S10L04u09_016" },
-            { "name": "IPM_S10L04u09_017", "src": "vo/IPM_S10L04u09_017" },
-            { "name": "IPM_S10L04u09_S002", "src": "vo/IPM_S10L04u09_S002" },
-            { "name": "IPM_S10L04u09_018", "src": "vo/IPM_S10L04u09_018" },
-            { "name": "IPM_S10L04u09_019", "src": "vo/IPM_S10L04u09_019" },
-            { "name": "IPM_S10L04u09_020", "src": "vo/IPM_S10L04u09_020" },
-            { "name": "IPM_S10L04u09_021", "src": "vo/IPM_S10L04u09_021" },
-            { "name": "IPM_S10L04u09_022", "src": "vo/IPM_S10L04u09_022" },
-            { "name": "IPM_S10L04u09_023", "src": "vo/IPM_S10L04u09_023" },
-            { "name": "IPM_S10L04u09_024", "src": "vo/IPM_S10L04u09_024" },
-            { "name": "IPM_S10L04u09_025", "src": "vo/IPM_S10L04u09_025" },
-            { "name": "IPM_S10L04u09_026", "src": "vo/IPM_S10L04u09_026" },
-            { "name": "IPM_S10L04u09_027", "src": "vo/IPM_S10L04u09_027" },
-            { "name": "IPM_S10L04u09_028", "src": "vo/IPM_S10L04u09_028" },
-            { "name": "IPM_S10L04u09_029", "src": "vo/IPM_S10L04u09_029" },
-            { "name": "IPM_S10L04u09_030", "src": "vo/IPM_S10L04u09_030" }
+              { "name": "MG_benar_02", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_benar_02" },
+            { "name": "MG_salah_07", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_07" },
+            { "name": "IPM_S10L03u03_034", "src": "vo/IPM_S10L03u03_034" },
+            { "name": "IPM_S10L03u03_035", "src": "vo/IPM_S10L03u03_035" },
+            { "name": "IPM_S10L03u03_036", "src": "vo/IPM_S10L03u03_036" },
+            { "name": "IPM_S10L03u03_037", "src": "vo/IPM_S10L03u03_037" }
+           
 
         ],
         "slideDuration": [

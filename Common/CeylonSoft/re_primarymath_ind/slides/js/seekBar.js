@@ -329,9 +329,11 @@ function playSlide(playStatus) {
 // update slide content on seekbar change
 function updateSlideContent(seq) {
   console.log("updateSlideContentseq: ", seq);
-  for (var i = seq; i <= totalSequence; i++) {
+  // First hide all content
+  for (var i = 1; i <= totalSequence; i++) {
     hidecontent(i);
   }
+  // Then show content up to the current sequence
   for (i = 1; i <= seq; i++) {
     showcontent(i);
   }

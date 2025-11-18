@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Slide 2</title>
+    <title>Slide 3</title>
     <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/css/jquery-ui.css" rel="stylesheet" type="text/css" />
     <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/css/base.css" rel="stylesheet" type="text/css" />
     <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/css/slides.css" rel="stylesheet" type="text/css" />
@@ -17,55 +17,64 @@
         <canvas id="loadBarCanvas" width="120" height="120"></canvas>
         <p>Loading...</p>
     </div>
+    <section is="gwd-pagedeck" class="gwd-page-container slideContent" id="pagedeck" ondragstart="return false;">
 
-    
-   <section>
-    <div class="header">
-        <div class="ulasan">■ Ulasan</div>
-       
+         <p class="title">Ulasan</p>
+
+             <!-- DISPLAY 1 (Yellow Box + text) -->
+    <div class="display01">
+                    <div class="yellow-box">
+                    <b class="title1"> Segi Banyak Beraturan</b><br>
+                    <p class="title2"> Bangun datar yang memiliki sisi-sisi sama panjang<br>
+                    dan sudut-sudut sama besar.</p>
+                </div>
+        
     </div>
 
-    <!-- Question -->
-    <div class="question">Berapakah besar sudut <i>a</i>?</div>
+    <!-- DISPLAY 2 (paragraph image + shapes image) -->
+    <div class="display2">
+       <div class="question-container">
+        <p class="question-text">
+            Pilihlah semua segi banyak beraturan di bawah ini.
+        </p>
+        <p class="instruction-text">
+            *Klik huruf untuk jawaban yang benar.
+        </p>
 
-    <div class="triangle">
-            <!-- Triangle image (base64 – a simple SVG) -->
-            <img src="assets/images/slide2/trangal.png" alt="Segitiga">
+        <div class="letter-row">
+  
+</div>
+    </div>
+        
+        <div class="row">
+           
+                <img src="assets/images/slide2/shape1.png" class="shape1-img">
+            
+           
+                <img src="assets/images/slide2/shape2.png" class="shape2-img">
+            
+            
+                <img src="assets/images/slide2/shape3.png" class="shape3-img">
             </div>
 
-    <div class="answer-box">
-            <span class="label">∠a =</span>
-            <input type="text" id="answerBox" class="gwd-rect-g7cr" placeholder=" ">
-            <span class="deg">°</span>
-             <button type="button" class="judgement_btn " id="judgement_btn" style="border: none; cursor: pointer; z-index: 1000; pointer-events: auto;" onclick="console.log('Button clicked!'); alert('Button is working!'); if(typeof evaluateActivity === 'function') evaluateActivity();"></button>
+            <div class=" 2row">
+            
+                <img src="assets/images/slide2/shape4.png" class="shape4-img">
+            
+           
+                <img src="assets/images/slide2/shape5.png" class="shape5-img">
+            </div>
+        </div>
+        
         </div>
 
-        <div class="method2">
-        <span>Menggunakan cara 2:</span>
-        <div class="calc">∠a = 55° + 65°<br>= <strong>120°</strong></div>
     </div>
 
-   </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
+    <!-- JUDGEMENT BUTTON -->
+  <button type="button" class="judgement_btn " id="judgement_btn" style="border: none; cursor: pointer; z-index: 1000; pointer-events: auto;"></button>
+  
+     
+    </section>
     <div class="seekBar">
         <div class="seekbar_bgnd"> </div>
         <div class="seekbar_fill" id="sliderVal"> </div>
@@ -86,9 +95,7 @@
 <script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/slideTutorial.js"></script>
 <script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/slideManager.js"></script>
 <script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/seekBar.js"></script>
-<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/konva.min.js"></script>
 <script type="text/javascript" src="assets/js/slide2.js"></script>
-<script type="text/javascript" src="assets/js/slide2drag_drop.js"></script>
 <script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/lms_lecture.js"></script>
 <!-- Handwriting popup js file -->
 <script src="../../../../../../../../tegaki_v2/js/char.recog.v2.min.js"></script>

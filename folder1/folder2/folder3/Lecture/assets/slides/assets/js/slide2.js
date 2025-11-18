@@ -2,7 +2,7 @@
 var preloaditems = {
   images: [],
   sounds: null,
-  jsonURL: "./assets/data/slide1.json",
+  jsonURL: "./assets/data/slide2.json",
   content: null
 };
 
@@ -228,112 +228,38 @@ function slideSequence(seqNo) {
   parent.surala.character.stopAllAnimation();
   parent.surala.character.teacherTalk(true);
   parent.surala.slideNavigation.blinkNextBtn(false);
+  
+  // Hide all displays first
+  $('.display01, .display2').css("visibility", "hidden");
+  
   switch (seqNo) {
       case 1:
-          loadActivity();
-          answerBtnClicked = false;
-          parent.surala.audio.playSound('IPM_S10L04u09_007', null, function() {
-              if (sliderChanged) {
-                  sliderChanged = false;
-              } else {
-                  seqNo = 2;
-                  slideSequence(seqNo);
-              }
-          });
-          break;
+            if (parent.surala && parent.surala.audio) {
+                parent.surala.audio.playSound('IPM_S10L03u03_034', null, () => {
+                    slideSequence(seq + 1);
+                });
+            }
+            break;
       case 2:
-          parent.surala.audio.playSound('IPM_S10L04u09_008', null, function() {
-              if (sliderChanged) {
-                  sliderChanged = false;
-              } else {
-                  seqNo = 3;
-                  slideSequence(seqNo);
-              }
+          // Show display2 during second audio
+          $('.display01').css("visibility", "hidden");
+          $('.display2').css("visibility", "visible");
+          parent.surala.audio.playSound('IPM_S10L03u03_035', null, function() {
+            parent.playbuttonClick = true;
           });
           break;
       case 3:
-
-          parent.surala.audio.playSound('IPM_S10L04u09_009', null, function() {
-              if (sliderChanged) {
-                  sliderChanged = false;
-              } else {
-                  // parent.surala.disablecallOut();
-                  seqNo = 4;
-                  slideSequence(seqNo);
-
-              }
+          // Hide display2 and continue with third audio
+          $('.display01, .display2').css("visibility", "hidden");
+          parent.surala.audio.playSound('IPM_S10L03u03_036', null, function() {
+            parent.playbuttonClick = true;
           });
           break;
       case 4:
-          parent.surala.character.teacherTalk(false);
-          parent.surala.character.animate('student', 'normal_speak');
-          parent.surala.enablecallOut("Hmm, saya ingat.", 1);
-          window.parent.$('.speech_bubble').css({ 'padding-left': '9px', 'padding-top': '33px' });
-          parent.surala.audio.playSound('IPM_S10L04u09_S001', null, function() {
-              if (sliderChanged) {
-                  sliderChanged = false;
-              } else {
-                  seqNo = 5;
-                  slideSequence(seqNo);
-              }
+          parent.surala.audio.playSound('IPM_S10L03u03_037', null, function() {
+            parent.playbuttonClick = true;
           });
           break;
-      case 5:
-          parent.surala.audio.playSound('IPM_S10L04u09_010', null, function() {
-              if (sliderChanged) {
-                  sliderChanged = false;
-              } else {
-                  seqNo = 6;
-                  slideSequence(seqNo);
-              }
-          });
-          break;
-      case 6:
-
-          parent.surala.audio.playSound('IPM_S10L04u09_011', null, function() {
-              if (sliderChanged) {
-                  sliderChanged = false;
-              } else {
-                  seqNo = 7;
-                  slideSequence(seqNo);
-              }
-          });
-          break;
-      case 7:
-          loadActivity();
-          answerBtnClicked = false;
-          $('.display1,.show1').css('visibility', 'visible');
-          parent.surala.audio.playSound('IPM_S10L04u09_012', null, function() {
-              if (sliderChanged) {
-                  sliderChanged = false;
-              } else {
-                  pauseSeekbar = true;
-                  enableButton();
-              }
-          });
-          break;
-      case 8:
-          parent.surala.audio.playSound('IPM_S10L04u09_013', null, function() {
-              if (sliderChanged) {
-                  sliderChanged = false;
-              } else {
-                  seqNo = 9;
-                  slideSequence(seqNo);
-              }
-          });
-          break;
-      case 9:
-          parent.surala.audio.playSound('IPM_S10L04u09_014', null, function() {
-              if (sliderChanged) {
-                  sliderChanged = false;
-              } else {
-                  disableActivity();
-                  parent.surala.character.stopAllAnimation();
-              }
-          });
-          break;
-
-
   }
 }
 
@@ -698,7 +624,150 @@ function playNextAnimation(audio, stateVal) {
   });
 }
 
+// Shape selection and feedback functionality
+document.addEventListener("DOMContentLoaded", function () {
+    // shape IDs mapped to image classes
+    const shapeMap = {
+        "A": "shape1-img",
+        "B": "shape2-img", 
+        "C": "shape3-img",
+        "D": "shape4-img",
+        "E": "shape5-img"
+    };
 
+    // correct answers (C and D correspond to shape3-img and shape4-img)
+    const correctAnswers = ["C", "D"];
+
+    // user selected shapes
+    let selectedShapes = [];
+
+    // Add feedback image containers to the DOM
+    Object.keys(shapeMap).forEach(shape => {
+        let feedbackImg = document.createElement("img");
+        feedbackImg.id = "feedback" + shape;
+        feedbackImg.style.position = "absolute";
+        feedbackImg.style.display = "none";
+        feedbackImg.style.zIndex = "1000";
+        document.body.appendChild(feedbackImg);
+    });
+
+    // Add click event listeners to shape images
+    Object.keys(shapeMap).forEach(shape => {
+        let imgClass = shapeMap[shape];
+        let imgElements = document.getElementsByClassName(imgClass);
+        
+        if (imgElements.length > 0) {
+            let img = imgElements[0];
+            
+            img.addEventListener("click", function () {
+                // Get the corresponding letter box
+                let letterBox = img.parentElement.querySelector('.letter-box');
+                
+                // If already selected → unselect
+                if (img.classList.contains("selected")) {
+                    img.classList.remove("selected");
+                    if (letterBox) {
+                        letterBox.classList.remove("selected");
+                    }
+                    selectedShapes = selectedShapes.filter(s => s !== shape);
+                    return;
+                }
+
+                // limit selection to 2
+                if (selectedShapes.length >= 2) {
+                    return; // stop extra selection
+                }
+
+                // Add yellow outline to indicate selection
+                img.classList.add("selected");
+                if (letterBox) {
+                    letterBox.classList.add("selected");
+                }
+                selectedShapes.push(shape);
+            });
+        }
+    });
+
+    // RESULT BUTTON
+    let judgementBtn = document.getElementById("judgement_btn");
+    if (judgementBtn) {
+        judgementBtn.addEventListener("click", function () {
+            // Hide all feedback images first
+            Object.keys(shapeMap).forEach(shape => {
+                let feedback = document.getElementById("feedback" + shape);
+                if (feedback) {
+                    feedback.style.display = "none";
+                }
+            });
+
+            // Show feedback only for selected shapes
+            selectedShapes.forEach(shape => {
+                let feedback = document.getElementById("feedback" + shape);
+                if (feedback) {
+                    // Determine if the answer is correct
+                    if (correctAnswers.includes(shape)) {
+                        feedback.src = "../../../../../../Common/CeylonSoft/re_primarymath_ind/images/correct4.png";
+                    } else {
+                        feedback.src = "../../../../../../Common/CeylonSoft/re_primarymath_ind/images/wrong2.png";
+                    }
+
+                    // Position the feedback image on top of the shape image
+                    let imgClass = shapeMap[shape];
+                    let imgElements = document.getElementsByClassName(imgClass);
+                    
+                    if (imgElements.length > 0) {
+                        let img = imgElements[0];
+                        let rect = img.getBoundingClientRect();
+                        
+                        // Position feedback image at the top-right corner of the shape
+                        feedback.style.left = (rect.left + window.scrollX + rect.width - 50) + "px";
+                        feedback.style.top = (rect.top + window.scrollY - 25) + "px";
+                        feedback.style.display = "block";
+                        feedback.style.width = "50px";
+                        feedback.style.height = "50px";
+                    }
+                }
+            });
+
+            // Play animation based on correctness
+            let allCorrect = selectedShapes.every(shape => correctAnswers.includes(shape));
+            let hasWrong = selectedShapes.some(shape => !correctAnswers.includes(shape));
+            
+            // Play appropriate animation
+            if (allCorrect && !hasWrong && selectedShapes.length === 2) {
+                // All selected shapes are correct - play correct animation
+                if (typeof parent !== 'undefined' && parent.surala) {
+                    if (parent.surala.character) {
+                        parent.surala.character.animate('student', 'correct', function() {
+                            parent.surala.character.animate('student', 'correct_stop');
+                        });
+                        parent.surala.character.animate('teacher', 'correct', function() {
+                            parent.surala.character.animate('teacher', 'correct_speak');
+                        });
+                    }
+                    if (parent.surala.audio) {
+                        parent.surala.audio.playSound('correct');
+                    }
+                }
+            } else {
+                // Some or all selected shapes are wrong - play wrong animation
+                if (typeof parent !== 'undefined' && parent.surala) {
+                    if (parent.surala.character) {
+                        parent.surala.character.animate('student', 'wrong', function() {
+                            parent.surala.character.animate('student', 'wrong_stop');
+                        });
+                        parent.surala.character.animate('teacher', 'wrong', function() {
+                            parent.surala.character.animate('teacher', 'wrong_speak');
+                        });
+                    }
+                    if (parent.surala.audio) {
+                        parent.surala.audio.playSound('wrong');
+                    }
+                }
+            }
+        });
+    }
+});
 
 window.onunload = function() {
   parent.surala.disablecallOut();
