@@ -24,23 +24,22 @@
 
         ],
         "slideDuration": [
-            { "audio": "IPM_S10L04u09_015", "dur": "2.5" },
-            { "audio": "IPM_S10L04u09_016", "dur": "9.0" },
-            { "audio": "IPM_S10L04u09_017", "dur": "8.1" },
-            { "audio": "IPM_S10L04u09_S002", "dur": "5.3" },
-            { "audio": "IPM_S10L04u09_018", "dur": "2.5" },
-            { "audio": "IPM_S10L04u09_019", "dur": "3.6" },
-            { "audio": "IPM_S10L04u09_020", "dur": "5.1" },
-            { "audio": "IPM_S10L04u09_021", "dur": "3.3" },
-            { "audio": "IPM_S10L04u09_022", "dur": "3.5" },
-            { "audio": "IPM_S10L04u09_023", "dur": "3.4" },
-            { "audio": "IPM_S10L04u09_024", "dur": "5.3" },
-            { "audio": "IPM_S10L04u09_025", "dur": "5.1" },
-            { "audio": "IPM_S10L04u09_026", "dur": "5.3" },
-            { "audio": "IPM_S10L04u09_027", "dur": "5.7" },
-            { "audio": "IPM_S10L04u09_028", "dur": "21.9" },
-            { "audio": "IPM_S10L04u09_029", "dur": "10.4" },
-            { "audio": "IPM_S10L04u09_030", "dur": "7.9" }
-        ]
+            { "audio": "IPM_S10L04u03_034", "dur": "2.0" },
+            { "audio": "IPM_S10L04u03_035", "dur": "7.0" },
+            { "audio": "IPM_S10L04u03_036", "dur": "8.0" },
+            { "audio": "IPM_S10L04u03_037", "dur": "8.0" }
+            
+           
+        ],
+          "content": {
+            "question1": {
+                "audio": {
+                    "correct": "MG_benar_02",
+                    "incorrect": "MG_salah_07"
+                },
+                "correctAnswer": "C D"
+            }
+        }
+ 
     }
-}
+    }

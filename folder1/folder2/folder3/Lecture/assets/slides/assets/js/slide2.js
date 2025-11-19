@@ -298,9 +298,9 @@ function slideSequence(seqNo) {
             if (sliderChanged) {
                 sliderChanged = false;
             } else if (!answerSubmittedInCase2) {
-                // If no answer submitted, STOP here - don't continue to case 3
-                parent.surala.character.stopAllAnimation();
-                parent.surala.slideNavigation.blinkNextBtn(true);
+                // If no answer submitted, PAUSE seekbar and wait for answer
+                pauseSeekbar = true;
+                parent.surala.slideNavigation.blinkNextBtn(false);
             }
             // If answer was submitted, the evaluateCase2Answer function will handle progression to case 3 and 4
           });
@@ -806,9 +806,11 @@ function evaluateCase2Answer() {
                   if (sliderChanged) {
                       sliderChanged = false;
                   } else {
-                      // Continue to case 3 after correct audio
+                      // Resume seekbar after correct feedback
+                      pauseSeekbar = false;
                       seqNo = 3;
                       slideSequence(seqNo);
+                      playSeekbar();
                   }
               });
           }
@@ -829,9 +831,11 @@ function evaluateCase2Answer() {
                   if (sliderChanged) {
                       sliderChanged = false;
                   } else {
-                      // Continue to case 3 after wrong audio
+                      // Resume seekbar after wrong feedback
+                      pauseSeekbar = false;
                       seqNo = 3;
                       slideSequence(seqNo);
+                      playSeekbar();
                   }
               });
           }
