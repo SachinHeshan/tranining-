@@ -88,7 +88,7 @@
 .shape3-img.selected,
 .shape4-img.selected,
 .shape5-img.selected {
-    border: 4px solid #ffcc00;
+    border: 4px solid transparent;
 }
 
 /* ===========================

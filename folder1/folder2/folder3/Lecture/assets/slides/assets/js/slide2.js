@@ -269,14 +269,10 @@ function slideSequence(seqNo) {
                       if (letterBox) {
                           letterBox.classList.remove("selected");
                       }
-                  }
-              });
-              selectedShapes = [];
-              // Clear feedback images
-              ['A', 'B', 'C', 'D', 'E'].forEach(shape => {
-                  let feedback = document.getElementById("feedback" + shape);
-                  if (feedback) {
-                      feedback.style.display = "none";
+                      let redBoxes = imgElements[0].parentElement.querySelectorAll('[class^="red-box"]');
+                      redBoxes.forEach(box => {
+                          box.classList.remove("show");
+                      });
                   }
               });
           }
@@ -330,6 +326,10 @@ function slideSequence(seqNo) {
                       if (letterBox) {
                           letterBox.classList.remove("selected");
                       }
+                      let redBoxes = imgElements[0].parentElement.querySelectorAll('[class^="red-box"]');
+                      redBoxes.forEach(box => {
+                          box.classList.remove("show");
+                      });
                   }
               });
               selectedShapes = [];
@@ -394,6 +394,10 @@ function showcontent(num) {
                       if (letterBox) {
                           letterBox.classList.remove("selected");
                       }
+                      let redBoxes = imgElements[0].parentElement.querySelectorAll('[class^="red-box"]');
+                      redBoxes.forEach(box => {
+                          box.classList.remove("show");
+                      });
                   }
               });
               selectedShapes = [];
@@ -428,7 +432,7 @@ function hidecontent(num) {
                   feedback.style.display = "none";
               }
           });
-          // Reset selected shapes and outlines
+          // Reset selected shapes and hide red boxes
           const shapeMap = {
               "A": "shape1-img",
               "B": "shape2-img", 
@@ -436,13 +440,18 @@ function hidecontent(num) {
               "D": "shape4-img",
               "E": "shape5-img"
           };
+          // Remove selected class from all shapes and hide red boxes
           Object.values(shapeMap).forEach(imgClass => {
               let imgElements = document.getElementsByClassName(imgClass);
               if (imgElements.length > 0) {
                   imgElements[0].classList.remove("selected");
-                  let letterBox = imgElements[0].parentElement.querySelector('.letter-box');
-                  if (letterBox) {
-                      letterBox.classList.remove("selected");
+                  // Hide red box
+                  let redBox = imgElements[0].nextElementSibling;
+                  while (redBox && !redBox.className.match(/red-box/)) {
+                      redBox = redBox.nextElementSibling;
+                  }
+                  if (redBox) {
+                      redBox.style.display = "none";
                   }
               }
           });
@@ -881,28 +890,31 @@ document.addEventListener("DOMContentLoaded", function () {
             let img = imgElements[0];
             
             img.addEventListener("click", function () {
-                // Get the corresponding letter box
-                let letterBox = img.parentElement.querySelector('.letter-box');
+                // Get the corresponding red box
+                let redBox = img.nextElementSibling;
+                while (redBox && !redBox.className.match(/red-box/)) {
+                    redBox = redBox.nextElementSibling;
+                }
                 
                 // If already selected → unselect
                 if (img.classList.contains("selected")) {
                     img.classList.remove("selected");
-                    if (letterBox) {
-                        letterBox.classList.remove("selected");
+                    if (redBox) {
+                        redBox.style.display = "none";
                     }
                     selectedShapes = selectedShapes.filter(s => s !== shape);
                     return;
                 }
 
-                // limit selection to 2
-                if (selectedShapes.length >= 2) {
+                // limit selection to 5
+                if (selectedShapes.length >= 5) {
                     return; // stop extra selection
                 }
 
-                // Add yellow outline to indicate selection
+                // Add selection and show red box
                 img.classList.add("selected");
-                if (letterBox) {
-                    letterBox.classList.add("selected");
+                if (redBox) {
+                    redBox.style.display = "block";
                 }
                 selectedShapes.push(shape);
             });
