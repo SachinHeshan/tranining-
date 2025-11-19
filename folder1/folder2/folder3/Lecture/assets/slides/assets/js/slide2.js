@@ -429,7 +429,7 @@ function hidecontent(num) {
           feedbackIds.forEach(id => {
               let feedback = document.getElementById("feedback" + id);
               if (feedback) {
-                  feedback.style.display = "none";
+                  feedback.classList.remove("show");
               }
           });
           // Reset selected shapes and hide red boxes
@@ -776,7 +776,7 @@ function evaluateCase2Answer() {
               feedback.src = "../../../../../../Common/CeylonSoft/re_primarymath_ind/images/wrong2.png";
           }
           
-          // Position the feedback image
+          // Position the feedback image on the shape
           const shapeMap = {
               "A": "shape1-img",
               "B": "shape2-img", 
@@ -790,11 +790,11 @@ function evaluateCase2Answer() {
           if (imgElements.length > 0) {
               let img = imgElements[0];
               let rect = img.getBoundingClientRect();
-              feedback.style.left = (rect.left + window.scrollX + rect.width - 50) + "px";
-              feedback.style.top = (rect.top + window.scrollY - 25) + "px";
-              feedback.style.display = "block";
-              feedback.style.width = "50px";
-              feedback.style.height = "50px";
+              feedback.style.left = (rect.left + window.scrollX + rect.width - 35) + "px";
+              feedback.style.top = (rect.top + window.scrollY + 10) + "px";
+              feedback.style.width = "30px";
+              feedback.style.height = "30px";
+              feedback.classList.add("show");
           }
       }
   });
@@ -876,8 +876,9 @@ document.addEventListener("DOMContentLoaded", function () {
         let feedbackImg = document.createElement("img");
         feedbackImg.id = "feedback" + shape;
         feedbackImg.style.position = "absolute";
-        feedbackImg.style.display = "none";
         feedbackImg.style.zIndex = "1000";
+        feedbackImg.style.width = "30px";
+        feedbackImg.style.height = "30px";
         document.body.appendChild(feedbackImg);
     });
 
