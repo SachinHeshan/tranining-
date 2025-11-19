@@ -230,11 +230,9 @@ function slideSequence(seqNo) {
   parent.surala.character.teacherTalk(true);
   parent.surala.slideNavigation.blinkNextBtn(false);
   
-  // Hide all displays first
-  
-  
   switch (seqNo) {
-      case 1: $('.display01').css("visibility", "visibale");
+      case 1: 
+            $('.display01').css("visibility", "visible");
             if (parent.surala && parent.surala.audio) {
                 parent.surala.audio.playSound('IPM_S10L03u03_034', null, function() {
                     if (sliderChanged) {
@@ -251,14 +249,49 @@ function slideSequence(seqNo) {
           $('.display01').css("visibility", "visible");
           $('.display01, .display2').css("visibility", "visible");
           
+          // Reset shapes and answer state for seekbar navigation
+          if (pauseSeekbar || sliderChanged) {
+              answerSubmittedInCase2 = false;
+              // Remove selected class from all shapes
+              const shapeMap = {
+                  "A": "shape1-img",
+                  "B": "shape2-img", 
+                  "C": "shape3-img",
+                  "D": "shape4-img",
+                  "E": "shape5-img"
+              };
+              // Reset all shapes regardless of selectedShapes array
+              Object.values(shapeMap).forEach(imgClass => {
+                  let imgElements = document.getElementsByClassName(imgClass);
+                  if (imgElements.length > 0) {
+                      imgElements[0].classList.remove("selected");
+                      let letterBox = imgElements[0].parentElement.querySelector('.letter-box');
+                      if (letterBox) {
+                          letterBox.classList.remove("selected");
+                      }
+                  }
+              });
+              selectedShapes = [];
+              // Clear feedback images
+              ['A', 'B', 'C', 'D', 'E'].forEach(shape => {
+                  let feedback = document.getElementById("feedback" + shape);
+                  if (feedback) {
+                      feedback.style.display = "none";
+                  }
+              });
+          }
+          
           // Enable shape selection and judgement button during case 2 audio
           setTimeout(function() {
-              $("#judgement_btn").css('pointer-events', 'auto').css('cursor', 'pointer');
-              $('#judgement_btn').addClass('btn_active');
-              // Attach click handler for case 2 answer evaluation
-              $('#judgement_btn').off('click').on('click', function() {
-                  evaluateCase2Answer();
-              });
+              if (!pauseSeekbar) {
+                  $("#judgement_btn").css('pointer-events', 'auto').css('cursor', 'pointer');
+                  $('#judgement_btn').addClass('btn_active');
+                  // Attach click handler for case 2 answer evaluation
+                  $('#judgement_btn').off('click').on('click', function(e) {
+                      e.preventDefault();
+                      evaluateCase2Answer();
+                  });
+              }
           }, 500);
           
           parent.surala.audio.playSound('IPM_S10L03u03_035', null, function() {
@@ -276,6 +309,31 @@ function slideSequence(seqNo) {
           // Hide display2 and continue with third audio
           $('.display01').css("visibility", "visible");
           $('.display01, .display2').css("visibility", "visible");
+          
+          // Reset answer state when navigating via seekbar
+          if (pauseSeekbar || sliderChanged) {
+              answerSubmittedInCase2 = false;
+              // Remove selected class from all shapes
+              const shapeMap = {
+                  "A": "shape1-img",
+                  "B": "shape2-img", 
+                  "C": "shape3-img",
+                  "D": "shape4-img",
+                  "E": "shape5-img"
+              };
+              // Reset all shapes regardless of selectedShapes array
+              Object.values(shapeMap).forEach(imgClass => {
+                  let imgElements = document.getElementsByClassName(imgClass);
+                  if (imgElements.length > 0) {
+                      imgElements[0].classList.remove("selected");
+                      let letterBox = imgElements[0].parentElement.querySelector('.letter-box');
+                      if (letterBox) {
+                          letterBox.classList.remove("selected");
+                      }
+                  }
+              });
+              selectedShapes = [];
+          }
           
           // Add blinking outline to yellow-box during case 3 audio
           var blinkInterval = setInterval(function() {
@@ -313,52 +371,43 @@ function showcontent(num) {
   parent.surala.disablecallOut();
   switch (num) {
       case 1:
-          // disableActivity();
-
-          if (seqNo >= 1 && seqNo <= 7 && seekBarStatus !== "ended") {
-              answerBtnClicked = false;
-          }
-
+          $('.display01').css("visibility", "visible");
           break;
       case 2:
+          $('.display01, .display2').css("visibility", "visible");
+          if (seekBarStatus !== "ended") {
+              answerSubmittedInCase2 = false;
+              // Remove selected class from all shapes
+              const shapeMap = {
+                  "A": "shape1-img",
+                  "B": "shape2-img", 
+                  "C": "shape3-img",
+                  "D": "shape4-img",
+                  "E": "shape5-img"
+              };
+              // Reset all shapes regardless of selectedShapes array
+              Object.values(shapeMap).forEach(imgClass => {
+                  let imgElements = document.getElementsByClassName(imgClass);
+                  if (imgElements.length > 0) {
+                      imgElements[0].classList.remove("selected");
+                      let letterBox = imgElements[0].parentElement.querySelector('.letter-box');
+                      if (letterBox) {
+                          letterBox.classList.remove("selected");
+                      }
+                  }
+              });
+              selectedShapes = [];
+              // Reset button state and remove old click handlers
+              $('#judgement_btn').off('click');
+              $('#judgement_btn').css('pointer-events', 'none').css('cursor', 'default');
+              $('#judgement_btn').removeClass('btn_active');
+          }
           break;
       case 3:
+          $('.display01, .display2').css("visibility", "visible");
           break;
       case 4:
-          break;
-      case 5:
-          break;
-      case 6:
-
-
-      case 7:
-
-          $(".display1").css("visibility", "visible");
-
-          if (seqNo < 8 && seekBarStatus !== "ended") {
-              answerBtnClicked = false;
-              loadActivity();
-          }
-          break;
-
-      case 8:
-
-          if (seqNo >= 8 && seekBarStatus !== "ended") {
-
-              if (!answerBtnClicked) {
-                  enableButton();
-              } else {
-                  showAnswers();
-              }
-          }
-          break;
-      case 9:
-          if (seekBarStatus == "ended") {
-              if (answerBtnClicked) {
-                  showAnswers();
-              }
-              disableActivity();
-          }
+          $('.display01, .display2').css("visibility", "visible");
           break;
   }
 }
@@ -367,27 +416,45 @@ function showcontent(num) {
 function hidecontent(num) {
   switch (num) {
       case 1:
-
+          $('.display01').css("visibility", "hidden");
           break;
       case 2:
+          $('.display01, .display2').css("visibility", "hidden");
+          // Clear feedback images when hiding display2
+          const feedbackIds = ['A', 'B', 'C', 'D', 'E'];
+          feedbackIds.forEach(id => {
+              let feedback = document.getElementById("feedback" + id);
+              if (feedback) {
+                  feedback.style.display = "none";
+              }
+          });
+          // Reset selected shapes and outlines
+          const shapeMap = {
+              "A": "shape1-img",
+              "B": "shape2-img", 
+              "C": "shape3-img",
+              "D": "shape4-img",
+              "E": "shape5-img"
+          };
+          Object.values(shapeMap).forEach(imgClass => {
+              let imgElements = document.getElementsByClassName(imgClass);
+              if (imgElements.length > 0) {
+                  imgElements[0].classList.remove("selected");
+                  let letterBox = imgElements[0].parentElement.querySelector('.letter-box');
+                  if (letterBox) {
+                      letterBox.classList.remove("selected");
+                  }
+              }
+          });
+          selectedShapes = [];
+          answerSubmittedInCase2 = false;
           break;
       case 3:
+          $('.display01, .display2').css("visibility", "hidden");
           break;
       case 4:
+          $('.display01, .display2').css("visibility", "hidden");
           break;
-      case 5:
-          break;
-      case 6:
-          $(".display1").css("visibility", "hidden");
-          break;
-      case 7:
-          break;
-      case 8:
-          break;
-      case 9:
-          break;
-
-
   }
 }
 
@@ -682,9 +749,6 @@ function evaluateCase2Answer() {
   $('#judgement_btn').css('pointer-events', 'none').css('cursor', 'default');
   $('#judgement_btn').removeClass('btn_active');
   
-  // Stop current audio if playing
-  parent.surala.audio.clearAllSounds();
-  
   // Correct answers are C and D
   const correctAnswers = ["C", "D"];
   
@@ -735,15 +799,20 @@ function evaluateCase2Answer() {
           parent.surala.character.animate('teacher', 'correct_speak');
       });
       
-      parent.surala.audio.playSound('MG_benar_02', null, function() {
-          if (sliderChanged) {
-              sliderChanged = false;
-          } else {
-              // Continue to case 3 after correct audio
-              seqNo = 3;
-              slideSequence(seqNo);
+      // Play correct sound
+      setTimeout(function() {
+          if (parent.surala && parent.surala.audio) {
+              parent.surala.audio.playSound('MG_benar_02', null, function() {
+                  if (sliderChanged) {
+                      sliderChanged = false;
+                  } else {
+                      // Continue to case 3 after correct audio
+                      seqNo = 3;
+                      slideSequence(seqNo);
+                  }
+              });
           }
-      });
+      }, 200);
   } else {
       // Play wrong animation and audio
       parent.surala.character.animate('student', 'wrong', function() {
@@ -753,15 +822,20 @@ function evaluateCase2Answer() {
           parent.surala.character.animate('teacher', 'wrong_speak');
       });
       
-      parent.surala.audio.playSound('MG_salah_07', null, function() {
-          if (sliderChanged) {
-              sliderChanged = false;
-          } else {
-              // Continue to case 3 after wrong audio
-              seqNo = 3;
-              slideSequence(seqNo);
+      // Play wrong sound
+      setTimeout(function() {
+          if (parent.surala && parent.surala.audio) {
+              parent.surala.audio.playSound('MG_salah_07', null, function() {
+                  if (sliderChanged) {
+                      sliderChanged = false;
+                  } else {
+                      // Continue to case 3 after wrong audio
+                      seqNo = 3;
+                      slideSequence(seqNo);
+                  }
+              });
           }
-      });
+      }, 200);
   }
 }
 
@@ -831,84 +905,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // RESULT BUTTON
+    // RESULT BUTTON - delegate to evaluateCase2Answer function
     let judgementBtn = document.getElementById("judgement_btn");
     if (judgementBtn) {
-        judgementBtn.addEventListener("click", function () {
-            // Hide all feedback images first
-            Object.keys(shapeMap).forEach(shape => {
-                let feedback = document.getElementById("feedback" + shape);
-                if (feedback) {
-                    feedback.style.display = "none";
-                }
-            });
-
-            // Show feedback only for selected shapes
-            selectedShapes.forEach(shape => {
-                let feedback = document.getElementById("feedback" + shape);
-                if (feedback) {
-                    // Determine if the answer is correct
-                    if (correctAnswers.includes(shape)) {
-                        feedback.src = "../../../../../../Common/CeylonSoft/re_primarymath_ind/images/correct4.png";
-                    } else {
-                        feedback.src = "../../../../../../Common/CeylonSoft/re_primarymath_ind/images/wrong2.png";
-                    }
-
-                    // Position the feedback image on top of the shape image
-                    let imgClass = shapeMap[shape];
-                    let imgElements = document.getElementsByClassName(imgClass);
-                    
-                    if (imgElements.length > 0) {
-                        let img = imgElements[0];
-                        let rect = img.getBoundingClientRect();
-                        
-                        // Position feedback image at the top-right corner of the shape
-                        feedback.style.left = (rect.left + window.scrollX + rect.width - 50) + "px";
-                        feedback.style.top = (rect.top + window.scrollY - 25) + "px";
-                        feedback.style.display = "block";
-                        feedback.style.width = "50px";
-                        feedback.style.height = "50px";
-                    }
-                }
-            });
-
-            // Play animation based on correctness
-            let allCorrect = selectedShapes.every(shape => correctAnswers.includes(shape));
-            let hasWrong = selectedShapes.some(shape => !correctAnswers.includes(shape));
-            
-            // Play appropriate animation
-            if (allCorrect && !hasWrong && selectedShapes.length === 2) {
-                // All selected shapes are correct - play correct animation
-                if (typeof parent !== 'undefined' && parent.surala) {
-                    if (parent.surala.character) {
-                        parent.surala.character.animate('student', 'correct', function() {
-                            parent.surala.character.animate('student', 'correct_stop');
-                        });
-                        parent.surala.character.animate('teacher', 'correct', function() {
-                            parent.surala.character.animate('teacher', 'correct_speak');
-                        });
-                    }
-                    if (parent.surala.audio) {
-                        parent.surala.audio.playSound('correct');
-                    }
-                }
-            } else {
-                // Some or all selected shapes are wrong - play wrong animation
-                if (typeof parent !== 'undefined' && parent.surala) {
-                    if (parent.surala.character) {
-                        parent.surala.character.animate('student', 'wrong', function() {
-                            parent.surala.character.animate('student', 'wrong_stop');
-                        });
-                        parent.surala.character.animate('teacher', 'wrong', function() {
-                            parent.surala.character.animate('teacher', 'wrong_speak');
-                        });
-                    }
-                    if (parent.surala.audio) {
-                        parent.surala.audio.playSound('wrong');
-                    }
-                }
-            }
-        });
+        judgementBtn.removeEventListener("click", arguments.callee);
+        // Note: The actual click handler is attached in slideSequence case 2
+        // This DOMContentLoaded listener is kept for compatibility
     }
 });
 
