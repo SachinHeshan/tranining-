@@ -246,7 +246,7 @@ function slideSequence(seqNo) {
             break;
       case 2:
           // Show display2 during second audio and enable answer selection
-          $('.display01').css("visibility", "visible");
+          
           $('.display01, .display2').css("visibility", "visible");
           
           // Reset shapes and answer state for seekbar navigation
@@ -307,7 +307,7 @@ function slideSequence(seqNo) {
           break;
       case 3:
           // Hide display2 and continue with third audio
-          $('.display01').css("visibility", "visible");
+      
           $('.display01, .display2').css("visibility", "visible");
           
           // Reset answer state when navigating via seekbar
@@ -354,7 +354,7 @@ function slideSequence(seqNo) {
           });
           break;
       case 4:
-             $('.display01').css("visibility", "visible");
+           
               $('.display01, .display2').css("visibility", "visible");
           parent.surala.audio.playSound('IPM_S10L03u03_037', null, function() {
             if (sliderChanged) {

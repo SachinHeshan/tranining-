@@ -1,278 +1,196 @@
- 
-
-
-
-
+/* ===========================
+      GENERAL TEXT
+=========================== */
 .title {
     font-size: 25px;
     font-weight: bold;
-    margin: 20px;
-     margin-left: 80px;
-}
-.yellowbox {
-    width: 96%;
-    height: 19%;
-  margin-left: 2%;
-}
-.question-container {
-    margin-top: 30px;
-    margin-bottom: 20px;
-    margin-left: 30px;
-    margin-top: 10px;
-  
+    margin: 20px 0 10px 80px;
 }
 
-.question-text {
-    margin-bottom: 800px;
-    font-size: 1.4em;
-    margin-right: 22%;
-    
-    margin: 4;
-}
-
-.instruction-text {
-      font-size: 1.4em;
-    
-    margin: 0;
-    margin-bottom: -5%;
-}
-
-
-
-
-.judgement_btn{
-    position: absolute;
-    left: 550px; top: 450px;
-}
-
-.judgement_btn:hover {
-    cursor: pointer !important;
-    
-}
-
-.judgement_btn:active {
-    cursor: pointer !important;
-}  
-    
-
-.shape1-img {
-    cursor: pointer;
-    border: 4px solid transparent;
-    border-radius: 10px;
-    margin-bottom: 330px;
-    margin-top: 2%;
-    width: 25%;
-    height: 25%;
-    margin-left: 5px;
-   
-
-}
-.shape1-img.selected {
-    border: 4px solid #ffcc00; /* yellow outline */
-}
-.shape1-wrapper {
-    position: relative;       /* important */
-    display: inline-block;
-    margin-top: 30%;
-}
-.shape2-img {
-    cursor: pointer;
-    border: 4px solid transparent;
-    border-radius: 10px;
-    margin-bottom: 330px;
-    top: 20%;
-    margin-left: 5%;
-    width: 25%;
-    height: 25%;
-}
-.shape2-img.selected {
-    border: 4px solid #ffcc00; /* yellow outline */
-}
-.shape2-wrapper {
-    position: relative;       /* important */
-    display: inline-block;
-}
-
-.shape3-img {
-
-     cursor: pointer;
-    border: 4px solid transparent;
-    border-radius: 10px;
-    margin-bottom: 330px;
-    margin-left: 2%;
-    width: 25%;
-    height: 25%;
-}
-.shape3-img.selected {
-    border: 4px solid #ffcc00; /* yellow outline */
-}
-
-.shape3-wrapper {
-    position: relative;       /* important */
-    display: inline-block;
-}
-.shape4-img{
-     cursor: pointer;
-    border: 4px solid transparent;
-    border-radius: 10px;
-    
-    margin-top: -43%;
-    width: 25%;
-    height: 25%;
-    margin-left: 1%;
-} 
-.shape4-img.selected {
-    border: 4px solid #ffcc00; /* yellow outline */
-    
-}
-.shape4-wrapper {
-    position: relative;       /* important */
-    display: inline-block;
-}
-
-.shape5-img {
-    cursor: pointer;
-    border: 4px solid transparent;
-    border-radius: 10px;
-    width: 25%;
-    height: 25%;
-    display: block;
-    margin-bottom: -4%;
-    margin-top: -43%;
-    margin-left: 32%;
-}
-.shape5-img.selected {
-    border: 4px solid #ffcc00; /* yellow outline */
-}
-
-
+/* ===========================
+      YELLOW BOX
+=========================== */
 .yellow-box {
-    background-color:#feffc4;          /* light yellow background */     /* Light yellow */
-    border: 3px solid #e6b411;      /* Dark yellow/gold border */
-    padding: 10px 10px;
-    width: auto;
-    border-radius: 12px;            /* Smooth rounded corners */
+    background-color: #feffc4;
+    border: 3px solid #e6b411;
+    padding: 15px;
+    width: 88%;
+    border-radius: 12px;
     font-size: 20px;
     line-height: 1.4;
-    max-width: 89%;
     margin-left: 20px;
     font-family: Arial, sans-serif;
 }
 
 .title1 {
-    margin-left: 100px;
-    font-size: 1.em;
-    margin: 0;
     font-weight: bold;
 }
 .title2 {
-    margin-right: -189px;
-    font-size: 1.em;
-    margin: 0;
     font-weight: bold;
 }
-.letter1-box {
-  position: absolute;
-    top: 20px;                /* move up/down */
-    left: 25px;               /* move left/right */
 
+/* ===========================
+      QUESTION & INSTRUCTION
+=========================== */
+.question-container {
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.question-text {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.instruction-text {
+    font-size: 1.4em;
+    margin-bottom: 20px;
+}
+
+/* ===========================
+      SHAPE IMAGE GRID FIX
+=========================== */
+.shape1-wrapper,
+.shape2-wrapper,
+.shape3-wrapper,
+.shape4-wrapper,
+.shape5-wrapper {
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+    margin: 10px;
+}
+
+.shape1-img,
+.shape2-img,
+.shape3-img,
+.shape4-img,
+.shape5-img {
+    width: 100%;
+    height: auto;
+    border: 4px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: -50px;
+}
+
+.shape2-img{
+    margin-bottom: 10px;
+}
+.shape4-img{
+   margin-right: 100px;
+}
+
+
+/* Highlight selected */
+.shape1-img.selected,
+.shape2-img.selected,
+.shape3-img.selected,
+.shape4-img.selected,
+.shape5-img.selected {
+    border: 4px solid #ffcc00;
+}
+
+/* ===========================
+      LETTER BOXES
+=========================== */
+.letter1-box,
+.letter2-box,
+.letter3-box {
     width: 40px;
     height: 35px;
     background: #f1c232;
     border: 2px solid #e0a800;
     border-radius: 6px;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    font-size: 20px;
-    font-family: Arial, sans-serif; 
-    z-index: -100;    /* small rounding like screenshot */
-  
-}
-.letter2-box{
-      position: absolute;
-    top: 29px;                /* move up/down */
-    ;               /* move left/right */
-
-    width: 40px;
-    height: 35px;
-    background: #f1c232;
-    border: 2px solid #e0a800;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 20px;
-    font-family: Arial, sans-serif; 
-    z-index: -100;  
-
-}
-.letter3-box{
-  position: absolute;
-    top: 17px;                /* move up/down */
-    left: 2px;               /* move left/right */
-
-    width: 40px;
-    height: 35px;
-    background: #f1c232;
-    border: 2px solid #e0a800;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 20px;
-    font-family: Arial, sans-serif; 
-    z-index: -100;  
-    
 }
 
-/* Extra smooth blinking animation */
+/* ===========================
+      JUDGEMENT BUTTON
+=========================== */
+.judgement_btn {
+    position: absolute;
+    left: 550px;
+    top: 450px;
+    cursor: pointer !important;
+}
+
+/* ===========================
+   BLINK EFFECT
+=========================== */
 @keyframes smooth-blink {
-    0% {
-        border-width: 3px;
-        border-color: #e6b411;
-        box-shadow: 0 0 0px #ff6600;
-    }
-    50% {
-        border-width: 6px;
-        border-color: #ff8800;
-        box-shadow: 0 0 12px #ff8800;
-    }
-    100% {
-        border-width: 3px;
-        border-color: #e6b411;
-        box-shadow: 0 0 0px #ff6600;
-    }
+    0% { border-width: 3px; border-color: #e6b411; }
+    50% { border-width: 6px; border-color: #ff8800; }
+    100% { border-width: 3px; border-color: #e6b411; }
 }
 
 .yellow-box.blink-outline {
     animation: smooth-blink 2s ease-in-out infinite;
-    transition: all 0.4s ease-in-out;
 }
 
-
-/* Correct and Wrong feedback PNG images */
-#feedbackA,
-#feedbackB,
-#feedbackC,
-#feedbackD,
-#feedbackE {
+/* ===========================
+   FEEDBACK ICONS
+=========================== */
+#feedbackA, #feedbackB, #feedbackC, #feedbackD, #feedbackE {
     position: absolute;
     display: none;
     z-index: 1000;
-    margin-left: 30px;
-    top: 15%;
-    width: 10px;
-    height: 10px;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    width: 20px;
+    height: 20px;
+}
+.red-box1 {
+   position: absolute;
+    top: 271px;                /* move up/down */
+    left: 35px;               /* move left/right */
+    width: 40px;
+    height: 35px;
+    background: #f1c232;
+    z-index: -1000;
     
 }
+.red-box2 {
 
-/* Pop animation for feedback images */
-@keyframes feedback-pop {
-   
+   position: absolute;
+    top: 271px;                /* move up/down */               /* move left/right */
+    width: 40px;
+    height: 35px;
+    background: #f1c232;
+    z-index: -1000;
+    
+}
+.red-box3 {
+    position: absolute;
+    top: 263px;
+                    /* move up/down               /* move left/right */
+    width: 40px;
+    height: 35px;
+    background: #f1c232;
+    z-index: -1000;
+    margin-left: 9px;
+}
+.red-box4 {
+    position: absolute;
+    top: 440px;
+                    /* move up/down               /* move left/right */
+    width: 40px;
+    height: 35px;
+    background: #f1c232;
+    z-index: -1000;
+   margin-right: 9px;
+}
+.red-box5 {
+    position: absolute;
+    top: 405px;
+                    /* move up/down               /* move left/right */
+    width: 40px;
+    height: 35px;
+    background: #f1c232;
+    z-index: -1000;
+    margin-left: 4px;
+    
 }

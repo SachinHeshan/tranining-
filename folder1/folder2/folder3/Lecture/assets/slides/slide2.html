@@ -1,106 +1,115 @@
-﻿﻿
 ﻿﻿<!doctype html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <title>Slide 3</title>
-    <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/css/jquery-ui.css" rel="stylesheet" type="text/css" />
-    <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/css/base.css" rel="stylesheet" type="text/css" />
-    <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/css/slides.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/slide2.css" rel="stylesheet" type="text/css" />
-    <!-- Style of handwriting popup -->
+
+    <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/css/jquery-ui.css" rel="stylesheet" />
+    <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/css/base.css" rel="stylesheet" />
+    <link href="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/css/slides.css" rel="stylesheet" />
+    <link href="assets/css/slide2.css" rel="stylesheet" />
+
+    <!-- Handwriting popup -->
     <link href="../../../../../../../../tegaki_v2/css/char.recog.css" rel="stylesheet" />
 </head>
 
 <body ontouchstart="">
+
+    <!-- PRELOAD -->
     <div id="preload">
         <canvas id="loadBarCanvas" width="120" height="120"></canvas>
         <p>Loading...</p>
     </div>
+
     <section is="gwd-pagedeck" class="gwd-page-container slideContent" id="pagedeck" ondragstart="return false;">
 
-         <p class="title">Ulasan</p>
+        <p class="title">Ulasan</p>
 
-             <!-- DISPLAY 1 (Yellow Box + text) -->
-    <div class="display01">
-                    <div class="yellow-box">
-                    <b class="title1"> ● Segi Banyak Beraturan</b><br>
-                    <p class="title2"> Bangun datar yang memiliki sisi-sisi sama panjang<br>
+        <!-- DISPLAY 1 -->
+        <div class="display01">
+            <div class="yellow-box">
+                <b class="title1"> ● Segi Banyak Beraturan</b><br>
+                <p class="title2">Bangun datar yang memiliki sisi-sisi sama panjang<br>
                     dan sudut-sudut sama besar.</p>
-                </div>
-        
-    </div>
+            </div>
+        </div>
 
-    <!-- DISPLAY 2 (paragraph image + shapes image) -->
-    <div class="display2">
-       <div class="question-container">
-        <p class="question-text">
-            Pilihlah semua segi banyak beraturan di bawah ini.
-        </p>
-        <p class="instruction-text">
-            *Klik huruf untuk jawaban yang benar.
-        </p>
+        <!-- DISPLAY 2 -->
+        <div class="display2">
 
-        <div class="letter-row">
-  
-</div>
-    </div>
-        
-        <div class="row">
-           
+            <div class="question-container">
+                <p class="question-text">
+                    Pilihlah semua segi banyak beraturan di bawah ini.
+                </p>
+                <p class="instruction-text">
+                    *Klik huruf untuk jawaban yang benar.
+                </p>
+
+                <div class="letter-row"></div>
+            </div>
+
+            <!-- SHAPES FIXED WRAPPERS -->
+
+            <div class="shape1-wrapper">
                 <img src="assets/images/slide2/shape1.png" class="shape1-img">
-            
-           
+                <div class="red-box1"></div>
+            </div>
+
+            <div class="shape2-wrapper">
                 <img src="assets/images/slide2/shape2.png" class="shape2-img">
-            
-            
+                <div class="red-box2"></div>
+            </div>
+
+            <div class="shape3-wrapper">
                 <img src="assets/images/slide2/shape3.png" class="shape3-img">
+                <div class="red-box3"></div>
             </div>
 
-            <div class=" 2row">
-            
+            <div class="shape4-wrapper">
                 <img src="assets/images/slide2/shape4.png" class="shape4-img">
-            
-           
-                <img src="assets/images/slide2/shape5.png" class="shape5-img">
+                <div class="red-box4"></div>
             </div>
 
-             <button type="button" class="judgement_btn " id="judgement_btn" style="border: none; cursor: pointer; z-index: 1000; pointer-events: auto;"></button>
-        </div>
-        
+            <div class="shape5-wrapper">
+                <img src="assets/images/slide2/shape5.png" class="shape5-img">
+                <div class="red-box5"></div>
+            </div>
+
+            <!-- JUDGEMENT BUTTON -->
+            <button type="button" class="judgement_btn" id="judgement_btn"
+                style="border: none; cursor: pointer; z-index: 1000; pointer-events: auto;"></button>
+
         </div>
 
-    </div>
-
-    <!-- JUDGEMENT BUTTON -->
- 
-  
-     
     </section>
+
+    <!-- SEEK BAR -->
     <div class="seekBar">
-        <div class="seekbar_bgnd"> </div>
-        <div class="seekbar_fill" id="sliderVal"> </div>
-        <div class="seekbar_fgnd"> </div>
+        <div class="seekbar_bgnd"></div>
+        <div class="seekbar_fill" id="sliderVal"></div>
+        <div class="seekbar_fgnd"></div>
         <div class="seeBarDrag">
             <div class="seekbarArea">
-                <div class="seekBarSlider seekBarSlider_10" id="seekBarSlider"> </div>
+                <div class="seekBarSlider seekBarSlider_10" id="seekBarSlider"></div>
             </div>
         </div>
     </div>
+
 </body>
-<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery-1.12.3.min.js"></script>
-<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery-ui.js"></script>
-<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery.ui.touch-punch.js"></script>
-<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/js/howler.core.js"></script>
-<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/easeljs-NEXT.combined.js"></script>
-<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/tweenjs-NEXT.min.js"></script>
-<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/slideTutorial.js"></script>
-<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/slideManager.js"></script>
-<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/seekBar.js"></script>
-<script type="text/javascript" src="assets/js/slide2.js"></script>
-<script type="text/javascript" src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/lms_lecture.js"></script>
-<!-- Handwriting popup js file -->
+
+<!-- SCRIPTS -->
+<script src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery-1.12.3.min.js"></script>
+<script src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery-ui.js"></script>
+<script src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/jquery.ui.touch-punch.js"></script>
+<script src="../../../../../../common/CeylonSoft/re_primarymath_ind/js/howler.core.js"></script>
+<script src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/easeljs-NEXT.combined.js"></script>
+<script src="../../../../../../common/CeylonSoft/re_primarymath_ind/scripts/tweenjs-NEXT.min.js"></script>
+<script src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/slideTutorial.js"></script>
+<script src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/slideManager.js"></script>
+<script src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/seekBar.js"></script>
+<script src="assets/js/slide2.js"></script>
+<script src="../../../../../../common/CeylonSoft/re_primarymath_ind/slides/js/lms_lecture.js"></script>
 <script src="../../../../../../../../tegaki_v2/js/char.recog.v2.min.js"></script>
 
 </html>
