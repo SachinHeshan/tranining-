@@ -254,7 +254,7 @@ function slideSequence(seqNo) {
           $('.display2').css("visibility", "visible");
           
           // Enable shape selection ONLY in case 2
-          shapeSelectionEnabled = true;
+          shapeSelectionEnabled = false; // Disabled during audio, enabled when seekbar stops
           
           // Reset shapes and answer state for seekbar navigation
           if (pauseSeekbar || sliderChanged) {
@@ -284,18 +284,9 @@ function slideSequence(seqNo) {
               });
           }
           
-          // Enable shape selection and judgement button during case 2 audio
-          setTimeout(function() {
-              if (!pauseSeekbar) {
-                  $("#judgement_btn").css('pointer-events', 'auto').css('cursor', 'pointer');
-                  $('#judgement_btn').addClass('btn_active');
-                  // Attach click handler for case 2 answer evaluation
-                  $('#judgement_btn').off('click').on('click', function(e) {
-                      e.preventDefault();
-                      evaluateCase2Answer();
-                  });
-              }
-          }, 500);
+          // Disable button during audio playback
+          $("#judgement_btn").css('pointer-events', 'none').css('cursor', 'default');
+          $('#judgement_btn').removeClass('btn_active');
           
           parent.surala.audio.playSound('IPM_S10L03u03_035', null, function() {
             if (sliderChanged) {
@@ -304,6 +295,18 @@ function slideSequence(seqNo) {
                 // If no answer submitted, PAUSE seekbar and wait for answer
                 pauseSeekbar = true;
                 parent.surala.slideNavigation.blinkNextBtn(false);
+                
+                // Enable shape selection ONLY when seekbar stops
+                shapeSelectionEnabled = true;
+                
+                // Enable button so kids can submit answer after audio ends
+                $("#judgement_btn").css('pointer-events', 'auto').css('cursor', 'pointer');
+                $('#judgement_btn').addClass('btn_active');
+                // Ensure click handler is attached
+                $('#judgement_btn').off('click').on('click', function(e) {
+                    e.preventDefault();
+                    evaluateCase2Answer();
+                });
             }
             // If answer was submitted, the evaluateCase2Answer function will handle progression to case 3 and 4
           });
@@ -808,27 +811,7 @@ function evaluateCase2Answer() {
           let feedback = document.getElementById("feedback" + shape);
           if (feedback) {
               feedback.src = "../../../../../../Common/CeylonSoft/re_primarymath_ind/images/correct4.png";
-              
-              // Position the feedback image on the shape
-              const shapeMap = {
-                  "A": "shape1-img",
-                  "B": "shape2-img", 
-                  "C": "shape3-img",
-                  "D": "shape4-img",
-                  "E": "shape5-img"
-              };
-              let imgClass = shapeMap[shape];
-              let imgElements = document.getElementsByClassName(imgClass);
-              
-              if (imgElements.length > 0) {
-                  let img = imgElements[0];
-                  let rect = img.getBoundingClientRect();
-                  feedback.style.left = (rect.left + window.scrollX + rect.width - 35) + "px";
-                  feedback.style.top = (rect.top + window.scrollY + 10) + "px";
-                  feedback.style.width = "30px";
-                  feedback.style.height = "30px";
-                  feedback.classList.add("show");
-              }
+              feedback.classList.add("show");
           }
       });
       
@@ -874,27 +857,7 @@ function evaluateCase2Answer() {
           } else {
               feedback.src = "../../../../../../Common/CeylonSoft/re_primarymath_ind/images/wrong2.png";
           }
-          
-          // Position the feedback image on the shape
-          const shapeMap = {
-              "A": "shape1-img",
-              "B": "shape2-img", 
-              "C": "shape3-img",
-              "D": "shape4-img",
-              "E": "shape5-img"
-          };
-          let imgClass = shapeMap[shape];
-          let imgElements = document.getElementsByClassName(imgClass);
-          
-          if (imgElements.length > 0) {
-              let img = imgElements[0];
-              let rect = img.getBoundingClientRect();
-              feedback.style.left = (rect.left + window.scrollX + rect.width - 35) + "px";
-              feedback.style.top = (rect.top + window.scrollY + 10) + "px";
-              feedback.style.width = "30px";
-              feedback.style.height = "30px";
-              feedback.classList.add("show");
-          }
+          feedback.classList.add("show");
       }
   });
   
@@ -987,13 +950,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Add feedback image containers to the DOM
+    // Positioning is handled by CSS
     Object.keys(shapeMap).forEach(shape => {
         let feedbackImg = document.createElement("img");
         feedbackImg.id = "feedback" + shape;
-        feedbackImg.style.position = "absolute";
-        feedbackImg.style.zIndex = "1000";
-        feedbackImg.style.width = "30px";
-        feedbackImg.style.height = "30px";
         document.body.appendChild(feedbackImg);
     });
 

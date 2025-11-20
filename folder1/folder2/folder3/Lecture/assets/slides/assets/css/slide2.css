@@ -174,14 +174,40 @@
 #feedbackA, #feedbackB, #feedbackC, #feedbackD, #feedbackE {
     position: absolute;
     display: none;
-    z-index: 1000;
-    width: 60px;
-    height: 60px;
+    z-index: 1001;
+    width: 30px;
+    height: 30px;
     object-fit: contain;
 }
 
 #feedbackA.show, #feedbackB.show, #feedbackC.show, #feedbackD.show, #feedbackE.show {
     display: block;
+}
+
+/* Individual feedback positioning - aligned with red boxes */
+#feedbackA {
+    top: 276px;
+    left: 13px;
+}
+
+#feedbackB {
+    top: 276px;
+    left: 266px;
+}
+
+#feedbackC {
+    top: 270px;
+    left: 530px;
+}
+
+#feedbackD {
+    top: 420px;
+    left: 13px;
+}
+
+#feedbackE {
+    top: 413px;
+    left: 266px;
 }
 
 
