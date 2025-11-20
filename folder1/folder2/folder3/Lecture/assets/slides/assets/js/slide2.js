@@ -247,7 +247,7 @@ function slideSequence(seqNo) {
       case 2:
           // Show display2 during second audio and enable answer selection
           
-          $('.display01, .display2').css("visibility", "visible");
+          $('.display2').css("visibility", "visible");
           
           // Reset shapes and answer state for seekbar navigation
           if (pauseSeekbar || sliderChanged) {
@@ -304,7 +304,7 @@ function slideSequence(seqNo) {
       case 3:
           // Hide display2 and continue with third audio
       
-          $('.display01, .display2').css("visibility", "visible");
+         
           
           // Reset answer state when navigating via seekbar
           if (pauseSeekbar || sliderChanged) {
@@ -355,7 +355,7 @@ function slideSequence(seqNo) {
           break;
       case 4:
            
-              $('.display01, .display2').css("visibility", "visible");
+             
           parent.surala.audio.playSound('IPM_S10L03u03_037', null, function() {
             if (sliderChanged) {
                 sliderChanged = false;
@@ -374,7 +374,7 @@ function showcontent(num) {
           $('.display01').css("visibility", "visible");
           break;
       case 2:
-          $('.display01, .display2').css("visibility", "visible");
+          $('.display2').css("visibility", "visible");
           if (seekBarStatus !== "ended") {
               answerSubmittedInCase2 = false;
               // Remove selected class from all shapes
@@ -408,14 +408,13 @@ function showcontent(num) {
           }
           break;
       case 3:
-          $('.display01, .display2').css("visibility", "visible");
+          
           break;
       case 4:
-          $('.display01, .display2').css("visibility", "visible");
+         
           break;
   }
 }
-
 
 function hidecontent(num) {
   switch (num) {
@@ -423,7 +422,7 @@ function hidecontent(num) {
           $('.display01').css("visibility", "hidden");
           break;
       case 2:
-          $('.display01, .display2').css("visibility", "hidden");
+          $(' .display2').css("visibility", "hidden");
           // Clear feedback images when hiding display2
           const feedbackIds = ['A', 'B', 'C', 'D', 'E'];
           feedbackIds.forEach(id => {
@@ -459,10 +458,10 @@ function hidecontent(num) {
           answerSubmittedInCase2 = false;
           break;
       case 3:
-          $('.display01, .display2').css("visibility", "hidden");
+       
           break;
       case 4:
-          $('.display01, .display2').css("visibility", "hidden");
+         
           break;
   }
 }
@@ -870,6 +869,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // user selected shapes - now using global variable
     // let selectedShapes = [];
+    
+    // Hide all red boxes initially
+    Object.values(shapeMap).forEach(imgClass => {
+        let imgElements = document.getElementsByClassName(imgClass);
+        if (imgElements.length > 0) {
+            let img = imgElements[0];
+            let redBox = img.nextElementSibling;
+            while (redBox && !redBox.className.match(/red-box/)) {
+                redBox = redBox.nextElementSibling;
+            }
+            if (redBox) {
+                redBox.style.display = "none";
+            }
+        }
+    });
 
     // Add feedback image containers to the DOM
     Object.keys(shapeMap).forEach(shape => {
