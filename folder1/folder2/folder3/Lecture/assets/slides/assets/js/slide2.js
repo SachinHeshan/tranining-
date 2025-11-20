@@ -760,6 +760,65 @@ function evaluateCase2Answer() {
   // Correct answers are C and D
   const correctAnswers = ["C", "D"];
   
+  // Check if no answer provided (empty submission)
+  if (selectedShapes.length === 0) {
+      // Show correct answers with correct feedback marks
+      correctAnswers.forEach(shape => {
+          let feedback = document.getElementById("feedback" + shape);
+          if (feedback) {
+              feedback.src = "../../../../../../Common/CeylonSoft/re_primarymath_ind/images/correct4.png";
+              
+              // Position the feedback image on the shape
+              const shapeMap = {
+                  "A": "shape1-img",
+                  "B": "shape2-img", 
+                  "C": "shape3-img",
+                  "D": "shape4-img",
+                  "E": "shape5-img"
+              };
+              let imgClass = shapeMap[shape];
+              let imgElements = document.getElementsByClassName(imgClass);
+              
+              if (imgElements.length > 0) {
+                  let img = imgElements[0];
+                  let rect = img.getBoundingClientRect();
+                  feedback.style.left = (rect.left + window.scrollX + rect.width - 35) + "px";
+                  feedback.style.top = (rect.top + window.scrollY + 10) + "px";
+                  feedback.style.width = "30px";
+                  feedback.style.height = "30px";
+                  feedback.classList.add("show");
+              }
+          }
+      });
+      
+      // Play wrong animation and audio for empty submission
+      parent.surala.character.animate('student', 'wrong', function() {
+          parent.surala.character.animate('student', 'wrong_stop');
+      });
+      parent.surala.character.animate('teacher', 'wrong', function() {
+          parent.surala.character.animate('teacher', 'wrong_speak');
+      });
+      
+      // Play wrong sound
+      setTimeout(function() {
+          if (parent.surala && parent.surala.audio) {
+              parent.surala.audio.playSound('MG_salah_07', null, function() {
+                  if (sliderChanged) {
+                      sliderChanged = false;
+                  } else {
+                      // Resume seekbar after feedback
+                      pauseSeekbar = false;
+                      seqNo = 3;
+                      slideSequence(seqNo);
+                      playSeekbar();
+                  }
+              });
+          }
+      }, 200);
+      
+      return; // Exit function after handling empty submission
+  }
+  
   // Check if answer is correct
   let allCorrect = selectedShapes.length === 2 && 
                    selectedShapes.every(shape => correctAnswers.includes(shape)) &&
