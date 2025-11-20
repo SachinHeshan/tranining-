@@ -233,6 +233,10 @@ function slideSequence(seqNo) {
   switch (seqNo) {
       case 1: 
             $('.display01').css("visibility", "visible");
+            
+            // Disable shape selection in case 1
+            shapeSelectionEnabled = false;
+            
             if (parent.surala && parent.surala.audio) {
                 parent.surala.audio.playSound('IPM_S10L03u03_034', null, function() {
                     if (sliderChanged) {
@@ -248,6 +252,9 @@ function slideSequence(seqNo) {
           // Show display2 during second audio and enable answer selection
           
           $('.display2').css("visibility", "visible");
+          
+          // Enable shape selection ONLY in case 2
+          shapeSelectionEnabled = true;
           
           // Reset shapes and answer state for seekbar navigation
           if (pauseSeekbar || sliderChanged) {
@@ -304,7 +311,8 @@ function slideSequence(seqNo) {
       case 3:
           // Hide display2 and continue with third audio
       
-         
+          // Disable shape selection in case 3
+          shapeSelectionEnabled = false;
           
           // Reset answer state when navigating via seekbar
           if (pauseSeekbar || sliderChanged) {
@@ -355,12 +363,39 @@ function slideSequence(seqNo) {
           break;
       case 4:
            
+          // Disable shape selection in case 4
+          shapeSelectionEnabled = false;
              
           parent.surala.audio.playSound('IPM_S10L03u03_037', null, function() {
             if (sliderChanged) {
                 sliderChanged = false;
             } else {
+                // End the slide sequence and stop all running processes
                 parent.surala.character.stopAllAnimation();
+                parent.surala.audio.stopAllNonLoopSounds();
+                
+                // Stop the createjs Ticker to prevent tick function from running
+                createjs.Ticker.removeEventListener("tick", tick);
+                
+                // Clear all intervals and timeouts
+                clearInterval(interVal);
+                clearTimeout(timeOut);
+                clearTimeout(seekBarTimer);
+                
+                // Stop seekbar and mark as ended
+                pauseSeekbar = true;
+                seekBarStatus = "ended";
+                slideTutorial.enableSeekbar = false;
+                
+                // Set seekbar to end position
+                currentSliderPos = seekbarLength;
+                $('#seekBarSlider').css({ left: seekbarLength + 'px' });
+                $('#sliderVal').css({ width: seekbarLength + 'px' });
+                
+                // Enable next button
+                parent.surala.slideNavigation.blinkNextBtn(true);
+                parent.surala.slideNavigation.playPauseState = true;
+                parent.surala.slideNavigation.playStatus = "pause";
             }
           });
           break;
@@ -372,11 +407,14 @@ function showcontent(num) {
   switch (num) {
       case 1:
           $('.display01').css("visibility", "visible");
+          shapeSelectionEnabled = false;
           break;
       case 2:
           $('.display2').css("visibility", "visible");
           if (seekBarStatus !== "ended") {
               answerSubmittedInCase2 = false;
+              // Enable shape selection when showing case 2
+              shapeSelectionEnabled = true;
               // Remove selected class from all shapes
               const shapeMap = {
                   "A": "shape1-img",
@@ -408,10 +446,10 @@ function showcontent(num) {
           }
           break;
       case 3:
-          
+          shapeSelectionEnabled = false;
           break;
       case 4:
-         
+          shapeSelectionEnabled = false;
           break;
   }
 }
@@ -423,6 +461,9 @@ function hidecontent(num) {
           break;
       case 2:
           $(' .display2').css("visibility", "hidden");
+          
+          // Disable shape selection when hiding case 2
+          shapeSelectionEnabled = false;
           // Clear feedback images when hiding display2
           const feedbackIds = ['A', 'B', 'C', 'D', 'E'];
           feedbackIds.forEach(id => {
@@ -458,10 +499,10 @@ function hidecontent(num) {
           answerSubmittedInCase2 = false;
           break;
       case 3:
-       
+          shapeSelectionEnabled = false;
           break;
       case 4:
-         
+          shapeSelectionEnabled = false;
           break;
   }
 }
@@ -912,6 +953,7 @@ function evaluateCase2Answer() {
 
 // Shape selection and feedback functionality
 var selectedShapes = [];
+var shapeSelectionEnabled = false; // Control when shapes can be selected
 
 document.addEventListener("DOMContentLoaded", function () {
     // shape IDs mapped to image classes
@@ -964,6 +1006,11 @@ document.addEventListener("DOMContentLoaded", function () {
             let img = imgElements[0];
             
             img.addEventListener("click", function () {
+                // Only allow selection during case 2 when enabled
+                if (!shapeSelectionEnabled) {
+                    return;
+                }
+                
                 // Get the corresponding red box
                 let redBox = img.nextElementSibling;
                 while (redBox && !redBox.className.match(/red-box/)) {

@@ -73,14 +73,33 @@
     cursor: pointer;
     margin-top: -50px;
 }
+.shape1-img{
+   margin-left: -50px;
+}
 
 .shape2-img{
     margin-bottom: 10px;
 }
-.shape4-img{
-   margin-right: 100px;
-   
+
+.shape3-img{
+     width: 100%;
+    height: auto;
+    border: 4px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: -50px;
+    
 }
+.shape4-img{
+
+    margin-bottom: 25px;
+}
+.shape5-img{
+   margin-left: -4px;
+  
+ 
+}
+
 
 
 
@@ -169,7 +188,7 @@
 .red-box1 {
    position: absolute;
     top: 271px;                /* move up/down */
-    left: 35px;               /* move left/right */
+    left: 8px;               /* move left/right */
     width: 40px;
     height: 35px;
     background: #f1c232;
@@ -188,7 +207,7 @@
 }
 .red-box3 {
     position: absolute;
-    top: 263px;
+    top: 265px;
                     /* move up/down               /* move left/right */
     width: 40px;
     height: 35px;
@@ -198,22 +217,24 @@
 }
 .red-box4 {
     position: absolute;
-    top: 440px;
+    top: 415px;
                     /* move up/down               /* move left/right */
     width: 40px;
     height: 35px;
     background: #f1c232;
     z-index: -1000;
    margin-right: 9px;
+   margin-left: -4px;
 }
 .red-box5 {
     position: absolute;
-    top: 405px;
+    top: 408px;
                     /* move up/down               /* move left/right */
     width: 40px;
     height: 35px;
     background: #f1c232;
     z-index: -1000;
-    margin-left: 4px;
+    margin-left: -2px;
+    
     
 }
