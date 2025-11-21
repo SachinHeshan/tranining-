@@ -1,4 +1,4 @@
-﻿/* Surala Japanese */
+﻿﻿/* Surala Japanese */
 /* unit Manager | entry point */
 /* global variables */
 
@@ -497,12 +497,10 @@ surala.start_title = function () {
     surala.character.teacherTalk(true);
     surala.slideTutorial.playNext();
   });
-  surala.slideTutorial.trigger("IPM_S10L04u09_001");
-  surala.slideTutorial.trigger("IPM_S10L04u09_002");
-  surala.slideTutorial.trigger("IPM_S10L04u09_003");
-  surala.slideTutorial.trigger("IPM_S10L04u09_004");
-  surala.slideTutorial.trigger("IPM_S10L04u09_005", ["titleText"]);
-  surala.slideTutorial.trigger("IPM_S10L04u09_006");
+  surala.slideTutorial.trigger("IPM_S10L04u010_001");
+  surala.slideTutorial.trigger("IPM_S10L04u010_002");
+  surala.slideTutorial.trigger("IPM_S10L04u010_003" ,["titleText"]);
+  surala.slideTutorial.trigger("IPM_S10L04u010_004");
   surala.slideTutorial.trigger("IPM_S10L01u02_007", null, function () {
     skipIntro();
   });
