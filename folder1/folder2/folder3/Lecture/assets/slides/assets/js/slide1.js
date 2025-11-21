@@ -269,8 +269,6 @@ function slideSequence(seq) {
 
     switch (seq) {
         case 1:
-            // Show display1
-            $('.display1').css('visibility', 'visible');
             if (parent.surala && parent.surala.audio) {
                 parent.surala.audio.playSound('IPM_S10L04u09_007', null, () => {
                     slideSequence(seq + 1);
@@ -279,8 +277,6 @@ function slideSequence(seq) {
             break;
 
         case 2:
-            // Show display1 before playing audio
-            $('.display1').css('visibility', 'visible');
             if (parent.surala && parent.surala.audio) {
                 parent.surala.audio.playSound('IPM_S10L04u010_005', null, () => {
                     slideSequence(seq + 1);
@@ -290,7 +286,6 @@ function slideSequence(seq) {
 
         case 3:
             // Only proceed if answered, or if seeking past it (handled by updateContentForSequence)
-             $('.display1').css('visibility', 'visible');
             if (!answerSubmitted && seqNo < 3) return; 
 
             if (parent.surala && parent.surala.audio) {
@@ -301,7 +296,6 @@ function slideSequence(seq) {
             break;
 
         case 4:
-             $('.display1').css('visibility', 'visible');
             if (parent.surala && parent.surala.audio) {
                 parent.surala.audio.playSound('IPM_S10L04u010_S001', null, () => {
                     slideSequence(seq + 1);
@@ -310,7 +304,6 @@ function slideSequence(seq) {
             break;
 
         case 5:
-             $('.display1').css('visibility', 'visible');
             if (parent.surala && parent.surala.audio) {
                 parent.surala.audio.playSound('IPM_S10L04u010_007', null, () => {
                     slideSequence(seq + 1);
@@ -319,7 +312,6 @@ function slideSequence(seq) {
             break;
 
         case 6:
-             $('.display1').css('visibility', 'visible');
             if (parent.surala && parent.surala.character) {
                  parent.surala.character.teacherTalk(false);
             }
@@ -336,7 +328,8 @@ function slideSequence(seq) {
             $('.display1').css('visibility', 'visible');
             if (parent.surala && parent.surala.audio) {
                 parent.surala.audio.playSound('IPM_S10L04u09_012', null, () => {
-                    slideSequence(seq + 1);
+                    // Stop and wait for user interaction
+                    if (!answerSubmitted) enableActivity();
                 });
             }
             break;
@@ -473,7 +466,7 @@ function evaluateActivity() {
             if (typeof playSeekbar === 'function') playSeekbar(); 
             
             // After resuming the seekbar, call the next sequence
-            slideSequence(3);
+            slideSequence(8); // Continue to case 8
         });
     }
 
