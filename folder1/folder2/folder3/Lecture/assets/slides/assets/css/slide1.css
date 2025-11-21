@@ -1,180 +1,143 @@
-/* -------------------------------------------------
-   BASIC HIDE / SHOW
-   ------------------------------------------------- */
-.display1 { visibility: hidden; }
-
-/* -------------------------------------------------
-   PAGE LAYOUT
-   ------------------------------------------------- */
-html, body { width:100%; height:100%; margin:0; background:transparent; }
-.slideContent { position:relative; width:750px; height:560px; margin:0 auto; overflow:hidden; }
-
-/* -------------------------------------------------
-   TITLE & SLIDE NUMBER
-   ------------------------------------------------- */
 .title {
-    position: absolute;
-    left: 64px; top: 20px;
-    font-family: 'Times NR MT Pro Medium';
-    font-size: 25px;
     font-weight: bold;
+    font-size: 22px;
+    margin-left: 60px;
+    margin-top: 20px;
 }
 
 
-
-
-
-
-
-
-/* -------------------------------------------------
-   SECTION ① – QUESTION
-   ------------------------------------------------- */
-.section1 { position: relative; margin-top: 60px; }
-.section1 .circle-num { left: 20px; top: 0; }
-
-.question-text {
-    position: absolute;
-    left: 60px; top: 0;
-    width: 650px;
-    font-family: 'Times NR MT Pro Medium';
-    font-size: 25px;
-    line-height: 1.4;
+.instruction {
+    font-size: 24px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-left: 20px;
 }
 
+.container {
+    margin-left: 10px;
+}
 
-
-.gwd-rect-g7cr {
-    position: absolute;
-    left: 68px;
-    top: 47px;
-    width: 75px;
-    height: 46px;
-    font-family: 'DFPHSGothic-W5';
-    font-size: 30px;
+.row {
+    display: flex;
+    align-items: center;
+    margin: 12px 0;
+}
+.correct-box {
+    width: 160px;
+    padding: 5px;
+    border: 2px solid #aaa;
+    font-size: 20px;
+    margin-left: 10px;
+    color: red;
     text-align: center;
     border-radius: 4px;
-    background: #fff;
-    caret-color: transparent;
 }
 
-.gwd-rect-g7cr:focus {
-    caret-color: black;        
-    outline: none;              
+.formula-1{
+    margin-left: -23px;
 }
-
-
-
-.degree {
-    position: absolute;
-    left: 150px; 
-    top: 39px;
-    font-size: 28px;
-    font-weight: bold;
-    color: #000;
-    z-index: 2; /* Ensure it's above the button */
-}
-.judgement_btn{
-    position: absolute;
-    left: 180px; top: 50px;
-}
-
-.judgement_btn:hover {
-    cursor: pointer !important;
-}
-
-.judgement_btn:active {
-    cursor: pointer !important;
-}
-
-/* Correct answer display under the input box */
-#correctAnswerDisplay {
-    font-size: 30px;
-    position: absolute;
-    top: 100px;
-    left: 61%;
-    transform: translateX(-50%);
-    font-weight: bold;
-    color: #cc0000;
-    width: 100%;
-    height: 100px;
-}
-
-/* -------------------------------------------------
-   SECTION ② – YELLOW BOX
-   ------------------------------------------------- */
-.section2 { position: relative; margin-top: 30px; }
-.section2 .circle-num { left: 20px; top: 10px; }
-
-.yellow-box {
-    top: 140px;
-      background: #feffc4;          /* light yellow background */
-      border: 2px solid #ff4d00;    /* yellow border */
-      border-radius: 20px;          /* rounded corners */
-      padding: 20px 25px;
-      max-width: 590px;
-      height: 130px;
-      margin: 10px auto;
-      font-family: "Segoe UI", Tahoma, sans-serif;
-      position: relative;
-     
-    }
-
-
-.box-title {
-    font-family: 'Times NR MT Pro Medium';
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.box-text {
-   
-    font-family: 'Times NR MT Pro Medium';
-    font-size: 20px;
-    margin: 8px 0;
-}
-
-.triangle-in-box {
-
-    left: 20%;
-    margin: 15px auto;
-    width: 120px;
-    height: auto;
-    margin-top: -10px;
-}
-
-.formula {
-    color: #fe0000;
     
-    font-family: 'Times NR MT Pro Medium';
-    font-size: 24px;
-    margin-top: -70px;
+
+.formula-2 {
+    font-size: 25px;
+    margin-left: 10px;
+}
+
+.formula-3 {
+    font-size: 25px;
+    margin-left: 8px;
+    margin-top: 10px;
+}
+.formula-4 {
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: -29px;
+}
+.formula-5 {
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: 17px;
+}
+
+.correct-box {
+    width: 160px;
+    padding: 5px;
+    border: 2px solid #000000;
+    font-size: 20px;
+    margin-left: 25px;
+    color: red;
     text-align: center;
-    width: 100%;
+    border-radius: 0;
 }
-.gwd-img-1v0i{
-    width: 80px;
-    height: 50px;
+
+
+.dropzone {
+    width: 160px;
+    height: 33px;
+    border: 2px dashed #888;
+    margin-left: 15px;
+    border-radius: 4px;
+    padding: 3px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.choices-box {
+    width: 350px;
+    height: 70px;
+    border: 5px solid #9AC75E;
+    padding: 20px;
+    margin: 30px 0 20px 80px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.choice {
+    display: inline-block;
+    margin: 10px;
+    margin-top: -4px;
+    font-size: 25px;
+    cursor: grab;
+}
+
+.choice.dragging {
+    opacity: 0.5;
+}
+
+.correct {
+    border: 3px solid green !important;
+}
+
+.wrong {
+    border: 3px solid red !important;
+}
+
+.judgement_btn {
     position: absolute;
-    left: 65px;
-    top: 45px; /* Position below the input box */
-    z-index: 10; /* Behind the input box and button */
+    left: 580px;
+    top: 480px;
+    cursor: pointer !important;
 }
+.formula-1 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 25px;
+        }
 
+        /* Fraction styling */
+        .fraction {
+            font-size: 21px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            vertical-align: middle;
+            margin: 0 5px;
+            margin-left: 34px;
+        }
+        .fraction .numerator {
+            padding: 0 5px 2px 5px;
+            border-bottom: 2px solid #000;
+        }
 
-
-/* -------------------------------------------------
-   SECTION ③ – BOTTOM TRIANGLE (NO CALL-OUTS)
-   ------------------------------------------------- */
-.section3 { position: relative; margin-top: 40px; text-align: center; }
-.section3 .circle-num { left: 20px; top: 0; }
-
-.big-triangle {
- margin-top: -65px;
- margin-bottom: 20px;
-    width: 510px;
-    height: 520px;
-}
-
-
+        

@@ -172,7 +172,7 @@ function slideSequence(seq) {
     switch (seq) {
         case 1:
             if (parent.surala && parent.surala.audio) {
-                parent.surala.audio.playSound('IPM_S10L01u05_005', null, () => {
+                parent.surala.audio.playSound('IPM_S10L04u09_007', null, () => {
                     slideSequence(seq + 1);
                 });
             }

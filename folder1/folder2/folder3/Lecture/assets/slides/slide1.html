@@ -29,69 +29,78 @@
 <div id="preload"><canvas id="loadBarCanvas" width="120" height="120"></canvas><p>Loading...</p></div>
 
 <section class="slideContent" id="pagedeck">
+  
 
+    <div class="display1">
     <!-- TITLE -->
-    <p class="title">Ulasan</p>
+    <p class="title">■ Ulasan </p>
+    <p class="instruction">Tarik dan simpan nama bangun datar di bawah ini <br>
+        sesuai dengan rumus luasnya. </p>
 
+        <div class="container">
 
-    <!-- MAIN CONTENT (hidden until sequence) -->
-    <div class="section">
-        
-
-        <!-- ① QUESTION -->
-        <div class="section section1 display1">
-            
-            <p class="question-text">
-                Berapakah jumlah dari ketiga sudut dalam segitiga?
-            </p>
-
-
-            <!-- Input box -->
-            <input type="text" id="answerBox" class="gwd-rect-g7cr" placeholder="" style="z-index: 20;">
-            <span class="degree">°</span>
-            <img src="assets/images/slide5/button.png" id="button" class="gwd-img-1v0i" style="z-index: 10;">
-
-            <!-- Judgement button -->
-            <button type="button" class="judgement_btn " id="judgement_btn" style="border: none; cursor: pointer; z-index: 1000; pointer-events: auto;"></button>
-
-            <!-- Container to show the correct answer under the box -->
-            <span id="correctAnswerDisplay"   class="correctAnswerDisplay" >
-             180°
+   <div class="formula-1">
+            <span class="fraction">
+                <span class="numerator">1</span>
+                <span class="denominator">2</span>
             </span>
+            × Alas × Tinggi ..................................Luas
+            <div class="correct-box">Segitiga</div>
 
-            
-           
-        </div>
-        
-
-        <!-- ② YELLOW EXPLANATION BOX -->
-        <div class="section section2 display2">
-           
-            <div class="yellow-box">
-                <p class="box-title">Menghitung Besar Sudut Dalam Segitiga</p>
-                <p class="box-text">
-                    Jumlah dari ketiga sudut dalam segitiga adalah <strong>180°</strong>.
-                </p>
-
-                <!-- Triangle PNG inside yellow box -->
-                <img src="assets/images/slide1/Trangal.png" class="triangle-in-box" alt="triangle">
-
-                <p class="formula">
-                    <span class="angle">∠A</span> + <span class="angle">∠B</span> + <span class="angle">∠C</span> = 180°
-                </p>
-            </div>
         </div>
 
-        <!-- ③ BOTTOM TRIANGLE (NO CALL-OUTS) -->
-        <div class="section section3 display3">
-         
-
-            <!-- Large triangle PNG (with "Sudut dalam" labels already in PNG) -->
-            <img src="assets/images/slide1/side1.png" class="big-triangle" alt="big triangle">
-        </div>
-
-       
+    <div class="row">
+        <div class="formula-2">π × r × r .................................................... Luas</div>
+         <div class="correct-box">Lingkaran</div>
     </div>
+
+    <div class="row">
+        <div class="formula-3">Panjang × Lebar ........................................Luas</div>
+          <div class="correct-box">Persegi Panjang</div>
+    </div>
+
+    <div class="row">
+        <div class="formula-4">
+            <span class="fraction">
+                <span class="numerator">Sudut pusat</span>
+                <span class="denominator">360°</span>
+            </span>
+            × Luas lingkaran <span class="dots">....................</span> Luas</div>
+         <div class="correct-box">Juring</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="formula-5">Sisi × Sisi .................................................. Luas</div>
+          <div class="correct-box">Persegi</div>
+    </div>
+
+</div>
+
+<div class="choices-box">
+    <div class="choice" draggable="true">Persegi</div>
+    <div class="choice" draggable="true">Segitiga</div>
+    <div class="choice" draggable="true">Lingkaran</div>
+    <div class="choice" draggable="true">Persegi Panjang</div>
+    
+<div class="choice" draggable="true">Juring</div>
+</div>
+
+  <button type="button" class="judgement_btn" id="judgement_btn"
+                style="border: none; cursor: pointer; z-index: 1000; pointer-events: auto;"></button> 
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+   
 
 </section>
 <div class="seekBar">

@@ -10,12 +10,13 @@
             { "name": "wrong", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/wrong" },
             { "name": "MG_benar_02", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_benar_02" },
             { "name": "MG_salah_07", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_07" },
-            { "name": "IPM_S10L01u05_005", "src": "vo/IPM_S10L01u05_005" },
-            { "name": "IPM_S10L01u05_006", "src": "vo/IPM_S10L01u05_006" },
-            { "name": "IPM_S10L01u05_007", "src": "vo/IPM_S10L01u05_007" },
-            { "name": "IPM_S10L01u05_008", "src": "vo/IPM_S10L01u05_008" },
-            { "name": "IPM_S10L01u05_009", "src": "vo/IPM_S10L01u05_009" },
-            { "name": "IPM_S10L01u05_010", "src": "vo/IPM_S10L01u05_010" }
+            { "name": "IPM_S10L04u09_007", "src": "vo/IPM_S10L04u09_007" },
+            { "name": "IPM_S10L04u010_005", "src": "vo/IPM_S10L04u010_005" },
+            { "name": "IPM_S10L04u010_006", "src": "vo/IPM_S10L04u010_006" },
+            { "name": "IPM_S10L04u010_007", "src": "vo/IPM_S10L04u010_007" },
+            { "name": "IPM_S10L04u010_008", "src": "vo/IPM_S10L04u010_008" },
+            { "name": "IPM_S10L04u010_009", "src": "vo/IPM_S10L04u010_009" },
+            { "name": "IPM_S10L04u010_S001", "src": "vo/IPM_S10L04u010_S001" }
             
         ],
         "slideDuration": [
