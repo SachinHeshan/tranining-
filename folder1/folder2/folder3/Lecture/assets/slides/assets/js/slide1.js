@@ -36,6 +36,9 @@ function init() {
         parent.surala.audio.stopAllNonLoopSounds();
     }
     
+    // Initialize drag and drop functionality
+    initDragAndDrop();
+    
     // Assume slideManager and slideTutorial are defined globally or imported
     slideManager = slideManager(); 
     slideTutorial = slideTutorial;
@@ -73,6 +76,101 @@ function init() {
         }
     });
 }
+
+// Initialize drag and drop functionality
+function initDragAndDrop() {
+    // Make choices draggable
+    $('.choice').attr('draggable', true);
+    
+    // Add event listeners for drag and drop
+    $('.choice').on('dragstart', function(e) {
+        e.originalEvent.dataTransfer.setData('text/plain', $(this).text().trim());
+        $(this).addClass('dragging');
+    });
+    
+    $('.choice').on('dragend', function(e) {
+        $(this).removeClass('dragging');
+    });
+    
+    // Add event listeners for drop zones
+    $('[class^="dropzone-"]').each(function() {
+        // Add dragover event
+        $(this).on('dragover', function(e) {
+            e.preventDefault();
+            $(this).css('border', '2px dashed #000');
+        });
+        
+        // Add dragleave event
+        $(this).on('dragleave', function(e) {
+            e.preventDefault();
+            $(this).css('border', '2px dashed #888');
+        });
+        
+        // Add drop event
+        $(this).on('drop', function(e) {
+            e.preventDefault();
+            $(this).css('border', '2px dashed #888');
+            
+            var data = e.originalEvent.dataTransfer.getData('text/plain');
+            var dropZone = $(this);
+            
+            // Clear the drop zone
+            dropZone.empty();
+            
+            // Add the dragged element to the drop zone
+            dropZone.text(data);
+            
+            // Store the answer in data attribute for validation
+            dropZone.attr('data-dropped', data);
+        });
+    });
+}
+
+// Function to validate answers
+function validateAnswers() {
+    var correctAnswers = {
+        'dropzone-1': 'Segitiga',
+        'dropzone-2': 'Lingkaran',
+        'dropzone-3': 'Persegi Panjang',
+        'dropzone-4': 'Juring',
+        'dropzone-5': 'Persegi'
+    };
+    
+    var allCorrect = true;
+    var results = {};
+    
+    for (var dropzone in correctAnswers) {
+        var droppedValue = $('#' + dropzone).attr('data-dropped') || '';
+        var isCorrect = droppedValue === correctAnswers[dropzone];
+        
+        results[dropzone] = {
+            dropped: droppedValue,
+            correct: correctAnswers[dropzone],
+            isCorrect: isCorrect
+        };
+        
+        if (!isCorrect) {
+            allCorrect = false;
+        }
+    }
+    
+    return {
+        allCorrect: allCorrect,
+        results: results
+    };
+}
+
+// Function to reset drag and drop
+function resetDragAndDrop() {
+    $('[class^="dropzone-"]').each(function() {
+        $(this).empty();
+        $(this).removeAttr('data-dropped');
+    });
+}
+
+// Expose functions for external use
+window.validateAnswers = validateAnswers;
+window.resetDragAndDrop = resetDragAndDrop;
 
 // ---------- AFTER PRELOAD ----------
 function addContent() {
@@ -171,6 +269,8 @@ function slideSequence(seq) {
 
     switch (seq) {
         case 1:
+            // Show display1
+            $('.display1').css('visibility', 'visible');
             if (parent.surala && parent.surala.audio) {
                 parent.surala.audio.playSound('IPM_S10L04u09_007', null, () => {
                     slideSequence(seq + 1);
@@ -179,54 +279,91 @@ function slideSequence(seq) {
             break;
 
         case 2:
-            // This is the question. The audio plays, then the user must answer.
-            if (!answerSubmitted) enableActivity();
+            // Show display1 before playing audio
+            $('.display1').css('visibility', 'visible');
             if (parent.surala && parent.surala.audio) {
-                parent.surala.audio.playSound('IPM_S10L01u05_006', null, () => {
-                    // Wait for user answer
+                parent.surala.audio.playSound('IPM_S10L04u010_005', null, () => {
+                    slideSequence(seq + 1);
                 });
             }
             break;
 
         case 3:
             // Only proceed if answered, or if seeking past it (handled by updateContentForSequence)
+             $('.display1').css('visibility', 'visible');
             if (!answerSubmitted && seqNo < 3) return; 
 
             if (parent.surala && parent.surala.audio) {
-                parent.surala.audio.playSound('IPM_S10L01u05_007', null, () => {
+                parent.surala.audio.playSound('IPM_S10L04u010_006', null, () => {
                     slideSequence(seq + 1);
                 });
             }
             break;
 
         case 4:
+             $('.display1').css('visibility', 'visible');
             if (parent.surala && parent.surala.audio) {
-                parent.surala.audio.playSound('IPM_S10L01u05_008', null, () => {
+                parent.surala.audio.playSound('IPM_S10L04u010_S001', null, () => {
                     slideSequence(seq + 1);
                 });
             }
             break;
 
         case 5:
+             $('.display1').css('visibility', 'visible');
             if (parent.surala && parent.surala.audio) {
-                parent.surala.audio.playSound('IPM_S10L01u05_009', null, () => {
+                parent.surala.audio.playSound('IPM_S10L04u010_007', null, () => {
                     slideSequence(seq + 1);
                 });
             }
             break;
 
         case 6:
+             $('.display1').css('visibility', 'visible');
             if (parent.surala && parent.surala.character) {
                  parent.surala.character.teacherTalk(false);
             }
             if (parent.surala && parent.surala.audio) {
-                parent.surala.audio.playSound('IPM_S10L01u05_010', null, () => {
+                parent.surala.audio.playSound('IPM_S10L04u010_008', null, () => {
+                    // Continue to next sequence instead of ending
+                    slideSequence(seq + 1);
+                });
+            }
+            break;
+            
+        case 7:
+            // Show display1 before playing audio
+            $('.display1').css('visibility', 'visible');
+            if (parent.surala && parent.surala.audio) {
+                parent.surala.audio.playSound('IPM_S10L04u09_012', null, () => {
+                    slideSequence(seq + 1);
+                });
+            }
+            break;
+
+        case 8:
+            // Show display1 before playing audio
+            $('.display1').css('visibility', 'visible');
+            if (parent.surala && parent.surala.audio) {
+                parent.surala.audio.playSound('IPM_S10L04u09_013', null, () => {
+                    slideSequence(seq + 1);
+                });
+            }
+            break;
+
+        case 9:
+            // Show display1 before playing audio
+            $('.display1').css('visibility', 'visible');
+            if (parent.surala && parent.surala.audio) {
+                parent.surala.audio.playSound('IPM_S10L04u010_009', null, () => {
                     // Correctly ends the seekbar timeline after the last audio
                     seekBarStatus = "ended";
                     disableActivity();
                 });
             }
             break;
+
+
     }
 }
 
@@ -235,9 +372,6 @@ function slideSequence(seq) {
    ============================================================== */
 function enableActivity() {
     answerBtnClicked = false;
-    $('#answerBox').prop('disabled', false).focus().val(userPreviousAnswer).css({
-        'background-image': 'none'
-    });
     $('#judgement_btn').prop('disabled', false).addClass('btn_active')
         .off('click').on('click', evaluateActivity);
     
@@ -248,7 +382,6 @@ function enableActivity() {
 }
 
 function disableActivity() {
-    $('#answerBox').prop('disabled', true);
     $('#judgement_btn').prop('disabled', true).removeClass('btn_active');
     // Note: pauseSeekbar is managed in evaluateActivity/seekbar functions, not here.
 }
@@ -268,6 +401,24 @@ function updateAnswerBoxUI(correct, userAns) {
         ansBoxStyle['background-image'] = 'url(../../../../../../common/CeylonSoft/re_primarymath_ind/images/wrong1.png)';
         $('#correctAnswerDisplay').css('display', 'block');
     }
+    
+    // Apply visual feedback to drop zones
+    $('[class^="dropzone-"]').each(function() {
+        var dropzoneClass = $(this).attr('class').split(' ')[0]; // Get the dropzone class
+        var correctAnswer = $(this).attr('data-answer');
+        var droppedAnswer = $(this).attr('data-dropped');
+        
+        if (correct) {
+            $(this).css('border', '2px solid green');
+        } else if (droppedAnswer) {
+            if (correctAnswer === droppedAnswer) {
+                $(this).css('border', '2px solid green');
+            } else {
+                $(this).css('border', '2px solid red');
+            }
+        }
+    });
+    
     $('#answerBox').css(ansBoxStyle);
     $('#answerBox').val(userAns);
 }
@@ -278,21 +429,26 @@ function evaluateActivity() {
     answerBtnClicked = true;
     answerSubmitted = true; 
 
-    var userAns = $.trim($('#answerBox').val());
-    var correct = (userAns === "180");
+    // Validate drag and drop answers
+    var validationResult = validateAnswers();
+    var correct = validationResult.allCorrect;
     
     // Store results
-    userPreviousAnswer = userAns;
+    userPreviousAnswer = "Drag and Drop Activity"; // Placeholder since we're not storing individual answers
     isCorrect = correct;
 
     // ----- UI -----
     disableActivity(); 
     
     $('.feedback').css('visibility', 'hidden');
-    if (correct) $('#correctFB').css('visibility', 'visible');
-    else         $('#wrongFB').css('visibility', 'visible');
+    if (correct) {
+        $('#correctFB').css('visibility', 'visible');
+    } else {
+        $('#wrongFB').css('visibility', 'visible');
+    }
     
-    updateAnswerBoxUI(correct, userAns);
+    // Update UI based on correctness
+    updateAnswerBoxUI(correct, userPreviousAnswer);
 
     // ----- AUDIO / ANIMATION -----
     if (parent.surala && parent.surala.character) {
@@ -325,7 +481,7 @@ function evaluateActivity() {
     var activityNo = "slide1" + '-' + currentQnNo;
     var param = {
         flash_problem_num: activityNo,
-        flash_answer: userAns,
+        flash_answer: correct ? "Correct" : "Incorrect",
         type: 'lecture_answer',
         flash_count: 1,
         flash_success: correct ? 1 : 0
@@ -377,33 +533,36 @@ function showcontent(num) {
 
             break;
         case 2:
-            $('.display1').css('visibility', 'visible');
+          
             
-            if (answerSubmitted) {
-                // If answered (seeking past it), show the result and keep disabled
-                updateAnswerBoxUI(isCorrect, userPreviousAnswer);
-            } else if (seekBarStatus !== "ended") {
-                // If not answered (seeking to it), enable the activity
-                enableActivity();
-            }
             break;
         case 3:
             // Show content from D1 (implicit from earlier showcontent) and D2
-            $('.display1, .display2').css('visibility', 'visible');
+            
             break;
         case 4:
             // D1 and D2 should already be visible
-            $('.display1, .display2').css('visibility', 'visible');
+
             break;
         case 5:
             // Show content from D3
-            $('.display3').css('visibility', 'visible');
-            // D1 and D2 should already be visible
-            $('.display1, .display2').css('visibility', 'visible');
+          
             break;
         case 6:
             // Ensure all content is visible
-            $('.display1, .display2, .display3').css('visibility', 'visible');
+           
+            break;
+        case 7:
+            // Show display1
+            $('.display1').css('visibility', 'visible');
+            break;
+        case 8:
+            // Show display1
+            $('.display1').css('visibility', 'visible');
+            break;
+        case 9:
+            // Show display1
+            $('.display1').css('visibility', 'visible');
             break;
     }
 }
@@ -418,6 +577,8 @@ function hidecontent(num) {
             // When seeking backward past the question (Seq 2): Reset the answer state
             $('.feedback').css('visibility', 'hidden');
             $('#correctAnswerDisplay').css('display', 'none');
+            // Reset drag and drop activity
+            resetDragAndDrop();
             $('#answerBox').val('').css('background-image', 'none');
             answerSubmitted = false;
             isCorrect = false;
@@ -430,10 +591,34 @@ function hidecontent(num) {
         case 5:
             $(".display3").css("visibility", "hidden");
             break;
+        case 7:
+            // No specific hide action needed for sequence 7
+            break;
+        case 8:
+            // No specific hide action needed for sequence 8
+            break;
+        case 9:
+            // No specific hide action needed for sequence 9
+            break;
         default:
             break;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* ==============================================================

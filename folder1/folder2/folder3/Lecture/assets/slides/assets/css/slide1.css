@@ -71,16 +71,58 @@
 }
 
 
-.dropzone {
-    width: 160px;
+.dropzone-1 {
+    width: 180px;
     height: 33px;
-    border: 2px dashed #888;
-    margin-left: 15px;
-    border-radius: 4px;
+
+    margin-top: -22px;
+    margin-left: -480px;
     padding: 3px;
-    font-size: 18px;
+    font-size: 24px;
+    
     text-align: center;
 }
+.dropzone-2 {
+      width: 160px;
+      margin-top: -22px;
+    height: 33px;
+    margin-left: -510px;
+    padding: 3px;
+    font-size: 24px;
+    text-align: center;
+    outline: none;
+
+}
+.dropzone-3 {
+      width: 160px;
+      margin-top: -20px;
+    height: 33px;
+    margin-left: -480px;
+    padding: 3px;
+    font-size: 22px;
+    text-align: center;
+}
+.dropzone-4 {
+      width: 100px;
+    margin-top: -22px;
+    height: 33px;
+    margin-left: -380px;
+    padding: 3px;
+    font-size: 22px;
+    text-align: center;
+}
+.dropzone-5 {
+      width: 160px;
+      margin-top: -22px;
+    height: 33px;
+    margin-left: -500px;
+    padding: 3px;
+    font-size: 27px;
+    text-align: center;
+}
+
+
+
 
 .choices-box {
     width: 350px;
@@ -140,4 +182,5 @@
             border-bottom: 2px solid #000;
         }
 
+        
         

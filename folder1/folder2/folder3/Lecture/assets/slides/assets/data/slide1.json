@@ -16,16 +16,22 @@
             { "name": "IPM_S10L04u010_007", "src": "vo/IPM_S10L04u010_007" },
             { "name": "IPM_S10L04u010_008", "src": "vo/IPM_S10L04u010_008" },
             { "name": "IPM_S10L04u010_009", "src": "vo/IPM_S10L04u010_009" },
-            { "name": "IPM_S10L04u010_S001", "src": "vo/IPM_S10L04u010_S001" }
+            { "name": "IPM_S10L04u010_S001", "src": "vo/IPM_S10L04u010_S001" },
+            { "name": "IPM_S10L04u09_012", "src": "vo/IPM_S10L04u09_012" },
+            { "name": "IPM_S10L04u09_013", "src": "vo/IPM_S10L04u09_013"}
+           
             
         ],
         "slideDuration": [
-            { "audio": "IPM_S10L04u05_005", "dur": "5.2" },
-            { "audio": "IPM_S10L04u05_006", "dur": "4.7" },
-            { "audio": "IPM_S10L04u05_007", "dur": "5.6" },
-            { "audio": "IPM_S10L04u05_008", "dur": "6.3" },
-            { "audio": "IPM_S10L04u05_009", "dur": "4.0" },
-            { "audio": "IPM_S10L04u05_010", "dur": "0.0" }
+            { "audio": "IPM_S10L04u010_S001", "dur": "2.9" },
+            { "audio": "IPM_S10L04u010_006", "dur": "5.0" },
+            { "audio": "IPM_S10L04u09_007", "dur": "5.6" },
+            { "audio": "IPM_S10L04u010_007", "dur": "5.5" },
+            { "audio": "IPM_S10L04u09_013", "dur": "3.9" },
+            { "audio": "IPM_S10L04u010_008", "dur": "7.3" },
+            { "audio": "IPM_S10L04u010_005", "dur": "8.9" },
+            { "audio": "IPM_S10L04u010_009", "dur": "7.7" },
+            { "audio": "IPM_S10L04u09_012", "dur": "6.8" }
           
         ],
       "content": {
