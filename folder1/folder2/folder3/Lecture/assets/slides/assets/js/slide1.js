@@ -306,6 +306,7 @@ function slideSequence(seq) {
             break;
 
         case 5:
+              
             if (parent.surala && parent.surala.audio) {
                 parent.surala.audio.playSound('IPM_S10L04u010_007', null, () => {
                     slideSequence(seq + 1);
@@ -339,6 +340,12 @@ function slideSequence(seq) {
         case 8:
             // Show display1 before playing audio
             $('.display1').css('visibility', 'visible');
+            // Keep showing correct boxes if there are wrong answers, hide if all correct
+            if (isCorrect) {
+                // Hide correct boxes if all answers are correct
+                $('.correct-box').css('visibility', 'hidden');
+            }
+            // If wrong answers exist, correct boxes stay visible (already set in evaluateActivity)
             if (parent.surala && parent.surala.audio) {
                 parent.surala.audio.playSound('IPM_S10L04u09_013', null, () => {
                     slideSequence(seq + 1);
@@ -535,6 +542,23 @@ function updateContentForSequence(targetSeq) {
         if (isCorrect) $('#correctFB').css('visibility', 'visible');
         else          $('#wrongFB').css('visibility', 'visible');
         disableActivity();
+        
+        // If there are wrong answers and we're in the feedback phase, show correct boxes
+        if (!isCorrect && targetSeq >= 8) {
+            // Re-show correct boxes for wrong answers
+            var results = validateAnswers().results;
+            for (var dropzoneId in results) {
+                var result = results[dropzoneId];
+                if (!result.isCorrect) {
+                    var correctAnswer = result.correct;
+                    $('.correct-box').each(function() {
+                        if ($(this).text().trim() === correctAnswer) {
+                            $(this).css('visibility', 'visible');
+                        }
+                    });
+                }
+            }
+        }
     }
 }
 
