@@ -15,6 +15,8 @@
         "sounds": [
             { "name": "correct", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/correct" },
             { "name": "wrong", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/wrong" },
+            { "name": "MG_benar_02", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_benar_02" },
+            { "name": "MG_salah_09", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_09" },
             { "name": "MG_benar_03", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_benar_03" },
             { "name": "MG_salah_03", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_03" },
             { "name": "MG_salah_01", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_01" },
@@ -26,9 +28,16 @@
             { "name": "IPM_S10L04u09_036", "src": "vo/IPM_S10L04u09_036" },
             { "name": "IPM_S10L04u09_037", "src": "vo/IPM_S10L04u09_037" },
             { "name": "IPM_S10L04u09_038", "src": "vo/IPM_S10L04u09_038" },
-            { "name": "IPM_S10L04u09_039", "src": "vo/IPM_S10L04u09_039" }
-        ],
+            { "name": "IPM_S10L04u09_039", "src": "vo/IPM_S10L04u09_039" },
+            { "name": "IPM_S10L04u010_031", "src": "vo/IPM_S10L04u010_031" },
+            { "name": "IPM_S10L04u010_032", "src": "vo/IPM_S10L04u010_032" },
+            { "name": "IPM_S10L04u010_033", "src": "vo/IPM_S10L04u010_033" },
+            { "name": "IPM_S10L04u010_034", "src": "vo/IPM_S10L04u010_034" },
+            { "name": "IPM_S10L04u010_035", "src": "vo/IPM_S10L04u010_035" }
+        ], 
         "slideDuration": [
+
+
             { "audio": "IPM_S10L04u09_031", "dur": "2.9" },
             { "audio": "IPM_S10L04u09_032", "dur": "10.8" },
             { "audio": "IPM_S10L04u09_033", "dur": "3.5" },

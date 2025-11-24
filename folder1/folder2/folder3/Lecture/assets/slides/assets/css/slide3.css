@@ -34,11 +34,17 @@ margin: auto;
 }
 .shape {
     width: 73%;
-    margin-top: -150px;
+    margin-top: -500px;
     margin-bottom: 25px;
     margin-left: -5px;
     height: auto;
 }
+.blueline {
+    width: 73%;
+    margin-top: -153px;
+    margin-left: 30px;
+}
+
 .answer {
     margin-left: -80px;
     width: 110;
@@ -75,7 +81,7 @@ margin: auto;
 }
 
 .choice-1 {
-    background-color: #fffb00;
+   
     width: 165px;
     height: 37px;
     bottom: 20px;
@@ -84,7 +90,7 @@ margin: auto;
     text-align: center;
 }
 .choice-2 {
-    background-color: #fffb00;
+   
     width: 120px;
     margin-right: 100px;
     height: 37px;
@@ -94,7 +100,7 @@ margin: auto;
     text-align: center;
 }
 .choice-3 {
-    background-color: #fffb00;
+   
     width: 165px;
     height: 37px;
     bottom: 20px;
@@ -103,7 +109,7 @@ margin: auto;
     text-align: center;
 }
 .choice-4 {
-    background-color: #fffb00;
+    
     width: 120px;
 
     height: 37px;
@@ -111,6 +117,12 @@ margin: auto;
     font-size: 22px;
     cursor: pointer;
     text-align: center;
+}
+
+/* Add selected state styling */
+.choices-box div.selected {
+    background-color: yellow !important;
+   
 }
 
 /* Display 4 */
@@ -173,12 +185,6 @@ margin: auto;
 
 
 
-
-
-
-
-
-
 .instruction-box {
     position: relative;
 
@@ -217,7 +223,6 @@ margin: auto;
 }
 
     
-
 
 /* The small blue circle bullet on the left */
 .question-4{

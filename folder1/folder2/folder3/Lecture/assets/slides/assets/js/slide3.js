@@ -100,7 +100,8 @@ function addContent() {
           slideSequence(1);
           parent.surala.slideNavigation.playPauseState = true;
       }, 100);
-      answerBtnClicked = false;
+      answerBtnClicked1 = false;
+      answerBtnClicked2 = false;
 
 
   }
@@ -199,7 +200,8 @@ function slideSequence(seqNo) {
           loadActivity();
           resetall();
           answerBtnClicked2 = false;
-          $(".display9").css("visibility", "visible");
+   
+  
           parent.surala.audio.playSound('IPM_S10L04u09_031', null, function() {
               if (sliderChanged) {
                   sliderChanged = false;
@@ -214,34 +216,35 @@ function slideSequence(seqNo) {
           loadSelectable();
           answerBtnClicked1 = false;
           $(".display1").css("visibility", "visible");
-          parent.surala.audio.playSound('IPM_S10L04u09_032', null, function() {
+          $(".display2").css("visibility", "visible");
+          // Hide blueline in case 2
+          
+          $(".shape").css("visibility", "visible");
+          // Initialize the selectable functionality for display 2
+          initDisplay2Selectable();
+          parent.surala.audio.playSound('IPM_S10L04u010_031', null, function() {
               if (sliderChanged) {
                   sliderChanged = false;
               } else {
                   pauseSeekbar = true;
-                  enableSelectable();
+                  enableDisplay2Selectable();
                   parent.surala.character.stopAllAnimation();
                   parent.surala.character.animate('teacher', 'normal');
               }
           });
           break;
       case 3:
+          // Only continue to next sequence after answer checking
+          // Reset the answer submitted flag when moving to the next sequence
+          isAnswerSubmitted = false;
           $(".display2").css("visibility", "visible");
-          $(".display11").css("visibility", "visible");
-          $('.blink3').removeClass('blinkItem');
-          interVal = setInterval(function() {
-              if ($('.blink3').hasClass('blinkItem'))
-                  $('.blink3').removeClass('blinkItem').css('visibility', 'visible');
-              else
-                  $('.blink3').addClass('blinkItem').css('visibility', 'hidden');
-          }, 500);
-          timeOut = setTimeout(function() {
-              clearInterval(interVal);
-              //$('.blink3').removeClass('blinkItem').css('visibility', 'visible');
-              // $(".display10").css("visibility", "hidden");
-              $('.blink3').addClass('blinkItem').css('visibility', 'hidden');
-          }, speedcal(2500));
-
+          if (seqNo >= 3 && seqNo <= 4 && seekBarStatus !== "ended") {
+              currentQnNo = 1;
+              if (!answerBtnClicked1)
+                  enableDisplay2Selectable();
+          }
+          // Show blueline in case 3
+          $(".blueline").css("visibility", "visible");
           parent.surala.audio.playSound('IPM_S10L04u09_033', null, function() {
               if (sliderChanged) {
                   sliderChanged = false;
@@ -252,8 +255,12 @@ function slideSequence(seqNo) {
           });
           break;
       case 4:
-          $(".display3").css("visibility", "visible");
-          parent.surala.audio.playSound('IPM_S10L04u09_034', null, function() {
+          // Reset the answer submitted flag when moving to the next sequence
+          isAnswerSubmitted = false;
+           
+          // Continue showing blueline in case 4 (part of case 3 sequence)
+         
+          parent.surala.audio.playSound('IPM_S10L04u010_032', null, function() {
               if (sliderChanged) {
                   sliderChanged = false;
               } else {
@@ -263,8 +270,10 @@ function slideSequence(seqNo) {
           });
           break;
       case 5:
-          
-          parent.surala.audio.playSound('IPM_S10L04u09_035', null, function() {
+          // Reset the answer submitted flag when moving to the next sequence
+          isAnswerSubmitted = false;
+          $(".answer").css("visibility" , "visible")
+          parent.surala.audio.playSound('IPM_S10L04u010_033', null, function() {
               if (sliderChanged) {
                   sliderChanged = false;
               } else {
@@ -274,12 +283,14 @@ function slideSequence(seqNo) {
           });
           break;
       case 6:
+          // Reset the answer submitted flag when moving to the next sequence
+          isAnswerSubmitted = false;
           disableSelectable();
           currentQnNo = 2;
           loadActivity();
           answerBtnClicked2 = false;
           $(".display4").css("visibility", "visible");
-          parent.surala.audio.playSound('IPM_S10L04u09_036', null, function() {
+          parent.surala.audio.playSound('IPM_S10L04u010_034', null, function() {
               if (sliderChanged) {
                   sliderChanged = false;
               } else {
@@ -289,8 +300,10 @@ function slideSequence(seqNo) {
           });
           break;
       case 7:
+          // Reset the answer submitted flag when moving to the next sequence
+          isAnswerSubmitted = false;
           $(".display5").css("visibility", "visible");
-          parent.surala.audio.playSound('IPM_S10L04u09_037', null, function() {
+          parent.surala.audio.playSound('IPM_S10L04u010_035', null, function() {
               if (sliderChanged) {
                   sliderChanged = false;
               } else {
@@ -299,34 +312,7 @@ function slideSequence(seqNo) {
               }
           });
           break;
-      case 8:
-          $(".display6").css("visibility", "visible");
-          parent.surala.audio.playSound("IPM_S10L04u09_038", null, function () {
-            if (sliderChanged) {
-              sliderChanged = false;
-            } else {
-              seqNo = 9;
-              slideSequence(seqNo);
-            }
-          });
-          break;
-      case 9:
-          $(".display7").css("visibility", "visible");
-          timeOut = setTimeout(function() {
-                $(".display7_1").css("visibility", "visible");
-          }, 500);
-          timeOut = setTimeout(function() {
-                $(".display7_2").css("visibility", "visible");
-            }, 1000);
-          parent.surala.audio.playSound('IPM_S10L04u09_039', null, function() {
-              if (sliderChanged) {
-                  sliderChanged = false;
-              } else {
-                  disableActivity();
-                  parent.surala.character.stopAllAnimation();
-              }
-          });
-          break;
+    
 
   }
 }
@@ -335,6 +321,8 @@ function showcontent(num) {
   switch (num) {
       case 1:
           $(".display9").css("visibility", "visible");
+          // Hide blueline in case 1
+          $(".blueline").css("visibility", "hidden");
           break;
       case 2:
           $(".display1").css("visibility", "visible");
@@ -342,17 +330,20 @@ function showcontent(num) {
           if (seqNo <= 2 && seekBarStatus !== "ended") {
               answerBtnClicked1 = false;
           }
+          // Hide blueline in case 2
+          $(".blueline").css("visibility", "hidden");
           break;
       case 3:
           $(".display2").css("visibility", "visible");
-          if (seqNo >= 3 && seqNo <= 4 && seekBarStatus !== "ended") {
-              currentQnNo = 1;
-              if (!answerBtnClicked1)
-                  enableSelectable();
-          }
+          
+          
+          // Show blueline in case 3
+          $(".blueline").css("visibility", "visible");
           break;
       case 4:
           $(".display3").css("visibility", "visible");
+          // Continue showing blueline in case 4
+          $(".blueline").css("visibility", "visible");
           break;
       case 5:
           
@@ -402,9 +393,13 @@ function hidecontent(num) {
           break;
       case 3:
           $(".display2").css("visibility", "hidden");
+          // Hide blueline when hiding display2
+          $(".blueline").css("visibility", "hidden");
           break;
       case 4:
           $(".display3").css("visibility", "hidden");
+          // Hide blueline when hiding display3
+          $(".blueline").css("visibility", "hidden");
           break;
       case 5:
           break;
@@ -915,3 +910,127 @@ window.onunload = function() {
   parent.surala.audio.stopAllNonLoopSounds();
   parent.surala.character.stopAllAnimation();
 };
+
+// Add these variables after the existing variable declarations
+var selectedChoices = [];
+var isAnswerSubmitted = false;
+
+// Add this new function for display 2 selectable functionality
+function initDisplay2Selectable() {
+  // Reset variables
+  selectedChoices = [];
+  isAnswerSubmitted = false;
+  
+  // Remove any existing event handlers and styles
+  $('.choices-box div').off('click').removeClass('selected');
+  
+  // Add event handler for the existing judgement button
+  $('#judgement_btn').off('click').on('click', function() {
+    if (!isAnswerSubmitted && selectedChoices.length > 0) {
+      checkDisplay2Answer();
+    }
+  });
+}
+
+function enableDisplay2Selectable() {
+  // Reset selection state
+  selectedChoices = [];
+  isAnswerSubmitted = false;
+  
+  // Enable clicking on choices
+  $('.choices-box div').on('click', function() {
+    if (isAnswerSubmitted) return;
+    
+    var $this = $(this);
+    var choiceText = $this.text().trim();
+    
+    // Toggle selection
+    if ($this.hasClass('selected')) {
+      $this.removeClass('selected');
+      selectedChoices = selectedChoices.filter(function(item) {
+        return item !== choiceText;
+      });
+    } else {
+      $this.addClass('selected');
+      selectedChoices.push(choiceText);
+    }
+    
+    // Enable judgement button if at least one choice is selected
+    if (selectedChoices.length > 0) {
+      $('#judgement_btn').css('opacity', '1').css('pointer-events', 'auto');
+    } else {
+      $('#judgement_btn').css('opacity', '0.5').css('pointer-events', 'none');
+    }
+  });
+  
+  // Initially disable judgement button
+  $('#judgement_btn').css('opacity', '0.5').css('pointer-events', 'none');
+  
+  // Make sure the display2 judgement button is visible
+  $('.display2 .judgement_btn').show();
+}
+
+function checkDisplay2Answer() {
+  isAnswerSubmitted = true;
+  
+  // Disable further selections
+  $('.choices-box div').off('click');
+  $('#judgement_btn').css('opacity', '0.5').css('pointer-events', 'none');
+  
+  // Check if the selected answer is correct
+  var isCorrect = selectedChoices.length === 1 && selectedChoices[0] === "Persegi Panjang";
+  
+  if (isCorrect) {
+    // Keep the selected choice highlighted
+    // Play correct sound and animations simultaneously
+    // Play correct animations
+    parent.surala.character.animate('student', 'correct', function() {
+      parent.surala.character.animate('student', 'correct_stop');
+    });
+    parent.surala.character.animate('teacher', 'correct', function() {
+      parent.surala.character.animate('teacher', 'correct_speak');
+    });
+    
+    // Play correct sound at the same time
+    parent.surala.audio.playSound('MG_benar_02', null, function() {
+      // Continue to next sequence after a delay
+      setTimeout(function() {
+        // Set seekbar to continue
+        pauseSeekbar = false;
+        playSeekbar();
+        // Manually trigger the continuation to case 3 (not case 4)
+        slideSequence(3);
+      }, 2000);
+    });
+  } else {
+    // Remove incorrect selection highlighting
+    $('.choices-box div').removeClass('selected');
+    
+    // Highlight the correct answer
+    $('.choices-box div').each(function() {
+      if ($(this).text().trim() === "Persegi Panjang") {
+        $(this).addClass('selected');
+      }
+    });
+    
+    // Play wrong animations
+    parent.surala.character.animate('student', 'wrong', function() {
+      parent.surala.character.animate('student', 'wrong_stop');
+    });
+    parent.surala.character.animate('teacher', 'wrong', function() {
+      parent.surala.character.animate('teacher', 'wrong_speak');
+    });
+    
+    // Play wrong sound at the same time
+    parent.surala.audio.playSound('MG_salah_09', null, function() {
+      // Continue to next sequence after a delay
+      setTimeout(function() {
+        // Set seekbar to continue
+        pauseSeekbar = false;
+        playSeekbar();
+        // Manually trigger the continuation to case 3 (not case 4)
+        slideSequence(3);
+      }, 2000);
+    });
+  }
+}
