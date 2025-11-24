@@ -1,6 +1,7 @@
+
 /* ==============================================================
-   slide1.js –  Jumlah sudut segitiga (180°)
-   ============================================================== */
+   slide1.js –  Jumlah sudut segitiga (180°)
+   ============================================================== */
 
 // ---------- PRELOAD ----------
 var preloaditems = {
@@ -53,6 +54,7 @@ function init() {
     
     $('#correctAnswerDisplay').css('display', 'none');
     $('.feedback').css('visibility', 'hidden'); // Ensure feedback is hidden initially
+    $('.correct-box').css('visibility', 'hidden'); // Hide correct boxes initially
 
     $.ajax({
         dataType: "json",
@@ -213,8 +215,8 @@ function addContent() {
 }
 
 /* ==============================================================
-   LMS RE-ENTRY (show previous answer + feedback)
-   ============================================================== */
+   LMS RE-ENTRY (show previous answer + feedback)
+   ============================================================== */
 function showLMSFeedback() {
     $('.display1').css('visibility', 'visible');
     
@@ -226,7 +228,7 @@ function showLMSFeedback() {
     
     setTimeout(() => {
         if (isCorrect) $('#correctFB').css('visibility', 'visible');
-        else          $('#wrongFB').css('visibility', 'visible');
+        else          $('#wrongFB').css('visibility', 'visible');
         
         disableActivity();
         if (!isCorrect) {
@@ -236,8 +238,8 @@ function showLMSFeedback() {
 }
 
 /* ==============================================================
-   SEQUENCE (audio + show elements)
-   ============================================================== */
+   SEQUENCE (audio + show elements)
+   ============================================================== */
 var previousSeqNo = 0;
 function slideSequence(seq) {
     // Prevent re-triggering if already in this sequence unless explicitly clicked (play button)
@@ -361,8 +363,8 @@ function slideSequence(seq) {
 }
 
 /* ==============================================================
-   ACTIVITY (type 180 → Jawab)
-   ============================================================== */
+   ACTIVITY (type 180 → Jawab)
+   ============================================================== */
 function enableActivity() {
     answerBtnClicked = false;
     $('#judgement_btn').prop('disabled', false).addClass('btn_active')
@@ -425,6 +427,7 @@ function evaluateActivity() {
     // Validate drag and drop answers
     var validationResult = validateAnswers();
     var correct = validationResult.allCorrect;
+    var results = validationResult.results;
     
     // Store results
     userPreviousAnswer = "Drag and Drop Activity"; // Placeholder since we're not storing individual answers
@@ -432,6 +435,23 @@ function evaluateActivity() {
 
     // ----- UI -----
     disableActivity(); 
+    
+    // Hide all correct boxes first
+    $('.correct-box').css('visibility', 'hidden');
+    
+    // Show correct boxes ONLY for wrong answers
+    for (var dropzoneId in results) {
+        var result = results[dropzoneId];
+        if (!result.isCorrect) {
+            // For each wrong answer, show the corresponding correct-box that contains the correct answer
+            var correctAnswer = result.correct;
+            $('.correct-box').each(function() {
+                if ($(this).text().trim() === correctAnswer) {
+                    $(this).css('visibility', 'visible');
+                }
+            });
+        }
+    }
     
     $('.feedback').css('visibility', 'hidden');
     if (correct) {
@@ -485,8 +505,8 @@ function evaluateActivity() {
 }
 
 /* ==============================================================
-   CONTENT SHOW/HIDE (Seekbar Synchronization)
-   ============================================================== */
+   CONTENT SHOW/HIDE (Seekbar Synchronization)
+   ============================================================== */
 
 // Helper to update the visual state based on the sequence number.
 function updateContentForSequence(targetSeq) {
@@ -494,6 +514,7 @@ function updateContentForSequence(targetSeq) {
     $(".display1, .display2, .display3").css("visibility", "hidden");
     $('.feedback').css('visibility', 'hidden');
     $('#correctAnswerDisplay').css('display', 'none');
+    $('.correct-box').css('visibility', 'hidden'); // Hide all correct boxes on content reset
     disableActivity();
 
     // Reset answer box to allow new input unless already answered
@@ -512,7 +533,7 @@ function updateContentForSequence(targetSeq) {
         $('#answerBox').val(userPreviousAnswer);
         updateAnswerBoxUI(isCorrect, userPreviousAnswer);
         if (isCorrect) $('#correctFB').css('visibility', 'visible');
-        else          $('#wrongFB').css('visibility', 'visible');
+        else          $('#wrongFB').css('visibility', 'visible');
         disableActivity();
     }
 }
@@ -570,6 +591,7 @@ function hidecontent(num) {
             // When seeking backward past the question (Seq 2): Reset the answer state
             $('.feedback').css('visibility', 'hidden');
             $('#correctAnswerDisplay').css('display', 'none');
+            $('.correct-box').css('visibility', 'hidden'); // Hide correct boxes
             // Reset drag and drop activity
             resetDragAndDrop();
             $('#answerBox').val('').css('background-image', 'none');
@@ -615,8 +637,8 @@ function hidecontent(num) {
 
 
 /* ==============================================================
-   CLEAN-UP
-   ============================================================== */
+   CLEAN-UP
+   ============================================================== */
 window.onunload = function () {
     if (parent.surala) {
         parent.surala.disablecallOut();
