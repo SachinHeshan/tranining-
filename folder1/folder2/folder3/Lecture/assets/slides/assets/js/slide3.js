@@ -171,10 +171,14 @@ function showLMSFeedback() {
       // validating all input elements
       for (var i = 0; i < correctAnsArray.length; i++) {
           if (correctAnsArray[i].split('/')[0] === $('#text_' + (i + 1)).val() || correctAnsArray[i].split('/')[1] === $('#text_' + (i + 1)).val()) {
+              correctAnsCount++; // number of correct answer count
               $('#fb' + (i + 1)).addClass('correctFB6');
+              count = 1;
           } else {
-              $('#fb' + (i + 1)).addClass('wrongFB4');
+              $('#fb' + (i + 1)).addClass('wrongFB5');
+              // $("#text_" + (i + 1)).css('color', '#999999');
               $('#crt' + (i + 1)).html(correctAnsArray[i].split('/')[0]);
+              $('#crt1').css('display', 'block');
           }
       }
   }
@@ -259,7 +263,7 @@ function slideSequence(seqNo) {
           isAnswerSubmitted = false;
            
           // Continue showing blueline in case 4 (part of case 3 sequence)
-         
+           $(".answer").css("visibility" , "visible")
           parent.surala.audio.playSound('IPM_S10L04u010_032', null, function() {
               if (sliderChanged) {
                   sliderChanged = false;
@@ -272,7 +276,9 @@ function slideSequence(seqNo) {
       case 5:
           // Reset the answer submitted flag when moving to the next sequence
           isAnswerSubmitted = false;
-          $(".answer").css("visibility" , "visible")
+         
+          $(".one").css("visibility" , "visible")
+          $(".two").css("visibility" , "visible")
           parent.surala.audio.playSound('IPM_S10L04u010_033', null, function() {
               if (sliderChanged) {
                   sliderChanged = false;
@@ -290,6 +296,8 @@ function slideSequence(seqNo) {
           loadActivity();
           answerBtnClicked2 = false;
           $(".display4").css("visibility", "visible");
+          // Hide the example text by default in case 6
+          $(".example").css("visibility", "hidden");
           parent.surala.audio.playSound('IPM_S10L04u010_034', null, function() {
               if (sliderChanged) {
                   sliderChanged = false;
@@ -452,6 +460,8 @@ function resetall() {
   }
   $('#judgement_btn1').removeClass('btn_active');
   $('#judgement_btn1').unbind('click');
+  // Hide the example text by default
+  $(".example").css("visibility", "hidden");
 }
 
 function loadActivity() {
@@ -470,6 +480,8 @@ function loadActivity() {
       $('#judgement_btn1').removeClass('btn_active');
       $('#judgement_btn1').unbind('click');
       $('#fb1,#crt1').css('display', 'none');
+      // Hide the example text by default
+      $(".example").css("visibility", "hidden");
   }
 
 }
@@ -480,7 +492,7 @@ function enableTegaki() {
   if (currentQnNo == 2) {
       parent.surala.character.stopAllAnimation();
       currentQuestion = slideData.content['question2'];
-      var correctAnsArray = currentQuestion.correctAnswer.split('/');
+      var correctAnsArray = currentQuestion.correctAnswer.split(',');
       // enable judgement button and input boxes
       $('#judgement_btn1').css('pointer-events', 'auto').addClass('btn_active').attr('onclick', 'validateTegaki()');
       for (var i = 1; i <= correctAnsArray.length; i++) {
@@ -577,15 +589,34 @@ function validateTegaki() {
   if (currentQnNo == 2) {
       // debugger;
       for (var i = 0; i < correctAnsArray.length; i++) {
-          if (correctAnsArray[i].split('/')[0] === $('#text_' + (i + 1)).val() || correctAnsArray[i].split('/')[1] === $('#text_' + (i + 1)).val()) {
+          // Get user input and normalize it by removing dots
+          var userInput = $('#text_' + (i + 1)).val().replace(/\./g, '');
+          
+          // Check if user input matches either format in the correct answer
+          var correctFormats = correctAnsArray[i].split('/'); // Split by '/' to get both formats
+          var isCorrect = false;
+          
+          for (var j = 0; j < correctFormats.length; j++) {
+              var normalizedCorrect = correctFormats[j].replace(/\./g, '');
+              if (userInput === normalizedCorrect) {
+                  isCorrect = true;
+                  break;
+              }
+          }
+          
+          if (isCorrect) {
               correctAnsCount++; // number of correct answer count
               $('#fb' + (i + 1)).addClass('correctFB6');
               count = 1;
+              // Show the example text when answer is correct
+              $('.example').show();
           } else {
               $('#fb' + (i + 1)).addClass('wrongFB5');
-              // $("#text_" + (i + 1)).css('color', '#999999');
-              $('#crt' + (i + 1)).html(correctAnsArray[i].split('/')[0]);
+              // Show the correct format with dots for better readability
+              $('#crt' + (i + 1)).html("Jawaban yang benar: 1.500"); // Show the formatted version as the correct answer
               $('#crt1').css('display', 'block');
+              // Show the example text when answer is wrong
+              $(".example").css("visibility", "visible");
           }
       }
   }

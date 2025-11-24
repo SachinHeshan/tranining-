@@ -36,8 +36,6 @@
             { "name": "IPM_S10L04u010_035", "src": "vo/IPM_S10L04u010_035" }
         ], 
         "slideDuration": [
-
-
             { "audio": "IPM_S10L04u09_031", "dur": "2.9" },
             { "audio": "IPM_S10L04u09_032", "dur": "10.8" },
             { "audio": "IPM_S10L04u09_033", "dur": "3.5" },
@@ -61,7 +59,7 @@
                     "correct": "MG_benar_03",
                     "incorrect": "MG_salah_01"
                 },
-                "correctAnswer": "44"
+                "correctAnswer": "1500/1.500"
             }
         }
     }

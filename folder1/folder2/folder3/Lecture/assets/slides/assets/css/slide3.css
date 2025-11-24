@@ -262,4 +262,51 @@ background: yellow;
 .judgement_btn {
     margin-left: 85%;
     margin-top: -50px;
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Some padding */
+    border: none; /* Remove borders */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer/hand icon on hover */
+    font-size: 16px; /* Increase font size */
+}
+
+.judgement_btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.judgement_btn:disabled {
+    background-color: #cccccc; /* Gray background when disabled */
+    cursor: not-allowed; /* Not allowed cursor when disabled */
+}
+
+.correctAnswer {
+    font-size: 20px;
+    color: #006600;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px;
+    border: 2px solid #006600;
+    border-radius: 5px;
+    background-color: #f0fff0;
+}
+
+.feedback {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.correctFB6 {
+    color: #006600;
+    background-color: #f0fff0;
+    border: 2px solid #006600;
+}
+
+.wrongFB5 {
+    color: #cc0000;
+    background-color: #fff0f0;
+    border: 2px solid #cc0000;
 }
