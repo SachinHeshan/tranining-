@@ -22,36 +22,47 @@ margin: auto;
     padding: 20px;
     max-width: 100%;
     margin-left: 430px;
-    margin-top: -180px;
-
+    margin-top: -300px; /* Move display3 container up more */
 }
 
 .display3 img[src*='shape.png'] {
-    width: 90%;
-    margin-top: -150px;
-    margin-left: 35px;
+    width: 60%; /* Make shape smaller */
+    margin-top: 50px;
+    margin-bottom: -250px;
+   
     height: auto;
 }
 .shape {
-    width: 73%;
-    margin-top: -150px;
-    margin-bottom: 25px;
-    margin-left: -5px;
-    height: auto;
+    width: 70% !important; /* Make the shape smaller with higher specificity */
+    height: auto !important; /* Maintain aspect ratio with higher specificity */
+    margin-left: 60px;
 }
+.display3 img[src*='blueline.png'] {
+    width: 64%;
+   margin-top: 56px;
+    margin-left: 63px;
+    margin-bottom: -250px;
+    
+}
+
 .answer {
-    margin-left: -80px;
-    width: 110;
+    margin-left: -25px;
+    width: 40%;
+    margin-bottom: -150px;
+    margin-top: 100px;
 }
 .one {
-    width: 72;
-    margin-left: 225px;
-    margin-top: -153px;
+    width: 86;
+    margin-left: 105px;
+    margin-top: 60px;
+    margin-bottom: -140px;
 }
 .two {
-    width: 197;
-    margin-left: 31px;
-    margin-top: -38px;
+    width: 186;
+    margin-left: 62px;
+    margin-top: 90px;
+    margin-bottom: -100px;
+    
     
 }
 
@@ -75,7 +86,7 @@ margin: auto;
 }
 
 .choice-1 {
-    background-color: #fffb00;
+   
     width: 165px;
     height: 37px;
     bottom: 20px;
@@ -84,7 +95,7 @@ margin: auto;
     text-align: center;
 }
 .choice-2 {
-    background-color: #fffb00;
+   
     width: 120px;
     margin-right: 100px;
     height: 37px;
@@ -94,7 +105,7 @@ margin: auto;
     text-align: center;
 }
 .choice-3 {
-    background-color: #fffb00;
+   
     width: 165px;
     height: 37px;
     bottom: 20px;
@@ -103,7 +114,7 @@ margin: auto;
     text-align: center;
 }
 .choice-4 {
-    background-color: #fffb00;
+    
     width: 120px;
 
     height: 37px;
@@ -113,10 +124,17 @@ margin: auto;
     text-align: center;
 }
 
+/* Add selected state styling */
+.choices-box div.selected {
+    background-color: yellow !important;
+   
+}
+
 /* Display 4 */
 .display4 {
-    margin-left: 50px;
-    margin-top: 60px;
+    margin-left: 60px;
+    margin-top: 110px;
+    
 }
 
 .display4 .question {
@@ -130,6 +148,7 @@ margin: auto;
     align-items: center;
     gap: 10px;
     font-size: 22px;
+  
 }
 
 /* Input box */
@@ -173,12 +192,6 @@ margin: auto;
 
 
 
-
-
-
-
-
-
 .instruction-box {
     position: relative;
 
@@ -209,7 +222,7 @@ margin: auto;
         center;
 
     border: 3px solid #ff579c;    /* bright pink border */
-    padding: 10px 25px;
+    padding: 20px 25px;
     margin: 30px auto;
     max-width: 650px;
     border-radius: 0;      /* no round corners – we use gradient circles instead */
@@ -218,10 +231,9 @@ margin: auto;
 
     
 
-
 /* The small blue circle bullet on the left */
 .question-4{
-    margin-top: -24px;
+    margin-top: -4px;
 }
 
 
@@ -256,5 +268,89 @@ background: yellow;
 
 .judgement_btn {
     margin-left: 85%;
-    margin-top: -50px;
+    margin-top: -70px; /* Move buttons up a little bit */
+    padding: 10px 20px; /* Some padding */
+    border: none; /* Remove borders */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer/hand icon on hover */
+    font-size: 16px; /* Increase font size */
 }
+
+/* Specific rule for display4 judgement button */
+#judgement_btn1 {
+    margin-top: -40px !important; /* Move display4 button up even more */
+}
+
+.correctAnswer {
+    font-size: 20px;
+    color: #006600;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px;
+    border: 2px solid #006600;
+    border-radius: 5px;
+    background-color: #f0fff0;
+}
+
+.feedback {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.correctFB6 {
+    color: #006600;
+    background-color: #f0fff0;
+    border: 2px solid #006600;
+}
+
+.wrongFB5 {
+    color: #cc0000;
+    background-color: #fff0f0;
+    border: 2px solid #cc0000;
+}
+.display5{
+ margin-left: 450px;
+ margin-top: -100px;
+
+
+}
+
+
+
+ 
+ .small-line {
+    font-size: 23px;
+  
+    background-color: #ffd813;
+    text-align: center;
+   width: 190px;
+  }
+
+  .big-line {
+    font-size: 23px;
+    margin-left: 8px;
+    margin-top: 10px;
+  }
+
+  /* fraction styling */
+  .fraction {
+    display: inline-block;
+    vertical-align: middle;
+   
+  }
+
+  .numerator {
+    font-size: 20px;
+    border-bottom: 3px solid black;
+    padding-bottom: 2px;
+  
+  }
+
+  .denominator {
+    font-size: 20px;
+  }
+ 
+
