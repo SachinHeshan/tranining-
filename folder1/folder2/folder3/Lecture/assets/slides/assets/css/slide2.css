@@ -1,21 +1,19 @@
-/* ===========================
-      GENERAL TEXT
-=========================== */
+
 .title {
     font-size: 25px;
-    font-weight: bold;
     margin: 20px 0 10px 80px;
 }
 /* Display 4 */
 .display4 {
    margin-left: 300px;
-    margin-top: 40px;
+ margin-top: -290px;
     
 }
 
 .display4 .question {
     font-size: 22px;
     margin-bottom: 15px;
+   
 }
 
 /* Answer box row */
@@ -87,7 +85,7 @@
 
         .box-title {
             margin: -6px 0 30px 0;
-            font-size: 25px;
+            font-size: 20px;
            
             color: #000000;
         }
@@ -95,11 +93,12 @@
      
 
         .formula-box {
-            text-align: center;
-            font-size: 23px;
+             margin-left: 18px;
+            font-size: 25px;
+            margin-bottom: -50px;
             color: #ff1900;
             line-height: 1.4;
-            margin-top: -20;
+            margin-top: -20px;
         }
 
         .fraction {
@@ -138,7 +137,7 @@
         .better-fraction {
             display: inline-flex;
             align-items: center;
-            font-size: 30px;
+            font-size: 27px;
             color: #ff2424;
         }
 
@@ -153,12 +152,12 @@
             margin-left: 10px;
         }
 
-        .fup { font-size: 0.9em; }
-        .fdown { margin-top: -50px; }
+        .fup { font-size: 0.9em;  }
+        .fdown { margin-top: -40px; }
 
         .display5{
             margin-left: 220px;
-            margin-top: 40px;
+            margin-top: -10px;
         }
 
 
@@ -166,7 +165,7 @@
 
 
 .formula-box-2{
-    margin-left: 150px;
+    margin-left: 90px;
     margin-top: -9px;
 }
 
@@ -176,11 +175,12 @@
   
     background-color: #ffd813;
     text-align: center;
-   width: 190px;
+    margin-top: -10px;
+   width: 150px;
   }
 
   .big-line-2 {
-    font-size: 23px;
+    font-size: 24px;
     margin-left: 8px;
     margin-top: 10px;
   }
@@ -238,12 +238,13 @@
         center;
 
     border: 3px solid #ff579c;    /* bright pink border */
-    padding: 20px 25px 1px 5px;
+    padding: 10px 25px 4px 5px;
     margin: 30px auto;
     max-width: 650px;
     border-radius: 0; 
    /* no round corners – we use gradient circles instead */
-    font-size: 22px;
+    font-size: 25px;
+    text-align: center;
 }
 
 .example{
@@ -258,5 +259,53 @@
     font-size: 23px;
     margin-left: 100px;
 }
- 
+.shape{
+    width: 20%;
+    margin-top: 25px;
+    margin-bottom: -34%;
+    margin-left: 50px;
+
+  
+}
+.hutan{
+    font-size: 23px;
+    margin-left: 60px;
+    margin-top: 250px;
+    margin-bottom: -200px;
+}
+.blueline{
+    width: 22%;
+    margin-left: 60px;
+    margin-top: -200px;
+    margin-bottom: 10px;
+   
+
+}
+
+.one{
+    margin-left: -163px;
+    width: 156px;
+    margin-top: -16px;
+    
+   
+}
+.two{
+    margin-left: -148px;
+    width: 100px;
+    margin-bottom: 147px;
+    margin-top: -200px;
+    
+   
+}
+.cbutton{
+    width: 110px;
+    height: 60px;
+    margin-left: 195px;
+    margin-bottom: 190PX;
+    margin-top: -100px;
+    z-index: -1000
+    
+}
+
+
 

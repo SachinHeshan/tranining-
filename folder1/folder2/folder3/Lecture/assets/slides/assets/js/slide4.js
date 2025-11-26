@@ -1068,27 +1068,19 @@ function enableDisplay2Selectable() {
       selectedChoices.push(choiceText);
     }
     
-    // Enable judgement button if at least one choice is selected
-    if (selectedChoices.length > 0) {
-      $('#judgement_btn').css('opacity', '1').css('pointer-events', 'auto');
-    } else {
-      $('#judgement_btn').css('opacity', '0.5').css('pointer-events', 'none');
-    }
+  
   });
   
-  // Initially disable judgement button
-  $('#judgement_btn').css('opacity', '0.5').css('pointer-events', 'none');
+
   
-  // Make sure the display2 judgement button is visible
-  $('.display2 .judgement_btn').show();
+ 
 }
 
 function checkDisplay2Answer() {
   isAnswerSubmitted = true;
   
   // Disable further selections
-  $('.choices-box div').off('click');
-  $('#judgement_btn').css('opacity', '0.5').css('pointer-events', 'none');
+  
   
   // Check if the selected answer is correct (changed from "Persegi Panjang" to "Segitiga")
   var isCorrect = selectedChoices.length === 1 && selectedChoices[0] === "Segitiga";

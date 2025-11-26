@@ -232,18 +232,16 @@ function slideSequence(seqNo) {
   
   switch (seqNo) {
       case 1: 
-            $('.display4').css("visibility", "visible");
-            $('.display5').css("visibility", "visible");
-            $('.display6').css("visibility", "visible");
-            $('.display7').css("visibility", "visible");
-            $('.display8').css("visibility", "visible");
-            
+            $('.display1').css("visibility", "visible"),
             
             // Disable shape selection in case 1
             shapeSelectionEnabled = false;
             
+            // Make the shape image blink 2 times at the start of case 1
+           
+            
             if (parent.surala && parent.surala.audio) {
-                parent.surala.audio.playSound('IPM_S10L03u03_034', null, function() {
+                parent.surala.audio.playSound('IPM_S10L04u010_010', null, function() {
                     if (sliderChanged) {
                         sliderChanged = false;
                     } else {
@@ -254,113 +252,39 @@ function slideSequence(seqNo) {
             }
             break;
       case 2:
-          // Show display2 during second audio and enable answer selection
+         
+          shapeSelectionEnabled = true;
           
-          $('.display2').css("visibility", "visible");
+          // Make the shape image blink 2 times at the start of case 2
+          var blinkCount = 0;
+          var blinkInterval = setInterval(function() {
+              $('.shape').fadeOut(300).fadeIn(300);
+              blinkCount++;
+              if (blinkCount >= 2) {
+                  clearInterval(blinkInterval);
+              }
+          }, 400);
           
-          // Enable shape selection ONLY in case 2
-          shapeSelectionEnabled = false; // Disabled during audio, enabled when seekbar stops
-          
-          // Reset shapes and answer state for seekbar navigation
-          if (pauseSeekbar || sliderChanged) {
-              answerSubmittedInCase2 = false;
-              // Remove selected class from all shapes
-              const shapeMap = {
-                  "A": "shape1-img",
-                  "B": "shape2-img", 
-                  "C": "shape3-img",
-                  "D": "shape4-img",
-                  "E": "shape5-img"
-              };
-              // Reset all shapes regardless of selectedShapes array
-              Object.values(shapeMap).forEach(imgClass => {
-                  let imgElements = document.getElementsByClassName(imgClass);
-                  if (imgElements.length > 0) {
-                      imgElements[0].classList.remove("selected");
-                      let letterBox = imgElements[0].parentElement.querySelector('.letter-box');
-                      if (letterBox) {
-                          letterBox.classList.remove("selected");
-                      }
-                      let redBoxes = imgElements[0].parentElement.querySelectorAll('[class^="red-box"]');
-                      redBoxes.forEach(box => {
-                          box.classList.remove("show");
-                      });
-                  }
-              });
-          }
-          
-          // Disable button during audio playback
-          $("#judgement_btn").css('pointer-events', 'none').css('cursor', 'default');
-          $('#judgement_btn').removeClass('btn_active');
-          
-          parent.surala.audio.playSound('IPM_S10L03u03_035', null, function() {
+          parent.surala.audio.playSound('IPM_S10L04u010_011', null, function() {
             if (sliderChanged) {
                 sliderChanged = false;
-            } else if (!answerSubmittedInCase2) {
-                // If no answer submitted, PAUSE seekbar and wait for answer
-                pauseSeekbar = true;
-                parent.surala.slideNavigation.blinkNextBtn(false);
-                
-                // Enable shape selection ONLY when seekbar stops
-                shapeSelectionEnabled = true;
-                
-                // Enable button so kids can submit answer after audio ends
-                $("#judgement_btn").css('pointer-events', 'auto').css('cursor', 'pointer');
-                $('#judgement_btn').addClass('btn_active');
-                // Ensure click handler is attached
-                $('#judgement_btn').off('click').on('click', function(e) {
-                    e.preventDefault();
-                    evaluateCase2Answer();
-                });
+           
+            } else {
+                seqNo = 3;
+                slideSequence(seqNo);
             }
-            // If answer was submitted, the evaluateCase2Answer function will handle progression to case 3 and 4
+           
           });
           break;
       case 3:
-          // Hide display2 and continue with third audio
-      
-          // Disable shape selection in case 3
-          shapeSelectionEnabled = false;
+        
           
-          // Reset answer state when navigating via seekbar
-          if (pauseSeekbar || sliderChanged) {
-              answerSubmittedInCase2 = false;
-              // Remove selected class from all shapes
-              const shapeMap = {
-                  "A": "shape1-img",
-                  "B": "shape2-img", 
-                  "C": "shape3-img",
-                  "D": "shape4-img",
-                  "E": "shape5-img"
-              };
-              // Reset all shapes regardless of selectedShapes array
-              Object.values(shapeMap).forEach(imgClass => {
-                  let imgElements = document.getElementsByClassName(imgClass);
-                  if (imgElements.length > 0) {
-                      imgElements[0].classList.remove("selected");
-                      let letterBox = imgElements[0].parentElement.querySelector('.letter-box');
-                      if (letterBox) {
-                          letterBox.classList.remove("selected");
-                      }
-                      let redBoxes = imgElements[0].parentElement.querySelectorAll('[class^="red-box"]');
-                      redBoxes.forEach(box => {
-                          box.classList.remove("show");
-                      });
-                  }
-              });
-              selectedShapes = [];
-          }
-          
-          // Add blinking outline to yellow-box during case 3 audio
-          var blinkInterval = setInterval(function() {
-              $('.yellow-box').toggleClass('blink-outline');
-          }, 500);
-          
-          parent.surala.audio.playSound('IPM_S10L03u03_036', null, function() {
-            // Stop blinking when audio ends
-            clearInterval(blinkInterval);
-            $('.yellow-box').removeClass('blink-outline');
+          parent.surala.character.animate('student', 'talk', function() {
+              parent.surala.character.animate('student', 'talk_stop');
+          });
+          parent.surala.audio.playSound('IPM_S10L04u010_S002', null, function() {
             
+            parent.surala.character.stopAllAnimation();
             if (sliderChanged) {
                 sliderChanged = false;
             } else {
@@ -371,42 +295,157 @@ function slideSequence(seqNo) {
           break;
       case 4:
            
-          // Disable shape selection in case 4
-          shapeSelectionEnabled = false;
-             
-          parent.surala.audio.playSound('IPM_S10L03u03_037', null, function() {
+            $('.display2').css("visibility", "visible"),
+          parent.surala.audio.playSound('IPM_S10L04u010_012', null, function() {
             if (sliderChanged) {
                 sliderChanged = false;
+
             } else {
-                // End the slide sequence and stop all running processes
-                parent.surala.character.stopAllAnimation();
-                parent.surala.audio.stopAllNonLoopSounds();
-                
-                // Stop the createjs Ticker to prevent tick function from running
-                createjs.Ticker.removeEventListener("tick", tick);
-                
-                // Clear all intervals and timeouts
-                clearInterval(interVal);
-                clearTimeout(timeOut);
-                clearTimeout(seekBarTimer);
-                
-                // Stop seekbar and mark as ended
-                pauseSeekbar = true;
-                seekBarStatus = "ended";
-                slideTutorial.enableSeekbar = false;
-                
-                // Set seekbar to end position
-                currentSliderPos = seekbarLength;
-                $('#seekBarSlider').css({ left: seekbarLength + 'px' });
-                $('#sliderVal').css({ width: seekbarLength + 'px' });
-                
-                // Enable next button
-                parent.surala.slideNavigation.blinkNextBtn(true);
-                parent.surala.slideNavigation.playPauseState = true;
-                parent.surala.slideNavigation.playStatus = "pause";
+                seqNo = 5;
+                slideSequence(seqNo);
             }
+
           });
           break;
+
+          case 5:
+            parent.surala.audio.playSound('IPM_S10L04u010_013', null, function() {
+                seqNo = 6;
+                slideSequence(seqNo);
+            });
+            break;
+          case 6:
+            parent.surala.audio.playSound('IPM_S10L04u010_S003', null, function() {
+                seqNo = 7;
+                slideSequence(seqNo);
+            });
+            break;
+          case 7:
+            parent.surala.audio.playSound('IPM_S10L04u010_S004', null, function() {
+                seqNo = 8;
+                slideSequence(seqNo);
+            });
+            break;
+          case 8:
+            parent.surala.audio.playSound('IPM_S10L04u010_014', null, function() {
+                seqNo = 9;
+                slideSequence(seqNo);
+            });
+            break;
+          case 9:
+            parent.surala.audio.playSound('IPM_S10L04u010_015', null, function() {
+                seqNo = 10;
+                slideSequence(seqNo);
+            });
+            break;
+          case 10:
+            parent.surala.audio.playSound('IPM_S10L04u010_016', null, function() {
+                seqNo = 11;
+                slideSequence(seqNo);
+            });
+            break;
+          case 11:
+            parent.surala.audio.playSound('IPM_S10L04u010_017', null, function() {
+                seqNo = 12;
+                slideSequence(seqNo);
+            });
+            break;
+          case 12:
+            parent.surala.audio.playSound('IPM_S10L04u010_S005', null, function() {
+                seqNo = 13;
+                slideSequence(seqNo);
+            });
+            break;
+          case 13:
+            parent.surala.audio.playSound('IPM_S10L04u010_018', null, function() {
+                seqNo = 14;
+                slideSequence(seqNo);
+            });
+            break;
+          case 14:
+            $('.blueline').css("visibility", "visible"),
+            parent.surala.audio.playSound('IPM_S10L04u010_019', null, function() {
+                seqNo = 15;
+                slideSequence(seqNo);
+            });
+            break;
+          case 15:
+            parent.surala.audio.playSound('IPM_S10L04u010_020', null, function() {
+                seqNo = 16;
+                slideSequence(seqNo);
+            });
+            break;
+          case 16:
+
+            $('.one').css("visibility", "visible"),
+            parent.surala.audio.playSound('IPM_S10L04u010_021', null, function() {
+                seqNo = 17;
+                slideSequence(seqNo);
+            });
+            break;
+          case 17:
+            $('.two').css("visibility", "visible"),
+            parent.surala.audio.playSound('IPM_S10L04u010_022', null, function() {
+                seqNo = 18;
+                slideSequence(seqNo);
+            });
+            break;
+          case 18:
+            $('.display4').css("visibility", "visible"),
+            parent.surala.audio.playSound('IPM_S10L04u010_023', null, function() {
+                seqNo = 19;
+                slideSequence(seqNo);
+            });
+            break;
+          case 19:
+            $('.display5').css("visibility", "visible"),
+            parent.surala.audio.playSound('IPM_S10L04u010_024', null, function() {
+                seqNo = 20;
+                slideSequence(seqNo);
+            });
+            break;
+          case 20:
+            $('.display6').css("visibility", "visible"),
+            parent.surala.audio.playSound('IPM_S10L04u010_025', null, function() {
+                seqNo = 21;
+                slideSequence(seqNo);
+            });
+            break;
+          case 21:
+            $('.display7').css("visibility", "visible"),
+            parent.surala.audio.playSound('IPM_S10L04u010_026', null, function() {
+                seqNo = 22;
+                slideSequence(seqNo);
+            });
+            break;
+          case 22:
+            parent.surala.audio.playSound('IPM_S10L04u010_027', null, function() {
+                seqNo = 23;
+                slideSequence(seqNo);
+            });
+            break;
+          case 23:
+            $('.display8').css("visibility", "visible"),
+            parent.surala.audio.playSound('IPM_S10L04u010_028', null, function() {
+                seqNo = 24;
+                slideSequence(seqNo);
+            });
+            break;
+          case 24:
+            parent.surala.audio.playSound('IPM_S10L04u010_029', null, function() {
+                seqNo = 25;
+                slideSequence(seqNo);
+            });
+            break;
+          case 25:
+            parent.surala.audio.playSound('IPM_S10L04u010_030', null, function() {
+                seqNo = 26;
+                slideSequence(seqNo);
+            });
+            break;
+
+
+
   }
 }
 
@@ -419,39 +458,8 @@ function showcontent(num) {
           break;
       case 2:
           $('.display2').css("visibility", "visible");
-          if (seekBarStatus !== "ended") {
-              answerSubmittedInCase2 = false;
-              // Enable shape selection when showing case 2
-              shapeSelectionEnabled = true;
-              // Remove selected class from all shapes
-              const shapeMap = {
-                  "A": "shape1-img",
-                  "B": "shape2-img", 
-                  "C": "shape3-img",
-                  "D": "shape4-img",
-                  "E": "shape5-img"
-              };
-              // Reset all shapes regardless of selectedShapes array
-              Object.values(shapeMap).forEach(imgClass => {
-                  let imgElements = document.getElementsByClassName(imgClass);
-                  if (imgElements.length > 0) {
-                      imgElements[0].classList.remove("selected");
-                      let letterBox = imgElements[0].parentElement.querySelector('.letter-box');
-                      if (letterBox) {
-                          letterBox.classList.remove("selected");
-                      }
-                      let redBoxes = imgElements[0].parentElement.querySelectorAll('[class^="red-box"]');
-                      redBoxes.forEach(box => {
-                          box.classList.remove("show");
-                      });
-                  }
-              });
-              selectedShapes = [];
-              // Reset button state and remove old click handlers
-              $('#judgement_btn').off('click');
-              $('#judgement_btn').css('pointer-events', 'none').css('cursor', 'default');
-              $('#judgement_btn').removeClass('btn_active');
-          }
+          // Enable shape selection in case 2
+          shapeSelectionEnabled = true;
           break;
       case 3:
           shapeSelectionEnabled = false;
