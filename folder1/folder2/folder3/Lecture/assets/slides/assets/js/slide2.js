@@ -232,7 +232,12 @@ function slideSequence(seqNo) {
   
   switch (seqNo) {
       case 1: 
-            $('.display01').css("visibility", "visible");
+            $('.display4').css("visibility", "visible");
+            $('.display5').css("visibility", "visible");
+            $('.display6').css("visibility", "visible");
+            $('.display7').css("visibility", "visible");
+            $('.display8').css("visibility", "visible");
+            
             
             // Disable shape selection in case 1
             shapeSelectionEnabled = false;

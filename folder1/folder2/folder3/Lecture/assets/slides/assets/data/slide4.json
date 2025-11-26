@@ -13,44 +13,73 @@
         "sounds": [
             { "name": "correct", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/correct" },
             { "name": "wrong", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/wrong" },
+            { "name": "MG_salah_09", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_09" },
+            { "name": "MG_benar_08", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_benar_08" },
             { "name": "MG_benar_01", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_benar_01" },
             { "name": "MG_salah_01", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_01" },
             { "name": "MG_salah_04", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_04" },
-            { "name": "IPM_S10L04u09_040", "src": "vo/IPM_S10L04u09_040" },
-            { "name": "IPM_S10L04u09_041", "src": "vo/IPM_S10L04u09_041" },
-            { "name": "IPM_S10L04u09_042", "src": "vo/IPM_S10L04u09_042" },
-            { "name": "IPM_S10L04u09_043", "src": "vo/IPM_S10L04u09_043" },
-            { "name": "IPM_S10L04u09_044", "src": "vo/IPM_S10L04u09_044" },
-            { "name": "IPM_S10L04u09_045", "src": "vo/IPM_S10L04u09_045" },
-            { "name": "IPM_S10L04u09_046", "src": "vo/IPM_S10L04u09_046" },
-            { "name": "IPM_S10L04u09_047", "src": "vo/IPM_S10L04u09_047" },
-            { "name": "IPM_S10L04u09_048", "src": "vo/IPM_S10L04u09_048" }
+            { "name": "MG_salah_03", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_03" },
+        
+
+            { "name": "IPM_S10L04u010_036", "src": "vo/IPM_S10L04u010_036" },
+            { "name": "IPM_S10L04u010_031", "src": "vo/IPM_S10L04u010_031" },
+            { "name": "IPM_S10L04u09_033", "src": "vo/IPM_S10L04u09_033" },
+            
+            { "name": "IPM_S10L04u010_037", "src": "vo/IPM_S10L04u010_037" },
+            { "name": "IPM_S10L04u010_038", "src": "vo/IPM_S10L04u010_038" },
+            { "name": "IPM_S10L04u010_031", "src": "vo/IPM_S10L04u010_031" },
+            { "name": "IPM_S10L04u010_039", "src": "vo/IPM_S10L04u010_039" },
+            
+            { "name": "IPM_S10L04u010_040", "src": "vo/IPM_S10L04u010_040" },
+            { "name": "IPM_S10L04u010_041", "src": "vo/IPM_S10L04u010_041" },
+            { "name": "IPM_S10L04u010_042", "src": "vo/IPM_S10L04u010_042" },
+            
+            { "name": "IPM_S10L04u010_043", "src": "vo/IPM_S10L04u010_043" },
+            { "name": "IPM_S10L04u010_044", "src": "vo/IPM_S10L04u010_044" },
+            { "name": "IPM_S10L04u010_045", "src": "vo/IPM_S10L04u010_045" },
+            
+            { "name": "IPM_S10L04u010_S006", "src": "vo/IPM_S10L04u010_S006" },
+             { "name": "IPM_S10L04u010_S007", "src": "vo/IPM_S10L04u010_S007" }
+        
+           
+
+
+
         ],
-        "slideDuration": [
-            { "audio": "IPM_S10L04u09_040", "dur": "3.7" },
-            { "audio": "IPM_S10L04u09_041", "dur": "10.6" },
-            { "audio": "IPM_S10L04u09_042", "dur": "9.4" },
-            { "audio": "IPM_S10L04u09_043", "dur": "4.3" },
-            { "audio": "IPM_S10L04u09_044", "dur": "8.8" },
-            { "audio": "IPM_S10L04u09_045", "dur": "4.5" },
-            { "audio": "IPM_S10L04u09_046", "dur": "4.5" },
-            { "audio": "IPM_S10L04u09_047", "dur": "10.9" },
-            { "audio": "IPM_S10L04u09_048", "dur": "9.6" }
-        ],
+    "slideDuration": [
+                { "audio": "IPM_S10L04u010_036", "dur": "3" },
+                { "audio": "IPM_S10L04u010_037", "dur": "4" },
+                { "audio": "IPM_S10L04u010_038", "dur": "4.4" },
+                { "audio": "IPM_S10L04u09_033",    "dur": "3.5" },
+                { "audio": "IPM_S10L04u010_031", "dur": "5.3" },
+                { "audio": "IPM_S10L04u010_040", "dur": "5.1" },
+                { "audio": "IPM_S10L04u010_042", "dur": "4.1" },
+                { "audio": "IPM_S10L04u010_039", "dur": "8.3" },
+                { "audio": "IPM_S10L04u010_043", "dur": "6.7" },
+                { "audio": "IPM_S10L04u010_041", "dur": "10.7" },
+                { "audio": "IPM_S10L04u010_S006", "dur": "2.1" },
+                { "audio": "IPM_S10L04u010_S007", "dur": "2" },
+                { "audio": "IPM_S10L04u010_044", "dur": "3.5" },
+                { "audio": "IPM_S10L04u010_045", "dur": "20.2" }
+],
+
+
+
+
         "content": {
             "question1": {
                 "audio": {
                     "correct": "MG_benar_01",
                     "incorrect": "MG_salah_01"
                 },
-                "correctAnswer": "option_2,option_3"
+                "correctAnswer": "Segitiga"
             },
             "question2": {
                 "audio": {
                     "correct": "MG_benar_01",
                     "incorrect": "MG_salah_04"
                 },
-                "correctAnswer": "20"
+                "correctAnswer": "90"
             }
         }
     }

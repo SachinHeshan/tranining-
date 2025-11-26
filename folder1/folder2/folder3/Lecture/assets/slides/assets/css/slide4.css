@@ -132,6 +132,7 @@ margin: auto;
 
 /* Display 4 */
 .display4 {
+
     margin-left: 60px;
     margin-top: 110px;
     
@@ -153,9 +154,10 @@ margin: auto;
 
 /* Input box */
 .answer-box input {
-    width: 120px;
+    width: 100px;
     height: 50px;
-    font-size: 20px;
+    font-size: 40px;
+    text-align: center;
     padding-left: 8px;
     border: 2px solid #000;
 
@@ -164,9 +166,9 @@ margin: auto;
 /* Example text */
 .answer-box .example {
     color: red;
-    font-size: 30px;
-    margin-left: -150px;
-    margin-bottom: -120px;
+    font-size: 39px;
+    margin-left: -116px;
+    margin-bottom: -100px;
 }
 .question-4 {
     margin-top: -30px;

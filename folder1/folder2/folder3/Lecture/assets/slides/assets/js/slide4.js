@@ -205,8 +205,8 @@ function slideSequence(seqNo) {
           resetall();
           answerBtnClicked2 = false;
    
-  
-          parent.surala.audio.playSound('IPM_S10L04u09_031', null, function() {
+           $(".display1").css("visibility", "visible");
+          parent.surala.audio.playSound('IPM_S10L04u010_036', null, function() {
               if (sliderChanged) {
                   sliderChanged = false;
               } else {
@@ -219,7 +219,7 @@ function slideSequence(seqNo) {
           currentQnNo = 1;
           loadSelectable();
           answerBtnClicked1 = false;
-          $(".display1").css("visibility", "visible");
+
           $(".display2").css("visibility", "visible");
           // Hide blueline in case 2
           
@@ -240,13 +240,7 @@ function slideSequence(seqNo) {
       case 3:
           // Only continue to next sequence after answer checking
           // Reset the answer submitted flag when moving to the next sequence
-          isAnswerSubmitted = false;
-          $(".display2").css("visibility", "visible");
-          if (seqNo >= 3 && seqNo <= 4 && seekBarStatus !== "ended") {
-              currentQnNo = 1;
-              if (!answerBtnClicked1)
-                  enableDisplay2Selectable();
-          }
+        
           // Show blueline in case 3
           $(".blueline").css("visibility", "visible");
           parent.surala.audio.playSound('IPM_S10L04u09_033', null, function() {
@@ -264,7 +258,7 @@ function slideSequence(seqNo) {
            
           // Continue showing blueline in case 4 (part of case 3 sequence)
            $(".answer").css("visibility" , "visible")
-          parent.surala.audio.playSound('IPM_S10L04u010_032', null, function() {
+          parent.surala.audio.playSound('IPM_S10L04u010_037', null, function() {
               if (sliderChanged) {
                   sliderChanged = false;
               } else {
@@ -279,7 +273,7 @@ function slideSequence(seqNo) {
          
           $(".one").css("visibility" , "visible")
           $(".two").css("visibility" , "visible")
-          parent.surala.audio.playSound('IPM_S10L04u010_033', null, function() {
+          parent.surala.audio.playSound('IPM_S10L04u010_038', null, function() {
               if (sliderChanged) {
                   sliderChanged = false;
               } else {
@@ -298,7 +292,7 @@ function slideSequence(seqNo) {
           $(".display4").css("visibility", "visible");
           // Hide the example text by default in case 6
           $(".example").css("visibility", "hidden");
-          parent.surala.audio.playSound('IPM_S10L04u010_034', null, function() {
+          parent.surala.audio.playSound('IPM_S10L04u010_031', null, function() {
               if (sliderChanged) {
                   sliderChanged = false;
               } else {
@@ -311,7 +305,7 @@ function slideSequence(seqNo) {
           // Reset the answer submitted flag when moving to the next sequence
           isAnswerSubmitted = false;
           $(".display5").css("visibility", "visible");
-          parent.surala.audio.playSound('IPM_S10L04u010_035', null, function() {
+          parent.surala.audio.playSound('IPM_S10L04u010_039', null, function() {
               if (sliderChanged) {
                   sliderChanged = false;
               } else {
@@ -320,9 +314,97 @@ function slideSequence(seqNo) {
               }
           });
           break;
-    
 
-  }
+          case 8:
+            parent.surala.audio.playSound('IPM_S10L04u010_040', null, function() {
+              if (sliderChanged) {
+                  sliderChanged = false;
+              } else {
+                  seqNo = 9;
+                  slideSequence(seqNo);
+              }
+          });
+          break;
+
+          case 9:
+            parent.surala.audio.playSound('IPM_S10L04u010_041', null, function() {
+              if (sliderChanged) {
+                  sliderChanged = false;
+              } else {
+                  seqNo = 10;
+                  slideSequence(seqNo);
+              }
+          });
+          break;
+
+          case 10:
+          parent.surala.audio.playSound('IPM_S10L04u010_042', null, function() {
+              if (sliderChanged) {
+                  sliderChanged = false;
+              } else {
+                  seqNo = 11;
+                  slideSequence(seqNo);
+              }
+          });
+          break;
+
+          case 11:
+          parent.surala.audio.playSound('IPM_S10L04u010_S006', null, function() {
+              if (sliderChanged) {
+                  sliderChanged = false;
+              } else {
+                  seqNo = 12;
+                  slideSequence(seqNo);
+              }
+          });
+          break;
+           
+          case 12:
+            parent.surala.audio.playSound('IPM_S10L04u010_043', null, function() {
+              if (sliderChanged) {
+                  sliderChanged = false;
+              } else {
+                  seqNo = 13;
+                  slideSequence(seqNo);
+              }
+          });
+          break;
+
+          case 13:
+            parent.surala.audio.playSound('IPM_S10L04u010_S007', null, function() {
+              if (sliderChanged) {
+                  sliderChanged = false;
+              } else {
+                  seqNo = 14;
+                  slideSequence(seqNo);
+              }
+          });
+          break;
+
+          case 14:
+            parent.surala.audio.playSound('IPM_S10L04u010_044', null, function() {
+              if (sliderChanged) {
+                  sliderChanged = false;
+              } else {
+                  seqNo = 15;
+                  slideSequence(seqNo);
+              }
+          });
+          break;
+
+         case 15:
+            parent.surala.audio.playSound('IPM_S10L04u010_045', null, function() {
+              if (sliderChanged) {
+                  sliderChanged = false;
+              } else {
+                  seqNo = 16;
+                  slideSequence(seqNo);
+              }
+          });
+  }      
+
+
+
 }
 
 function showcontent(num) {
@@ -1008,8 +1090,8 @@ function checkDisplay2Answer() {
   $('.choices-box div').off('click');
   $('#judgement_btn').css('opacity', '0.5').css('pointer-events', 'none');
   
-  // Check if the selected answer is correct
-  var isCorrect = selectedChoices.length === 1 && selectedChoices[0] === "Persegi Panjang";
+  // Check if the selected answer is correct (changed from "Persegi Panjang" to "Segitiga")
+  var isCorrect = selectedChoices.length === 1 && selectedChoices[0] === "Segitiga";
   
   if (isCorrect) {
     // Keep the selected choice highlighted
@@ -1023,7 +1105,7 @@ function checkDisplay2Answer() {
     });
     
     // Play correct sound at the same time
-    parent.surala.audio.playSound('MG_benar_02', null, function() {
+    parent.surala.audio.playSound('MG_benar_08', null, function() {
       // Continue to next sequence after a delay
       setTimeout(function() {
         // Set seekbar to continue
@@ -1037,9 +1119,9 @@ function checkDisplay2Answer() {
     // Remove incorrect selection highlighting
     $('.choices-box div').removeClass('selected');
     
-    // Highlight the correct answer
+    // Highlight the correct answer (changed from "Persegi Panjang" to "Segitiga")
     $('.choices-box div').each(function() {
-      if ($(this).text().trim() === "Persegi Panjang") {
+      if ($(this).text().trim() === "Segitiga") {
         $(this).addClass('selected');
       }
     });

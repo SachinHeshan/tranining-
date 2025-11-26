@@ -24,64 +24,88 @@
 
     <section is="gwd-pagedeck" class="gwd-page-container slideContent" id="pagedeck" ondragstart="return false;">
 
-        <p class="title">Ulasan</p>
+        <p class="title">■ Menghitung Perkiraan Luas</p>
 
-        <!-- DISPLAY 1 -->
-        <div class="display01">
-            <div class="yellow-box">
-                <b class="title1"> ● Segi Banyak Beraturan</b><br>
-                <p class="title2">Bangun datar yang memiliki sisi-sisi sama panjang<br>
-                    dan sudut-sudut sama besar.</p>
-            </div>
-        </div>
+       
 
-        <!-- DISPLAY 2 -->
-        <div class="display2">
+          <!-- Display 4 -->
+                    <div class="display4">
+                    <p class="question-4">Berapa perkirakan luas hutan tersebut?</p>
 
-            <div class="question-container">
-                <p class="question-text">
-                    Pilihlah semua segi banyak beraturan di bawah ini.
-                </p>
-                <p class="instruction-text">
-                    *Klik huruf untuk jawaban yang benar.
-                </p>
+                    <div class="answer-box">
+                        <p>Sekitar</p>
+                        <input type="text" id="text_1" placeholder="">
+                        <p>km²</p>
+                        <p class="example">4.800 or 4800</p>
+                    </div>
+                
+             <!-- JUDGEMENT BUTTON -->
+                    <button type="button" class="judgement_btn" id="judgement_btn1"
+                        style="border: none; cursor: pointer; z-index: 1000; pointer-events: auto; margin-left: 250px; margin-top: -50px;"></button>
+                    
+                </div>
 
-                <div class="letter-row"></div>
-            </div>
 
-            <!-- SHAPES FIXED WRAPPERS -->
 
-            <div class="shape1-wrapper">
-                <img src="assets/images/slide2/shape1.png" class="shape1-img">
-                <div class="red-box1"></div>
-            </div>
+                <div class="display5">
+                            <div class="blue-box-container">
+                    <div class="blue-box">
+                        <h3 class="box-title">● Luas Segitiga</h3>
+                        
+                        <div class="formula-box">
+                            <span style="color: #ff2424;">Luas =</span>
+                            
+                            <!-- Best and cleanest way to display the fraction -->
+                            <span class="better-fraction">
+                                <span class="frac">
+                                    <span class="fup">1</span>
+                                    <span style="border-top: 3px solid #ff2424; display: block; margin: 2px 0 ;  margin-left: 10px">&nbsp;</span>
+                                    <span class="fdown">2</span>
+                                </span>
+                            </span>
+                            
+                            <span style="margin: 0 10px; color: #ff2424;">×</span>
+                            <span style="color:#ff2424;">Alas × Tinggi</span>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="shape2-wrapper">
-                <img src="assets/images/slide2/shape2.png" class="shape2-img">
-                <div class="red-box2"></div>
-            </div>
 
-            <div class="shape3-wrapper">
-                <img src="assets/images/slide2/shape3.png" class="shape3-img">
-                <div class="red-box3"></div>
-            </div>
+                <div class="display6">
+                   <div class="formula-box-2">
+                <div class="small-line-2">
+                    <span class="fraction-2">
+                    <div class="numerator-2">1</div>
+                    <div class="denominator-2">2</div>
+                    </span>
+                    × Alas × Tinggi
+                </div>
 
-            <div class="shape4-wrapper">
-                <img src="assets/images/slide2/shape4.png" class="shape4-img">
-                <div class="red-box4"></div>
-            </div>
+                <div class="big-line-2">
+                    <span class="fraction-2">
+                    <div class="numerator-2">1</div>
+                    <div class="denominator-2">2</div>
+                    </span>
+                    × 120 × 80 = 4.800 km²
+                </div>
 
-            <div class="shape5-wrapper">
-                <img src="assets/images/slide2/shape5.png" class="shape5-img">
-                <div class="red-box5"></div>
-            </div>
 
-            <!-- JUDGEMENT BUTTON -->
-            <button type="button" class="judgement_btn" id="judgement_btn"
-                style="border: none; cursor: pointer; z-index: 1000; pointer-events: auto;"></button>
+                </div>
 
-        </div>
 
+                <div class="display7">
+                    <p class="titel-7">Luas yang sebenarnya = 5.156 km²</p>
+                </div>
+
+                <div class="display8">
+               <p class="instruction-box">Untuk menghitung perkiraan luas suatu bentuk, bayangkan <br>
+                    bangun datar apa yang paling mirip dengan bentuk tersebut.</p>
+                </div> <div class="display display1">
+                </div>
+
+
+
+                </div>
     </section>
 
     <!-- SEEK BAR -->
