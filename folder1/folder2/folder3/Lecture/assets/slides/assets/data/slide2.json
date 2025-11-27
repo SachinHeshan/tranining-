@@ -13,6 +13,7 @@
         ],
         "sounds": [
               { "name": "MG_benar_02", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_benar_02" },
+              { "name": "MG_salah_09", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_09" },
             { "name": "MG_salah_07", "src": "../../../../../../common/CeylonSoft/re_primarymath_ind/sound/effects/MG_salah_07" },
              { "name": "IPM_S10L04u010_010", "src": "vo/IPM_S10L04u010_010" },
             { "name": "IPM_S10L04u010_011", "src": "vo/IPM_S10L04u010_011" },
@@ -48,20 +49,39 @@
 
         ],
         "slideDuration": [
-            { "audio": "IPM_S10L04u03_034", "dur": "2.0" },
-            { "audio": "IPM_S10L04u03_035", "dur": "7.0" },
-            { "audio": "IPM_S10L04u03_036", "dur": "8.0" },
-            { "audio": "IPM_S10L04u03_037", "dur": "8.0" }
-            
-           
-        ],
+            { "audio": "IPM_S10L04u010_S005", "dur": "3.6" },
+            { "audio": "IPM_S10L04u010_020", "dur": "3.3" },
+            { "audio": "IPM_S10L04u010_015", "dur": "4.7" },
+            { "audio": "IPM_S10L04u010_017", "dur": "3.8" },
+            { "audio": "IPM_S10L04u010_024", "dur": "3.3" },
+            { "audio": "IPM_S10L04u010_021", "dur": "4.4" },
+            { "audio": "IPM_S10L04u010_023", "dur": "3.4" },
+            { "audio": "IPM_S10L04u010_022", "dur": "4.3" },
+            { "audio": "IPM_S10L04u010_019", "dur": "5" },
+            { "audio": "MG_salah_07", "dur": "4.6" },
+            { "audio": "IPM_S10L04u010_016", "dur": "6.9" },
+            { "audio": "IPM_S10L04u010_S002", "dur": "2.2" },
+            { "audio": "IPM_S10L04u010_010", "dur": "2.9" },
+            { "audio": "IPM_S10L04u010_030", "dur": "2.8" },
+            { "audio": "IPM_S10L04u010_027", "dur": "5.7" },
+            { "audio": "IPM_S10L04u010_018", "dur": "6.6" },
+            { "audio": "IPM_S10L04u010_012", "dur": "5" },
+            { "audio": "IPM_S10L04u010_S003", "dur": "3.5" },
+            { "audio": "IPM_S10L04u010_014", "dur": "4.7" },
+            { "audio": "IPM_S10L04u010_011", "dur": "6.8" },
+            { "audio": "IPM_S10L04u010_028", "dur": "8.8" },
+            { "audio": "IPM_S10L04u010_013", "dur": "7.6" },
+            { "audio": "IPM_S10L04u010_029", "dur": "9.3" },
+            { "audio": "IPM_S10L04u010_026", "dur": "10.2" },
+            { "audio": "IPM_S10L04u010_025", "dur": "16.1" }
+],
           "content": {
             "question1": {
                 "audio": {
                     "correct": "MG_benar_02",
                     "incorrect": "MG_salah_07"
                 },
-                "correctAnswer": "C D"
+                "correctAnswer": "1400"
             }
         }
  

@@ -73,52 +73,52 @@
 
 
 .dropzone-1 {
-    width: 180px;
+    width: 210px;
     height: 33px;
 
     margin-top: -22px;
-    margin-left: -480px;
+    margin-left: -494px;
     padding: 3px;
-    font-size: 24px;
+    font-size: 26px;
     
     text-align: center;
 }
 .dropzone-2 {
-      width: 160px;
+      width: 280px;
       margin-top: -22px;
     height: 33px;
-    margin-left: -510px;
+    margin-left: -570px;
     padding: 3px;
-    font-size: 24px;
+    font-size: 26px;
     text-align: center;
     outline: none;
 
 }
 .dropzone-3 {
-      width: 160px;
+      width: 220px;
       margin-top: -20px;
-    height: 33px;
-    margin-left: -480px;
-    padding: 3px;
-    font-size: 22px;
-    text-align: center;
-}
-.dropzone-4 {
-      width: 100px;
-    margin-top: -22px;
-    height: 33px;
-    margin-left: -380px;
-    padding: 3px;
-    font-size: 22px;
-    text-align: center;
-}
-.dropzone-5 {
-      width: 160px;
-      margin-top: -22px;
     height: 33px;
     margin-left: -500px;
     padding: 3px;
-    font-size: 27px;
+    font-size: 26px;
+    text-align: center;
+}
+.dropzone-4 {
+      width: 117px;
+    margin-top: -22px;
+    height: 33px;
+    margin-left: -387px;
+    padding: 3px;
+    font-size: 26px;
+    text-align: center;
+}
+.dropzone-5 {
+      width: 250px;
+      margin-top: -22px;
+    height: 33px;
+    margin-left: -550px;
+    padding: 3px;
+    font-size: 26px;
     text-align: center;
 }
 

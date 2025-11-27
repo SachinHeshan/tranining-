@@ -328,7 +328,7 @@ function slideSequence(seqNo) {
 function showcontent(num) {
   switch (num) {
       case 1:
-          $(".display9").css("visibility", "visible");
+          $(".shape").css("visibility", "hidden");
           // Hide blueline in case 1
           $(".blueline").css("visibility", "hidden");
           break;
