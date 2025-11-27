@@ -148,7 +148,8 @@ margin: auto;
 .answer-box input {
     width: 120px;
     height: 50px;
-    font-size: 20px;
+    font-size: 39px;
+    align-items: center;
     padding-left: 8px;
     border: 2px solid #000;
 
@@ -262,7 +263,6 @@ background: yellow;
 .judgement_btn {
     margin-left: 85%;
     margin-top: -50px;
-    background-color: #4CAF50; /* Green background */
     color: white; /* White text */
     padding: 10px 20px; /* Some padding */
     border: none; /* Remove borders */
@@ -271,14 +271,7 @@ background: yellow;
     font-size: 16px; /* Increase font size */
 }
 
-.judgement_btn:hover {
-    background-color: #45a049; /* Darker green on hover */
-}
 
-.judgement_btn:disabled {
-    background-color: #cccccc; /* Gray background when disabled */
-    cursor: not-allowed; /* Not allowed cursor when disabled */
-}
 
 .correctAnswer {
     font-size: 20px;

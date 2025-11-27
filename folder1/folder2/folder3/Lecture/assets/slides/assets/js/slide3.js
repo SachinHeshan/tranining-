@@ -378,7 +378,7 @@ function showcontent(num) {
         $(".display6").css("visibility", "visible");
           break;
       case 9:
-          $(".display7,.display7_1,.display7_2,.display8").css("visibility", "visible");
+          $(".display7,.display7_1,.display7_2,.display8,.shape").css("visibility", "visible");
           if (seekBarStatus === "ended") {
               answerBtnClicked1 = false;
               disableSelectable();

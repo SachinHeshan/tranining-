@@ -497,6 +497,9 @@ function slideSequence(seqNo) {
           $('#text_1').prop('disabled', false).css('pointer-events', 'auto');
           $('#judgement_btn1').css('pointer-events', 'auto').addClass('btn_active');
           
+          // Hide the example text by default when case 18 starts
+          $('.example').css("visibility", "hidden");
+          
           // Add event listener for the judgement button
           $('#judgement_btn1').off('click').on('click', function() {
               validateCase18Answer();
@@ -516,7 +519,7 @@ function slideSequence(seqNo) {
           });
           break;
       case 19:
-          $('.display5').css("visibility", "visible");
+          $('.display5 .').css("visibility", "visible");
           currentAudioId = 'IPM_S10L04u010_024';
           parent.surala.audio.playSound(currentAudioId, null, function() {
             if (sliderChanged) {
@@ -640,6 +643,9 @@ function resetAllContent() {
   $('#text_1').prop('disabled', true).css('pointer-events', 'none').val('');
   $('#judgement_btn1').css('pointer-events', 'none').removeClass('btn_active');
   $('#judgement_btn').css('pointer-events', 'none').removeClass('btn_active');
+  
+  // Hide example text
+  $('.example').css('visibility', 'hidden');
 }
 
 function showcontent(num) {
@@ -1166,7 +1172,7 @@ function validateCase18Answer() {
     
     if (isCorrect) {
         // Hide the example text for correct answers
-        $('.example').hide();
+        $('.example').css('visibility', 'hidden').hide();
         
         // Play correct animation and audio using existing function
         parent.surala.character.animate('student', 'correct', function() {
@@ -1193,7 +1199,7 @@ function validateCase18Answer() {
         }, 200);
     } else {
         // Show the example text for wrong answers
-        $('.example').show();
+        $('.example').css('visibility', 'visible').show();
         
         // Play wrong animation and audio using existing function
         parent.surala.character.animate('student', 'wrong', function() {
