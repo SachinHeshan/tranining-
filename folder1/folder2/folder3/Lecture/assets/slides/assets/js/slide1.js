@@ -1,6 +1,7 @@
+
 /* ==============================================================
-   slide1.js –  Jumlah sudut segitiga (180°)
-   ============================================================== */
+   slide1.js –  Jumlah sudut segitiga (180°)
+   ============================================================== */
 
 // ---------- PRELOAD ----------
 var preloaditems = {
@@ -36,6 +37,9 @@ function init() {
         parent.surala.audio.stopAllNonLoopSounds();
     }
     
+    // Initialize drag and drop functionality
+    initDragAndDrop();
+    
     // Assume slideManager and slideTutorial are defined globally or imported
     slideManager = slideManager(); 
     slideTutorial = slideTutorial;
@@ -50,6 +54,7 @@ function init() {
     
     $('#correctAnswerDisplay').css('display', 'none');
     $('.feedback').css('visibility', 'hidden'); // Ensure feedback is hidden initially
+    $('.correct-box').css('visibility', 'hidden'); // Hide correct boxes initially
 
     $.ajax({
         dataType: "json",
@@ -73,6 +78,101 @@ function init() {
         }
     });
 }
+
+// Initialize drag and drop functionality
+function initDragAndDrop() {
+    // Make choices draggable
+    $('.choice').attr('draggable', true);
+    
+    // Add event listeners for drag and drop
+    $('.choice').on('dragstart', function(e) {
+        e.originalEvent.dataTransfer.setData('text/plain', $(this).text().trim());
+        $(this).addClass('dragging');
+    });
+    
+    $('.choice').on('dragend', function(e) {
+        $(this).removeClass('dragging');
+    });
+    
+    // Add event listeners for drop zones
+    $('[class^="dropzone-"]').each(function() {
+        // Add dragover event
+        $(this).on('dragover', function(e) {
+            e.preventDefault();
+            $(this).css('border', '2px dashed #000');
+        });
+        
+        // Add dragleave event
+        $(this).on('dragleave', function(e) {
+            e.preventDefault();
+            $(this).css('border', '2px dashed #888');
+        });
+        
+        // Add drop event
+        $(this).on('drop', function(e) {
+            e.preventDefault();
+            $(this).css('border', '2px dashed #888');
+            
+            var data = e.originalEvent.dataTransfer.getData('text/plain');
+            var dropZone = $(this);
+            
+            // Clear the drop zone
+            dropZone.empty();
+            
+            // Add the dragged element to the drop zone
+            dropZone.text(data);
+            
+            // Store the answer in data attribute for validation
+            dropZone.attr('data-dropped', data);
+        });
+    });
+}
+
+// Function to validate answers
+function validateAnswers() {
+    var correctAnswers = {
+        'dropzone-1': 'Segitiga',
+        'dropzone-2': 'Lingkaran',
+        'dropzone-3': 'Persegi Panjang',
+        'dropzone-4': 'Juring',
+        'dropzone-5': 'Persegi'
+    };
+    
+    var allCorrect = true;
+    var results = {};
+    
+    for (var dropzone in correctAnswers) {
+        var droppedValue = $('#' + dropzone).attr('data-dropped') || '';
+        var isCorrect = droppedValue === correctAnswers[dropzone];
+        
+        results[dropzone] = {
+            dropped: droppedValue,
+            correct: correctAnswers[dropzone],
+            isCorrect: isCorrect
+        };
+        
+        if (!isCorrect) {
+            allCorrect = false;
+        }
+    }
+    
+    return {
+        allCorrect: allCorrect,
+        results: results
+    };
+}
+
+// Function to reset drag and drop
+function resetDragAndDrop() {
+    $('[class^="dropzone-"]').each(function() {
+        $(this).empty();
+        $(this).removeAttr('data-dropped');
+    });
+}
+
+// Expose functions for external use
+window.validateAnswers = validateAnswers;
+window.resetDragAndDrop = resetDragAndDrop;
 
 // ---------- AFTER PRELOAD ----------
 function addContent() {
@@ -115,8 +215,8 @@ function addContent() {
 }
 
 /* ==============================================================
-   LMS RE-ENTRY (show previous answer + feedback)
-   ============================================================== */
+   LMS RE-ENTRY (show previous answer + feedback)
+   ============================================================== */
 function showLMSFeedback() {
     $('.display1').css('visibility', 'visible');
     
@@ -128,7 +228,7 @@ function showLMSFeedback() {
     
     setTimeout(() => {
         if (isCorrect) $('#correctFB').css('visibility', 'visible');
-        else          $('#wrongFB').css('visibility', 'visible');
+        else          $('#wrongFB').css('visibility', 'visible');
         
         disableActivity();
         if (!isCorrect) {
@@ -138,8 +238,8 @@ function showLMSFeedback() {
 }
 
 /* ==============================================================
-   SEQUENCE (audio + show elements)
-   ============================================================== */
+   SEQUENCE (audio + show elements)
+   ============================================================== */
 var previousSeqNo = 0;
 function slideSequence(seq) {
     // Prevent re-triggering if already in this sequence unless explicitly clicked (play button)
@@ -172,18 +272,16 @@ function slideSequence(seq) {
     switch (seq) {
         case 1:
             if (parent.surala && parent.surala.audio) {
-                parent.surala.audio.playSound('IPM_S10L01u05_005', null, () => {
+                parent.surala.audio.playSound('IPM_S10L04u09_007', null, () => {
                     slideSequence(seq + 1);
                 });
             }
             break;
 
         case 2:
-            // This is the question. The audio plays, then the user must answer.
-            if (!answerSubmitted) enableActivity();
             if (parent.surala && parent.surala.audio) {
-                parent.surala.audio.playSound('IPM_S10L01u05_006', null, () => {
-                    // Wait for user answer
+                parent.surala.audio.playSound('IPM_S10L04u010_005', null, () => {
+                    slideSequence(seq + 1);
                 });
             }
             break;
@@ -193,7 +291,7 @@ function slideSequence(seq) {
             if (!answerSubmitted && seqNo < 3) return; 
 
             if (parent.surala && parent.surala.audio) {
-                parent.surala.audio.playSound('IPM_S10L01u05_007', null, () => {
+                parent.surala.audio.playSound('IPM_S10L04u010_006', null, () => {
                     slideSequence(seq + 1);
                 });
             }
@@ -201,15 +299,16 @@ function slideSequence(seq) {
 
         case 4:
             if (parent.surala && parent.surala.audio) {
-                parent.surala.audio.playSound('IPM_S10L01u05_008', null, () => {
+                parent.surala.audio.playSound('IPM_S10L04u010_S001', null, () => {
                     slideSequence(seq + 1);
                 });
             }
             break;
 
         case 5:
+              
             if (parent.surala && parent.surala.audio) {
-                parent.surala.audio.playSound('IPM_S10L01u05_009', null, () => {
+                parent.surala.audio.playSound('IPM_S10L04u010_007', null, () => {
                     slideSequence(seq + 1);
                 });
             }
@@ -220,24 +319,61 @@ function slideSequence(seq) {
                  parent.surala.character.teacherTalk(false);
             }
             if (parent.surala && parent.surala.audio) {
-                parent.surala.audio.playSound('IPM_S10L01u05_010', null, () => {
+                parent.surala.audio.playSound('IPM_S10L04u010_008', null, () => {
+                    // Continue to next sequence instead of ending
+                    slideSequence(seq + 1);
+                });
+            }
+            break;
+            
+        case 7:
+            // Show display1 before playing audio
+            $('.display1').css('visibility', 'visible');
+            if (parent.surala && parent.surala.audio) {
+                parent.surala.audio.playSound('IPM_S10L04u09_012', null, () => {
+                    // Stop and wait for user interaction
+                    if (!answerSubmitted) enableActivity();
+                });
+            }
+            break;
+
+        case 8:
+            // Show display1 before playing audio
+            $('.display1').css('visibility', 'visible');
+            // Keep showing correct boxes if there are wrong answers, hide if all correct
+            if (isCorrect) {
+                // Hide correct boxes if all answers are correct
+                $('.correct-box').css('visibility', 'hidden');
+            }
+            // If wrong answers exist, correct boxes stay visible (already set in evaluateActivity)
+            if (parent.surala && parent.surala.audio) {
+                parent.surala.audio.playSound('IPM_S10L04u09_013', null, () => {
+                    slideSequence(seq + 1);
+                });
+            }
+            break;
+
+        case 9:
+            // Show display1 before playing audio
+            $('.display1').css('visibility', 'visible');
+            if (parent.surala && parent.surala.audio) {
+                parent.surala.audio.playSound('IPM_S10L04u010_009', null, () => {
                     // Correctly ends the seekbar timeline after the last audio
                     seekBarStatus = "ended";
                     disableActivity();
                 });
             }
             break;
+
+
     }
 }
 
 /* ==============================================================
-   ACTIVITY (type 180 → Jawab)
-   ============================================================== */
+   ACTIVITY (type 180 → Jawab)
+   ============================================================== */
 function enableActivity() {
     answerBtnClicked = false;
-    $('#answerBox').prop('disabled', false).focus().val(userPreviousAnswer).css({
-        'background-image': 'none'
-    });
     $('#judgement_btn').prop('disabled', false).addClass('btn_active')
         .off('click').on('click', evaluateActivity);
     
@@ -248,7 +384,6 @@ function enableActivity() {
 }
 
 function disableActivity() {
-    $('#answerBox').prop('disabled', true);
     $('#judgement_btn').prop('disabled', true).removeClass('btn_active');
     // Note: pauseSeekbar is managed in evaluateActivity/seekbar functions, not here.
 }
@@ -268,6 +403,24 @@ function updateAnswerBoxUI(correct, userAns) {
         ansBoxStyle['background-image'] = 'url(../../../../../../common/CeylonSoft/re_primarymath_ind/images/wrong1.png)';
         $('#correctAnswerDisplay').css('display', 'block');
     }
+    
+    // Apply visual feedback to drop zones
+    $('[class^="dropzone-"]').each(function() {
+        var dropzoneClass = $(this).attr('class').split(' ')[0]; // Get the dropzone class
+        var correctAnswer = $(this).attr('data-answer');
+        var droppedAnswer = $(this).attr('data-dropped');
+        
+        if (correct) {
+            $(this).css('border', '2px solid green');
+        } else if (droppedAnswer) {
+            if (correctAnswer === droppedAnswer) {
+                $(this).css('border', '2px solid green');
+            } else {
+                $(this).css('border', '2px solid red');
+            }
+        }
+    });
+    
     $('#answerBox').css(ansBoxStyle);
     $('#answerBox').val(userAns);
 }
@@ -278,21 +431,44 @@ function evaluateActivity() {
     answerBtnClicked = true;
     answerSubmitted = true; 
 
-    var userAns = $.trim($('#answerBox').val());
-    var correct = (userAns === "180");
+    // Validate drag and drop answers
+    var validationResult = validateAnswers();
+    var correct = validationResult.allCorrect;
+    var results = validationResult.results;
     
     // Store results
-    userPreviousAnswer = userAns;
+    userPreviousAnswer = "Drag and Drop Activity"; // Placeholder since we're not storing individual answers
     isCorrect = correct;
 
     // ----- UI -----
     disableActivity(); 
     
-    $('.feedback').css('visibility', 'hidden');
-    if (correct) $('#correctFB').css('visibility', 'visible');
-    else         $('#wrongFB').css('visibility', 'visible');
+    // Hide all correct boxes first
+    $('.correct-box').css('visibility', 'hidden');
     
-    updateAnswerBoxUI(correct, userAns);
+    // Show correct boxes ONLY for wrong answers
+    for (var dropzoneId in results) {
+        var result = results[dropzoneId];
+        if (!result.isCorrect) {
+            // For each wrong answer, show the corresponding correct-box that contains the correct answer
+            var correctAnswer = result.correct;
+            $('.correct-box').each(function() {
+                if ($(this).text().trim() === correctAnswer) {
+                    $(this).css('visibility', 'visible');
+                }
+            });
+        }
+    }
+    
+    $('.feedback').css('visibility', 'hidden');
+    if (correct) {
+        $('#correctFB').css('visibility', 'visible');
+    } else {
+        $('#wrongFB').css('visibility', 'visible');
+    }
+    
+    // Update UI based on correctness
+    updateAnswerBoxUI(correct, userPreviousAnswer);
 
     // ----- AUDIO / ANIMATION -----
     if (parent.surala && parent.surala.character) {
@@ -317,7 +493,7 @@ function evaluateActivity() {
             if (typeof playSeekbar === 'function') playSeekbar(); 
             
             // After resuming the seekbar, call the next sequence
-            slideSequence(3);
+            slideSequence(8); // Continue to case 8
         });
     }
 
@@ -325,7 +501,7 @@ function evaluateActivity() {
     var activityNo = "slide1" + '-' + currentQnNo;
     var param = {
         flash_problem_num: activityNo,
-        flash_answer: userAns,
+        flash_answer: correct ? "Correct" : "Incorrect",
         type: 'lecture_answer',
         flash_count: 1,
         flash_success: correct ? 1 : 0
@@ -336,8 +512,8 @@ function evaluateActivity() {
 }
 
 /* ==============================================================
-   CONTENT SHOW/HIDE (Seekbar Synchronization)
-   ============================================================== */
+   CONTENT SHOW/HIDE (Seekbar Synchronization)
+   ============================================================== */
 
 // Helper to update the visual state based on the sequence number.
 function updateContentForSequence(targetSeq) {
@@ -345,6 +521,7 @@ function updateContentForSequence(targetSeq) {
     $(".display1, .display2, .display3").css("visibility", "hidden");
     $('.feedback').css('visibility', 'hidden');
     $('#correctAnswerDisplay').css('display', 'none');
+    $('.correct-box').css('visibility', 'hidden'); // Hide all correct boxes on content reset
     disableActivity();
 
     // Reset answer box to allow new input unless already answered
@@ -363,8 +540,25 @@ function updateContentForSequence(targetSeq) {
         $('#answerBox').val(userPreviousAnswer);
         updateAnswerBoxUI(isCorrect, userPreviousAnswer);
         if (isCorrect) $('#correctFB').css('visibility', 'visible');
-        else          $('#wrongFB').css('visibility', 'visible');
+        else          $('#wrongFB').css('visibility', 'visible');
         disableActivity();
+        
+        // If there are wrong answers and we're in the feedback phase, show correct boxes
+        if (!isCorrect && targetSeq >= 8) {
+            // Re-show correct boxes for wrong answers
+            var results = validateAnswers().results;
+            for (var dropzoneId in results) {
+                var result = results[dropzoneId];
+                if (!result.isCorrect) {
+                    var correctAnswer = result.correct;
+                    $('.correct-box').each(function() {
+                        if ($(this).text().trim() === correctAnswer) {
+                            $(this).css('visibility', 'visible');
+                        }
+                    });
+                }
+            }
+        }
     }
 }
 
@@ -377,33 +571,36 @@ function showcontent(num) {
 
             break;
         case 2:
-            $('.display1').css('visibility', 'visible');
+          
             
-            if (answerSubmitted) {
-                // If answered (seeking past it), show the result and keep disabled
-                updateAnswerBoxUI(isCorrect, userPreviousAnswer);
-            } else if (seekBarStatus !== "ended") {
-                // If not answered (seeking to it), enable the activity
-                enableActivity();
-            }
             break;
         case 3:
             // Show content from D1 (implicit from earlier showcontent) and D2
-            $('.display1, .display2').css('visibility', 'visible');
+            
             break;
         case 4:
             // D1 and D2 should already be visible
-            $('.display1, .display2').css('visibility', 'visible');
+
             break;
         case 5:
             // Show content from D3
-            $('.display3').css('visibility', 'visible');
-            // D1 and D2 should already be visible
-            $('.display1, .display2').css('visibility', 'visible');
+          
             break;
         case 6:
             // Ensure all content is visible
-            $('.display1, .display2, .display3').css('visibility', 'visible');
+           
+            break;
+        case 7:
+            // Show display1
+            $('.display1').css('visibility', 'visible');
+            break;
+        case 8:
+            // Show display1
+            $('.display1').css('visibility', 'visible');
+            break;
+        case 9:
+            // Show display1
+            $('.display1').css('visibility', 'visible');
             break;
     }
 }
@@ -418,6 +615,9 @@ function hidecontent(num) {
             // When seeking backward past the question (Seq 2): Reset the answer state
             $('.feedback').css('visibility', 'hidden');
             $('#correctAnswerDisplay').css('display', 'none');
+            $('.correct-box').css('visibility', 'hidden'); // Hide correct boxes
+            // Reset drag and drop activity
+            resetDragAndDrop();
             $('#answerBox').val('').css('background-image', 'none');
             answerSubmitted = false;
             isCorrect = false;
@@ -430,15 +630,39 @@ function hidecontent(num) {
         case 5:
             $(".display3").css("visibility", "hidden");
             break;
+        case 7:
+            // No specific hide action needed for sequence 7
+            break;
+        case 8:
+            // No specific hide action needed for sequence 8
+            break;
+        case 9:
+            // No specific hide action needed for sequence 9
+            break;
         default:
             break;
     }
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ==============================================================
-   CLEAN-UP
-   ============================================================== */
+   CLEAN-UP
+   ============================================================== */
 window.onunload = function () {
     if (parent.surala) {
         parent.surala.disablecallOut();

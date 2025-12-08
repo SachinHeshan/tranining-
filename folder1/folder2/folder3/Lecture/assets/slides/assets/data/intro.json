@@ -24,6 +24,10 @@
             { "name": "IPM_S10L04u09_004", "src": "vo/IPM_S10L04u09_004" },
             { "name": "IPM_S10L04u09_005", "src": "vo/IPM_S10L04u09_005" },
             { "name": "IPM_S10L04u09_006", "src": "vo/IPM_S10L04u09_006" },
+            { "name": "IPM_S10L04u010_001", "src": "vo/IPM_S10L04u010_001" },
+            { "name": "IPM_S10L04u010_002", "src": "vo/IPM_S10L04u010_002" },
+            { "name": "IPM_S10L04u010_003", "src": "vo/IPM_S10L04u010_003" },
+            { "name": "IPM_S10L04u010_004", "src": "vo/IPM_S10L04u010_004" },
             { "name": "IPM_S10L01u02_007", "src": "vo/IPM_S10L01u02_007" }
         ]
     }

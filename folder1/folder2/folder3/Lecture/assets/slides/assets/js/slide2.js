@@ -6,6 +6,22 @@ var preloaditems = {
   content: null
 };
 
+// LMS variables
+var studyLogUrl = parent.study_log_url;
+
+// Speed control utility function
+function speedcal(speed_number) {
+  var rate = parent.speed_rate;
+  if (rate != "") {
+    if (rate == 0.5 || rate == 0.75) {
+      speed_number = speed_number + speed_number * rate;
+    } else {
+      speed_number = speed_number / rate;
+    }
+  }
+  return speed_number;
+}
+
 // start point
 window.onload = init;
 
@@ -23,6 +39,7 @@ var totalAudios = 0;
 
 var answerBtnClicked1 = false;
 var answerSubmittedInCase2 = false;
+var answerSubmittedInCase18 = false; // Track if answer has been submitted in case 18
 var totalTegakiBox = 1;
 var seqNo = 0;
 var totalSequence = 0;
@@ -38,6 +55,27 @@ var activityFlag = false;
 var correctAns = 0;
 var correctAnsArr = [];
 var ansArray = [];
+
+// Add sliderChanged variable for seekbar functionality
+var sliderChanged = false;
+var previousSeqNo = 0;
+var parent = window.parent;
+var playbuttonClick = false; // Add this variable for seekbar functionality
+
+// Add missing variables for seekbar functionality
+var seekbarWidth = 720; // 15px start position
+var seekbarLength = 717;
+var currentSliderPos = 0;
+var seekBarStatus = "inprogress";
+var timeOut,
+  interVal = null;
+var disableSeekBar = false;
+var pauseSeekbar = false;
+var onSliderDrag = false;
+var seekBarTimer = null;
+
+// Track currently playing audio
+var currentAudioId = null;
 
 function init() {
   'use strict';
@@ -63,10 +101,6 @@ function init() {
   });
 
 }
-
-
-
-
 
 // start method once elements preloaded
 function addContent() {
@@ -219,26 +253,37 @@ function tick(event) {
 }
 
 function slideSequence(seqNo) {
+  // Stop any currently playing audio first
+  if (currentAudioId) {
+      parent.surala.audio.stopSound(currentAudioId);
+      currentAudioId = null;
+  }
+  
   if (previousSeqNo != seqNo) {
       previousSeqNo = seqNo;
   } else if (parent.playbuttonClick == false) {
       return;
   }
+  
   parent.playbuttonClick = false;
   parent.surala.disablecallOut();
   parent.surala.character.stopAllAnimation();
   parent.surala.character.teacherTalk(true);
   parent.surala.slideNavigation.blinkNextBtn(false);
   
+  // Update content based on sequence number
+  updateContentForSequence(seqNo);
+  
   switch (seqNo) {
       case 1: 
-            $('.display01').css("visibility", "visible");
+            $('.display1').css("visibility", "visible");
             
             // Disable shape selection in case 1
             shapeSelectionEnabled = false;
             
             if (parent.surala && parent.surala.audio) {
-                parent.surala.audio.playSound('IPM_S10L03u03_034', null, function() {
+                currentAudioId = 'IPM_S10L04u010_010';
+                parent.surala.audio.playSound(currentAudioId, null, function() {
                     if (sliderChanged) {
                         sliderChanged = false;
                     } else {
@@ -249,113 +294,35 @@ function slideSequence(seqNo) {
             }
             break;
       case 2:
-          // Show display2 during second audio and enable answer selection
+          shapeSelectionEnabled = true;
           
-          $('.display2').css("visibility", "visible");
+          // Make the shape image blink 2 times at the start of case 2
+          var blinkCount = 0;
+          var blinkInterval = setInterval(function() {
+              $('.shape').fadeOut(300).fadeIn(300);
+              blinkCount++;
+              if (blinkCount >= 2) {
+                  clearInterval(blinkInterval);
+              }
+          }, 400);
           
-          // Enable shape selection ONLY in case 2
-          shapeSelectionEnabled = false; // Disabled during audio, enabled when seekbar stops
-          
-          // Reset shapes and answer state for seekbar navigation
-          if (pauseSeekbar || sliderChanged) {
-              answerSubmittedInCase2 = false;
-              // Remove selected class from all shapes
-              const shapeMap = {
-                  "A": "shape1-img",
-                  "B": "shape2-img", 
-                  "C": "shape3-img",
-                  "D": "shape4-img",
-                  "E": "shape5-img"
-              };
-              // Reset all shapes regardless of selectedShapes array
-              Object.values(shapeMap).forEach(imgClass => {
-                  let imgElements = document.getElementsByClassName(imgClass);
-                  if (imgElements.length > 0) {
-                      imgElements[0].classList.remove("selected");
-                      let letterBox = imgElements[0].parentElement.querySelector('.letter-box');
-                      if (letterBox) {
-                          letterBox.classList.remove("selected");
-                      }
-                      let redBoxes = imgElements[0].parentElement.querySelectorAll('[class^="red-box"]');
-                      redBoxes.forEach(box => {
-                          box.classList.remove("show");
-                      });
-                  }
-              });
-          }
-          
-          // Disable button during audio playback
-          $("#judgement_btn").css('pointer-events', 'none').css('cursor', 'default');
-          $('#judgement_btn').removeClass('btn_active');
-          
-          parent.surala.audio.playSound('IPM_S10L03u03_035', null, function() {
+          currentAudioId = 'IPM_S10L04u010_011';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
             if (sliderChanged) {
                 sliderChanged = false;
-            } else if (!answerSubmittedInCase2) {
-                // If no answer submitted, PAUSE seekbar and wait for answer
-                pauseSeekbar = true;
-                parent.surala.slideNavigation.blinkNextBtn(false);
-                
-                // Enable shape selection ONLY when seekbar stops
-                shapeSelectionEnabled = true;
-                
-                // Enable button so kids can submit answer after audio ends
-                $("#judgement_btn").css('pointer-events', 'auto').css('cursor', 'pointer');
-                $('#judgement_btn').addClass('btn_active');
-                // Ensure click handler is attached
-                $('#judgement_btn').off('click').on('click', function(e) {
-                    e.preventDefault();
-                    evaluateCase2Answer();
-                });
+            } else {
+                seqNo = 3;
+                slideSequence(seqNo);
             }
-            // If answer was submitted, the evaluateCase2Answer function will handle progression to case 3 and 4
           });
           break;
       case 3:
-          // Hide display2 and continue with third audio
-      
-          // Disable shape selection in case 3
-          shapeSelectionEnabled = false;
-          
-          // Reset answer state when navigating via seekbar
-          if (pauseSeekbar || sliderChanged) {
-              answerSubmittedInCase2 = false;
-              // Remove selected class from all shapes
-              const shapeMap = {
-                  "A": "shape1-img",
-                  "B": "shape2-img", 
-                  "C": "shape3-img",
-                  "D": "shape4-img",
-                  "E": "shape5-img"
-              };
-              // Reset all shapes regardless of selectedShapes array
-              Object.values(shapeMap).forEach(imgClass => {
-                  let imgElements = document.getElementsByClassName(imgClass);
-                  if (imgElements.length > 0) {
-                      imgElements[0].classList.remove("selected");
-                      let letterBox = imgElements[0].parentElement.querySelector('.letter-box');
-                      if (letterBox) {
-                          letterBox.classList.remove("selected");
-                      }
-                      let redBoxes = imgElements[0].parentElement.querySelectorAll('[class^="red-box"]');
-                      redBoxes.forEach(box => {
-                          box.classList.remove("show");
-                      });
-                  }
-              });
-              selectedShapes = [];
-          }
-          
-          // Add blinking outline to yellow-box during case 3 audio
-          var blinkInterval = setInterval(function() {
-              $('.yellow-box').toggleClass('blink-outline');
-          }, 500);
-          
-          parent.surala.audio.playSound('IPM_S10L03u03_036', null, function() {
-            // Stop blinking when audio ends
-            clearInterval(blinkInterval);
-            $('.yellow-box').removeClass('blink-outline');
-            
+          parent.surala.character.animate('student', 'talk', function() {
+              parent.surala.character.animate('student', 'talk_stop');
+          });
+          currentAudioId = 'IPM_S10L04u010_S002';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            parent.surala.character.stopAllAnimation();
             if (sliderChanged) {
                 sliderChanged = false;
             } else {
@@ -365,94 +332,359 @@ function slideSequence(seqNo) {
           });
           break;
       case 4:
-           
-          // Disable shape selection in case 4
-          shapeSelectionEnabled = false;
-             
-          parent.surala.audio.playSound('IPM_S10L03u03_037', null, function() {
+          $('.display2').css("visibility", "visible");
+          currentAudioId = 'IPM_S10L04u010_012';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
             if (sliderChanged) {
                 sliderChanged = false;
             } else {
-                // End the slide sequence and stop all running processes
-                parent.surala.character.stopAllAnimation();
-                parent.surala.audio.stopAllNonLoopSounds();
-                
-                // Stop the createjs Ticker to prevent tick function from running
-                createjs.Ticker.removeEventListener("tick", tick);
-                
-                // Clear all intervals and timeouts
-                clearInterval(interVal);
-                clearTimeout(timeOut);
-                clearTimeout(seekBarTimer);
-                
-                // Stop seekbar and mark as ended
-                pauseSeekbar = true;
-                seekBarStatus = "ended";
-                slideTutorial.enableSeekbar = false;
-                
-                // Set seekbar to end position
-                currentSliderPos = seekbarLength;
-                $('#seekBarSlider').css({ left: seekbarLength + 'px' });
-                $('#sliderVal').css({ width: seekbarLength + 'px' });
-                
-                // Enable next button
-                parent.surala.slideNavigation.blinkNextBtn(true);
-                parent.surala.slideNavigation.playPauseState = true;
-                parent.surala.slideNavigation.playStatus = "pause";
+                seqNo = 5;
+                slideSequence(seqNo);
             }
           });
           break;
+
+      case 5:
+          currentAudioId = 'IPM_S10L04u010_013';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 6;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 6:
+          currentAudioId = 'IPM_S10L04u010_S003';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 7;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 7:
+          currentAudioId = 'IPM_S10L04u010_S004';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 8;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 8:
+          currentAudioId = 'IPM_S10L04u010_014';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 9;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 9:
+          currentAudioId = 'IPM_S10L04u010_015';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 10;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 10:
+          currentAudioId = 'IPM_S10L04u010_016';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 11;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 11:
+          currentAudioId = 'IPM_S10L04u010_017';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 12;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 12:
+          currentAudioId = 'IPM_S10L04u010_S005';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 13;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 13:
+          currentAudioId = 'IPM_S10L04u010_018';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 14;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 14:
+          $('.blueline').css("visibility", "visible");
+          currentAudioId = 'IPM_S10L04u010_019';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 15;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 15:
+          currentAudioId = 'IPM_S10L04u010_020';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 16;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 16:
+          $('.one').css("visibility", "visible");
+          currentAudioId = 'IPM_S10L04u010_021';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 17;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 17:
+          $('.two').css("visibility", "visible");
+          currentAudioId = 'IPM_S10L04u010_022';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 18;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 18:
+          $('.display4').css("visibility", "visible");
+          
+          // Enable input field and button for case 18
+          $('#text_1').prop('disabled', false).css('pointer-events', 'auto');
+          $('#judgement_btn1').css('pointer-events', 'auto').addClass('btn_active');
+          
+          // Hide the example text by default when case 18 starts
+          $('.example').css("visibility", "hidden");
+          
+          // Add event listener for the judgement button
+          $('#judgement_btn1').off('click').on('click', function() {
+              validateCase18Answer();
+          });
+          
+          currentAudioId = 'IPM_S10L04u010_023';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+              // Audio stops here, allowing kids to give answer
+              // Answer giving and checking continues to other cases
+              if (sliderChanged) {
+                  sliderChanged = false;
+              } else {
+                  // Don't automatically advance to next case - wait for user input
+                  // Pause seekbar until user answers
+                  pauseSeekbar = true;
+              }
+          });
+          break;
+      case 19:
+          $('.display5 .').css("visibility", "visible");
+          currentAudioId = 'IPM_S10L04u010_024';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 20;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 20:
+          $('.display6').css("visibility", "visible");
+          currentAudioId = 'IPM_S10L04u010_025';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 21;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 21:
+          $('.display7').css("visibility", "visible");
+          currentAudioId = 'IPM_S10L04u010_026';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 22;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 22:
+          // Blink 2 times when starting case 22 - blink the element containing 4.800 km²
+          var blinkCount = 0;
+          var blinkInterval = setInterval(function() {
+              // Blink display7 and any element with the value
+              $('.display7, .value, .answer, [data-value="4.800"]').fadeOut(300).fadeIn(300);
+              blinkCount++;
+              if (blinkCount >= 2) {
+                  clearInterval(blinkInterval);
+              }
+          }, 400);
+          
+          currentAudioId = 'IPM_S10L04u010_027';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 23;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 23:
+          $('.display8').css("visibility", "visible");
+          currentAudioId = 'IPM_S10L04u010_028';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 24;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 24:
+          currentAudioId = 'IPM_S10L04u010_029';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 25;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 25:
+          currentAudioId = 'IPM_S10L04u010_030';
+          parent.surala.audio.playSound(currentAudioId, null, function() {
+            if (sliderChanged) {
+                sliderChanged = false;
+            } else {
+                seqNo = 26;
+                slideSequence(seqNo);
+            }
+          });
+          break;
+      case 26:
+          // End of slide
+          endSeekbar();
+          break;
   }
+}
+
+// Function to update content based on sequence number
+function updateContentForSequence(seqNo) {
+  // Reset all content first
+  resetAllContent();
+  
+  // Show content based on current sequence
+  for (var i = 1; i <= seqNo; i++) {
+      showcontent(i);
+  }
+}
+
+// Function to reset all content visibility
+function resetAllContent() {
+  $('.display1, .display2, .display4, .display5, .display6, .display7, .display8').css('visibility', 'hidden');
+  $('.blueline, .one, .two').css('visibility', 'hidden');
+  $('.feedback, .correctAnswer').css('display', 'none');
+  $('#fb1, #fb2, #fb3, #fb4, #fb5, #fb6, #fb7').removeClass('correctFB6 wrongFB5');
+  
+  // Reset interactive states
+  shapeSelectionEnabled = false;
+  answerBtnClicked1 = false;
+  answerSubmittedInCase2 = false;
+  answerSubmittedInCase18 = false;
+  $('#text_1').prop('disabled', true).css('pointer-events', 'none').val('');
+  $('#judgement_btn1').css('pointer-events', 'none').removeClass('btn_active');
+  $('#judgement_btn').css('pointer-events', 'none').removeClass('btn_active');
+  
+  // Hide example text
+  $('.example').css('visibility', 'hidden');
 }
 
 function showcontent(num) {
   parent.surala.disablecallOut();
   switch (num) {
       case 1:
-          $('.display01').css("visibility", "visible");
+          $('.display1').css("visibility", "visible");
           shapeSelectionEnabled = false;
           break;
       case 2:
-          $('.display2').css("visibility", "visible");
-          if (seekBarStatus !== "ended") {
-              answerSubmittedInCase2 = false;
-              // Enable shape selection when showing case 2
-              shapeSelectionEnabled = true;
-              // Remove selected class from all shapes
-              const shapeMap = {
-                  "A": "shape1-img",
-                  "B": "shape2-img", 
-                  "C": "shape3-img",
-                  "D": "shape4-img",
-                  "E": "shape5-img"
-              };
-              // Reset all shapes regardless of selectedShapes array
-              Object.values(shapeMap).forEach(imgClass => {
-                  let imgElements = document.getElementsByClassName(imgClass);
-                  if (imgElements.length > 0) {
-                      imgElements[0].classList.remove("selected");
-                      let letterBox = imgElements[0].parentElement.querySelector('.letter-box');
-                      if (letterBox) {
-                          letterBox.classList.remove("selected");
-                      }
-                      let redBoxes = imgElements[0].parentElement.querySelectorAll('[class^="red-box"]');
-                      redBoxes.forEach(box => {
-                          box.classList.remove("show");
-                      });
-                  }
-              });
-              selectedShapes = [];
-              // Reset button state and remove old click handlers
-              $('#judgement_btn').off('click');
-              $('#judgement_btn').css('pointer-events', 'none').css('cursor', 'default');
-              $('#judgement_btn').removeClass('btn_active');
-          }
-          break;
-      case 3:
-          shapeSelectionEnabled = false;
+          
+          shapeSelectionEnabled = true;
           break;
       case 4:
-          shapeSelectionEnabled = false;
+          $('.display2').css("visibility", "visible");
+          break;
+      case 14:
+          $('.blueline').css("visibility", "visible");
+          break;
+      case 16:
+          $('.one').css("visibility", "visible");
+          break;
+      case 17:
+          $('.two').css("visibility", "visible");
+          break;
+      case 18:
+          $('.display4').css("visibility", "visible");
+          break;
+      case 19:
+          $('.display5').css("visibility", "visible");
+          break;
+      case 20:
+          $('.display6').css("visibility", "visible");
+          break;
+      case 21:
+          $('.display7').css("visibility", "visible");
+          break;
+      case 23:
+          $('.display8').css("visibility", "visible");
           break;
   }
 }
@@ -460,52 +692,38 @@ function showcontent(num) {
 function hidecontent(num) {
   switch (num) {
       case 1:
-          $('.display01').css("visibility", "hidden");
+          $('.display1').css("visibility", "hidden");
+          shapeSelectionEnabled = false;
           break;
       case 2:
-          $(' .display2').css("visibility", "hidden");
-          
-          // Disable shape selection when hiding case 2
-          shapeSelectionEnabled = false;
-          // Clear feedback images when hiding display2
-          const feedbackIds = ['A', 'B', 'C', 'D', 'E'];
-          feedbackIds.forEach(id => {
-              let feedback = document.getElementById("feedback" + id);
-              if (feedback) {
-                  feedback.classList.remove("show");
-              }
-          });
-          // Reset selected shapes and hide red boxes
-          const shapeMap = {
-              "A": "shape1-img",
-              "B": "shape2-img", 
-              "C": "shape3-img",
-              "D": "shape4-img",
-              "E": "shape5-img"
-          };
-          // Remove selected class from all shapes and hide red boxes
-          Object.values(shapeMap).forEach(imgClass => {
-              let imgElements = document.getElementsByClassName(imgClass);
-              if (imgElements.length > 0) {
-                  imgElements[0].classList.remove("selected");
-                  // Hide red box
-                  let redBox = imgElements[0].nextElementSibling;
-                  while (redBox && !redBox.className.match(/red-box/)) {
-                      redBox = redBox.nextElementSibling;
-                  }
-                  if (redBox) {
-                      redBox.style.display = "none";
-                  }
-              }
-          });
-          selectedShapes = [];
-          answerSubmittedInCase2 = false;
-          break;
-      case 3:
-          shapeSelectionEnabled = false;
+          $('.display2').css("visibility", "hidden");
           break;
       case 4:
-          shapeSelectionEnabled = false;
+          $('.display2').css("visibility", "hidden");
+          break;
+      case 14:
+          $('.blueline').css("visibility", "hidden");
+          break;
+      case 16:
+          $('.one').css("visibility", "hidden");
+          break;
+      case 17:
+          $('.two').css("visibility", "hidden");
+          break;
+      case 18:
+          $('.display4').css("visibility", "hidden");
+          break;
+      case 19:
+          $('.display5').css("visibility", "hidden");
+          break;
+      case 20:
+          $('.display6').css("visibility", "hidden");
+          break;
+      case 21:
+          $('.display7').css("visibility", "hidden");
+          break;
+      case 23:
+          $('.display8').css("visibility", "hidden");
           break;
   }
 }
@@ -914,105 +1132,407 @@ function evaluateCase2Answer() {
   }
 }
 
-// Shape selection and feedback functionality
-var selectedShapes = [];
-var shapeSelectionEnabled = false; // Control when shapes can be selected
-
-document.addEventListener("DOMContentLoaded", function () {
-    // shape IDs mapped to image classes
-    const shapeMap = {
-        "A": "shape1-img",
-        "B": "shape2-img", 
-        "C": "shape3-img",
-        "D": "shape4-img",
-        "E": "shape5-img"
-    };
-
-    // correct answers (C and D correspond to shape3-img and shape4-img)
-    const correctAnswers = ["C", "D"];
-
-    // user selected shapes - now using global variable
-    // let selectedShapes = [];
-    
-    // Hide all red boxes initially
-    Object.values(shapeMap).forEach(imgClass => {
-        let imgElements = document.getElementsByClassName(imgClass);
-        if (imgElements.length > 0) {
-            let img = imgElements[0];
-            let redBox = img.nextElementSibling;
-            while (redBox && !redBox.className.match(/red-box/)) {
-                redBox = redBox.nextElementSibling;
-            }
-            if (redBox) {
-                redBox.style.display = "none";
-            }
-        }
-    });
-
-    // Add feedback image containers to the DOM
-    // Positioning is handled by CSS
-    Object.keys(shapeMap).forEach(shape => {
-        let feedbackImg = document.createElement("img");
-        feedbackImg.id = "feedback" + shape;
-        document.body.appendChild(feedbackImg);
-    });
-
-    // Add click event listeners to shape images
-    Object.keys(shapeMap).forEach(shape => {
-        let imgClass = shapeMap[shape];
-        let imgElements = document.getElementsByClassName(imgClass);
-        
-        if (imgElements.length > 0) {
-            let img = imgElements[0];
-            
-            img.addEventListener("click", function () {
-                // Only allow selection during case 2 when enabled
-                if (!shapeSelectionEnabled) {
-                    return;
-                }
-                
-                // Get the corresponding red box
-                let redBox = img.nextElementSibling;
-                while (redBox && !redBox.className.match(/red-box/)) {
-                    redBox = redBox.nextElementSibling;
-                }
-                
-                // If already selected → unselect
-                if (img.classList.contains("selected")) {
-                    img.classList.remove("selected");
-                    if (redBox) {
-                        redBox.style.display = "none";
-                    }
-                    selectedShapes = selectedShapes.filter(s => s !== shape);
-                    return;
-                }
-
-                // limit selection to 5
-                if (selectedShapes.length >= 5) {
-                    return; // stop extra selection
-                }
-
-                // Add selection and show red box
-                img.classList.add("selected");
-                if (redBox) {
-                    redBox.style.display = "block";
-                }
-                selectedShapes.push(shape);
-            });
-        }
-    });
-
-    // RESULT BUTTON - delegate to evaluateCase2Answer function
-    let judgementBtn = document.getElementById("judgement_btn");
-    if (judgementBtn) {
-        judgementBtn.removeEventListener("click", arguments.callee);
-        // Note: The actual click handler is attached in slideSequence case 2
-        // This DOMContentLoaded listener is kept for compatibility
+// Validate answer for case 18
+function validateCase18Answer() {
+    // Prevent multiple submissions
+    if (answerSubmittedInCase18) {
+        return;
     }
-});
+    
+    answerSubmittedInCase18 = true;
+    
+    // Get the user input and remove any spaces
+    var userAnswer = $('#text_1').val().trim().replace(/\s/g, '');
+    
+    // Check if answer is empty
+    if (userAnswer === '') {
+        // For empty submission, treat as wrong answer
+        var isCorrect = false;
+    } else {
+        // Correct answers are 4.800 or 4800
+        var isCorrect = (userAnswer === '4.800' || userAnswer === '4800');
+    }
+    
+    // Disable input and button after submission
+    $('#text_1').prop('disabled', true).css('pointer-events', 'none');
+    $('#judgement_btn1').css('pointer-events', 'none').removeClass('btn_active');
+    
+    // Set up animation parameters for feedback
+    parent.surala.character.stopAllAnimation();
+    
+    // LMS tracking
+    var activityNo = "slide2-case18";
+    var param = {
+        flash_problem_num: activityNo,
+        flash_answer: userAnswer,
+        type: 'lecture_answer',
+        flash_count: 1,
+        flash_success: isCorrect ? 1 : 0
+    };
+    
+    if (isCorrect) {
+        // Hide the example text for correct answers
+        $('.example').css('visibility', 'hidden').hide();
+        
+        // Play correct animation and audio using existing function
+        parent.surala.character.animate('student', 'correct', function() {
+            parent.surala.character.animate('student', 'correct_stop');
+        });
+        parent.surala.character.animate('teacher', 'correct', function() {
+            parent.surala.character.animate('teacher', 'correct_speak');
+        });
+        
+        // Play correct sound
+        setTimeout(function() {
+            if (parent.surala && parent.surala.audio) {
+                parent.surala.audio.playSound('MG_benar_02', null, function() {
+                    // Send LMS data
+                    if (typeof setMain === 'function') setMain(activityNo, param);
+                    if (typeof sendMassage === 'function') sendMassage(studyLogUrl, param, false);
+                    
+                    // Resume seekbar and continue to next case after correct feedback
+                    pauseSeekbar = false;
+                    seqNo = 19;
+                    slideSequence(seqNo);
+                });
+            }
+        }, 200);
+    } else {
+        // Show the example text for wrong answers
+        $('.example').css('visibility', 'visible').show();
+        
+        // Play wrong animation and audio using existing function
+        parent.surala.character.animate('student', 'wrong', function() {
+            parent.surala.character.animate('student', 'wrong_stop');
+        });
+        parent.surala.character.animate('teacher', 'wrong', function() {
+            parent.surala.character.animate('teacher', 'wrong_speak');
+        });
+        
+        // Play wrong sound
+        setTimeout(function() {
+            if (parent.surala && parent.surala.audio) {
+                parent.surala.audio.playSound('MG_salah_07', null, function() {
+                    // Send LMS data
+                    if (typeof setMain === 'function') setMain(activityNo, param);
+                    if (typeof sendMassage === 'function') sendMassage(studyLogUrl, param, false);
+                    
+                    // Resume seekbar and continue to next case after wrong feedback
+                    pauseSeekbar = false;
+                    seqNo = 19;
+                    slideSequence(seqNo);
+                });
+            }
+        }, 200);
+    }
+}
+
 
 window.onunload = function() {
   parent.surala.disablecallOut();
   parent.surala.audio.stopAllNonLoopSounds();
   parent.surala.character.stopAllAnimation();
 };
+
+// Add this function to handle showing content when seekbar moves forward/backward
+function updateSlideContent(seq) {
+  // Reset all displays and states
+  resetAllContent();
+  
+  // Show content up to the current sequence
+  for (var i = 1; i <= seq; i++) {
+      showcontent(i);
+  }
+}
+
+function seekBarEnable() {
+  slideTutorial.enableSeekbar = true;
+  disableSeekBar = false;
+
+  parent.surala.enableBookmark = true;
+
+  // seekbar pointer on drag
+  $(".seekBarSlider").draggable({
+    axis: "x",
+    left: 0,
+    containment: ".seeBarDrag",
+    scroll: false,
+    start: function (e, ui) {
+      if (slideTutorial.enableSeekbar && disableSeekBar === false) {
+        onSliderDrag = true;
+        clearInterval(interVal);
+        clearTimeout(timeOut);
+        clearTimeout(seekBarTimer);
+        sliderChanged = true;
+        
+        // Stop all audio immediately when dragging starts
+        parent.surala.audio.stopAllNonLoopSounds();
+        currentAudioId = null;
+        
+        parent.surala.character.teacherTalk(false);
+        parent.surala.slideNavigation.blinkNextBtn(false);
+        pauseSeekbar = true;
+      }
+    },
+    drag: function (e, ui) {
+      if (slideTutorial.enableSeekbar && disableSeekBar === false) {
+        currentSliderPos = ui.position.left;
+        if (currentSliderPos > seekbarWidth) currentSliderPos = seekbarWidth;
+
+        $("#sliderVal").css({ width: currentSliderPos + "px" });
+        parent.surala.character.stopAllAnimation();
+
+        // Update content based on slider position
+        updateContentBasedOnSlider(currentSliderPos);
+      }
+    },
+    stop: function (e, ui) {
+      parent.playbuttonClick = true;
+      parent.surala.disablecallOut();
+      if (slideTutorial.enableSeekbar && currentSliderPos < seekbarLength) {
+        onSliderDrag = false;
+        currentSliderPos = ui.position.left;
+        $("#seekBarSlider").css({ left: currentSliderPos + "px" });
+        $("#sliderVal").css({ width: currentSliderPos + "px" });
+        updateSlide();
+        if (currentSliderPos >= 710 && currentSliderPos < seekbarLength) {
+          endSeekbar();
+        }
+      } else if (currentSliderPos >= seekbarLength) {
+        endSeekbar();
+      }
+    },
+  });
+
+  $(".seekBarSlider").draggable("enable");
+  playSeekbar();
+}
+
+// Update content based on slider position
+function updateContentBasedOnSlider(sliderPos) {
+  var targetSeq = 1;
+  for (var i = 0; i < slideData.slideDuration.length; i++) {
+    if (sliderPos < parseFloat(slideData.slideDuration[i].pixVal)) {
+      if (i > 0) {
+        targetSeq = i;
+      } else {
+        targetSeq = 1;
+      }
+      break;
+    } else if (i === slideData.slideDuration.length - 1) {
+      targetSeq = slideData.slideDuration.length;
+    }
+  }
+  
+  // Update content visibility based on target sequence
+  updateSlideContent(targetSeq);
+}
+
+// seekbar audio pixel value calculation
+function setpixVal(totalDuration) {
+  var avgPixVal = (totalDuration * 1000) / 710;
+  for (var i = 0; i < totalAudios; i++) {
+    if (i > 0) {
+      slideData.slideDuration[i].pixVal = parseFloat(
+        (
+          slideData.slideDuration[i - 1].pixVal +
+          parseFloat(
+            ((slideData.slideDuration[i].dur * 1000) / avgPixVal).toFixed(2)
+          )
+        ).toFixed(2)
+      );
+    } else {
+      slideData.slideDuration[i].pixVal = parseFloat(
+        ((slideData.slideDuration[i].dur * 1000) / avgPixVal).toFixed(2)
+      );
+    }
+  }
+}
+
+// update slide content on seekbar change
+function updateSlide() {
+  "use strict";
+
+  for (var i = 0; i < slideData.slideDuration.length; i++) {
+    if (currentSliderPos < parseFloat(slideData.slideDuration[i].pixVal)) {
+      sliderChanged = true;
+
+      if (i > 0) {
+        currentSliderPos = parseFloat(slideData.slideDuration[i - 1].pixVal);
+        seqNo = i + 1;
+      } else {
+        seqNo = 1;
+        currentSliderPos = 0;
+      }
+      
+      // Stop all audio and clear current audio ID
+      parent.surala.audio.stopAllNonLoopSounds();
+      currentAudioId = null;
+
+      // Update content based on new sequence
+      updateSlideContent(seqNo - 1);
+
+      //for play pause functioning
+      if (parent.surala.slideNavigation.playStatus === "play") {
+        playSlide("play");
+      }
+
+      //play seekbar, on drag from the position of seekbar end
+      if (seekBarStatus === "ended") {
+        seekBarStatus = "inprogress";
+        sliderChanged = false;
+        playSeekbar();
+        parent.surala.slideNavigation.blinkNextBtn(false);
+      }
+      break;
+    }
+  }
+}
+
+function endSeekbar() {
+  parent.surala.character.stopAllAnimation();
+  onSliderDrag = false;
+  currentSliderPos = seekbarLength;
+  clearTimeout(seekBarTimer);
+  $("#seekBarSlider").css({ left: currentSliderPos + "px" });
+  $("#sliderVal").css({ width: currentSliderPos + "px" });
+  $("#seekBarSlider").css("cursor", "default");
+  parent.surala.audio.stopAllNonLoopSounds();
+  currentAudioId = null;
+
+  setTimeout(function () {
+    parent.surala.audio.stopAllNonLoopSounds();
+    parent.surala.slideNavigation.blinkNextBtn(true);
+    parent.surala.slideNavigation.playStatus = "pause";
+    parent.surala.slideNavigation.playPause();
+    seekBarStatus = "ended";
+    /* speed control */
+    parent.$(".lecture-controls-box").css("pointer-events", "none");
+    updateSlideContent(totalSequence);
+    currentSliderPos = 0;
+    seqNo = 1;
+  }, 50);
+}
+
+// UI play/pause method
+function playSlide(playStatus) {
+  if (playStatus === "play") {
+    if (!slideTutorial.enableSeekbar || pauseSeekbar) {
+      slideTutorial.enableSeekbar = true;
+      pauseSeekbar = false;
+      clearTimeout(seekBarTimer);
+      $(".seekBarSlider").draggable("enable");
+      playSeekbar();
+    }
+    setTimeout(function () {
+      sliderChanged = false;
+      slideSequence(seqNo);
+    }, 50);
+    seekBarStatus = "inprogress";
+    disableSeekBar = false;
+    parent.surala.audio.stopAllNonLoopSounds();
+    currentAudioId = null;
+    updateSlideContent(seqNo);
+    parent.surala.slideNavigation.blinkNextBtn(false);
+    $("#seekBarSlider").css({ left: currentSliderPos + "px" });
+    $("#sliderVal").css({ width: currentSliderPos + "px" });
+  } else {
+    $(".judgement_btn").css("pointer-events", "none");
+    $(".answerBtn").css("pointer-events", "none");
+    clearInterval(interVal);
+    clearTimeout(timeOut);
+    updateSlide();
+    sliderChanged = true;
+    parent.surala.character.teacherTalk(false);
+    slideTutorial.enableSeekbar = false;
+    seekBarDisable();
+  }
+}
+
+function seekBarDisable() {
+  $(".seekBarSlider").draggable("disable");
+  disableSeekBar = true;
+}
+
+function playSeekbar() {
+  try {
+    clearTimeout(seekBarTimer);
+
+    /* Speed Control - Start */
+    var audioRate = parent.lectureControls.playbackRate;
+    var timeOutDur = parseFloat(
+      ((totalDuration * 1000) / seekbarLength).toFixed(2)
+    );
+    if (audioRate != "") {
+      if (audioRate == 0.5 || audioRate == 0.75) {
+        timeOutDur = timeOutDur + timeOutDur * audioRate;
+      } else {
+        timeOutDur = timeOutDur / audioRate;
+      }
+    }
+    /* Speed Control - End */
+
+    var pixMoveDur = 5;
+    if (!parent.surala.support.webAudio) {
+      pixMoveDur = 5.16;
+    }
+    $("#seekBarSlider").css("cursor", "pointer");
+    seekBarTimer = setTimeout(function () {
+      // speed control disable on seekbar pause 08 April 2021
+      if (pauseSeekbar) {
+        $(".lecture-controls-box", window.parent.document).css({
+          "pointer-events": "none",
+          opacity: "0.5",
+        });
+      } else {
+        $(".lecture-controls-box", window.parent.document).css({
+          "pointer-events": "auto",
+          opacity: "1",
+        });
+      }
+
+      if (
+        currentSliderPos < seekbarLength &&
+        slideTutorial.enableSeekbar &&
+        !pauseSeekbar
+      ) {
+        currentSliderPos += 5;
+        if (currentSliderPos > seekbarLength) {
+          currentSliderPos = seekbarLength;
+        }
+
+        if (!onSliderDrag) {
+          $("#sliderVal").css({ width: currentSliderPos + "px" });
+          $("#seekBarSlider").css({ left: currentSliderPos + "px" });
+        }
+        playSeekbar();
+        if (currentSliderPos > seekbarLength - 15) {
+          parent.surala.slideNavigation.playPauseState = false;
+        }
+      } else if (currentSliderPos >= seekbarLength) {
+        parent.surala.character.stopAllAnimation();
+        seekBarStatus = "ended";
+        onSliderDrag = false;
+        currentSliderPos = seekbarLength;
+        $("#seekBarSlider").css({ left: currentSliderPos + "px" });
+        $("#sliderVal").css({ width: currentSliderPos + "px" });
+
+        $("#seekBarSlider").css("cursor", "default");
+
+        parent.surala.slideNavigation.blinkNextBtn(true);
+
+        parent.surala.slideNavigation.playPauseState = true;
+        parent.surala.slideNavigation.playStatus = "pause";
+        parent.surala.slideNavigation.playPause();
+        /* speed control */
+        parent.$(".lecture-controls-box").css("pointer-events", "none");
+        //playSlide("pause");
+        updateSlideContent(totalSequence);
+        currentSliderPos = 0;
+        seqNo = 1;
+      }
+    }, timeOutDur * pixMoveDur);
+  } catch (e) {
+    //console.log('error caught at seeBar.js - playSeekbar() : ' + e);
+  }
+}
